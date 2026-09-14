@@ -1,0 +1,160 @@
+site_name: Machine Learning — UMT
+site_description: Third-year Bachelor course in Machine Learning — University Metropolitan Tirana
+site_author: Evis Plaku
+site_url: https://evisp.github.io/ml-course-umt/
+repo_url: https://github.com/evisp/ml-course-umt
+repo_name: evisp/ml-course-umt
+edit_uri: edit/main/docs/
+
+copyright: Copyright &copy; Evis Plaku — University Metropolitan Tirana
+
+theme:
+  name: material
+  language: en
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.action.edit
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: false
+      fallback_to_build_date: true
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+
+  - Course:
+    - Overview: 00-course/index.md
+    - Syllabus: 00-course/syllabus.md
+    - 14-week schedule: 00-course/schedule.md
+    - Assessment & grading: 00-course/assessment.md
+    - How to work in this course: 00-course/how-to-work.md
+
+  - Toolkit:
+    - Overview: 01-toolkit/index.md
+    - Environment setup: 01-toolkit/environment-setup.md
+    - Git & GitHub: 01-toolkit/git-and-github.md
+    - VS Code & Jupyter: 01-toolkit/vscode-jupyter.md
+    - Python refresher: 01-toolkit/python-refresher.md
+    - NumPy & pandas refresher: 01-toolkit/numpy-pandas.md
+    - Project repo conventions: 01-toolkit/repo-conventions.md
+
+  - "Block 1 · Data & Pipeline":
+    - Overview: 02-data-pipeline/index.md
+    - "Week 01 — Problem framing & baselines": 02-data-pipeline/week-01-problem-framing.md
+    - "Week 02 — Data quality & splitting": 02-data-pipeline/week-02-data-quality.md
+    - "Week 03 — Feature engineering": 02-data-pipeline/week-03-feature-engineering.md
+    - "Week 04 — Evaluation & error analysis": 02-data-pipeline/week-04-evaluation.md
+
+  - "Block 2 · Models & Optimization":
+    - Overview: 03-models-optimization/index.md
+    - "Week 05 — Linear models": 03-models-optimization/week-05-linear-models.md
+    - "Week 06 — Optimization": 03-models-optimization/week-06-optimization.md
+    - "Week 07 — Bias, variance & regularization": 03-models-optimization/week-07-regularization.md
+    - "Week 08 — Tree-based models": 03-models-optimization/week-08-tree-models.md
+    - "Week 09 — Model selection & calibration": 03-models-optimization/week-09-model-selection.md
+
+  - "Block 3 · Representation & Systems":
+    - Overview: 04-representation-systems/index.md
+    - "Week 10 — Clustering": 04-representation-systems/week-10-clustering.md
+    - "Week 11 — Dimensionality reduction": 04-representation-systems/week-11-dimensionality-reduction.md
+    - "Week 12 — Bridge to neural networks": 04-representation-systems/week-12-neural-bridge.md
+    - "Week 13 — ML systems & responsibility": 04-representation-systems/week-13-ml-systems.md
+    - "Week 14 — Synthesis & presentations": 04-representation-systems/week-14-synthesis.md
+
+  - Projects:
+    - Overview: 05-projects/index.md
+    - "Project 1 — Validated baseline": 05-projects/project-1-pipeline.md
+    - "Project 2 — Model comparison": 05-projects/project-2-comparison.md
+    - "Project 3 — Capstone": 05-projects/project-3-capstone.md
+    - Rubrics: 05-projects/rubrics.md
+    - Submission guide: 05-projects/submission-guide.md
+
+  - Reference:
+    - Overview: 06-reference/index.md
+    - Linear algebra: 06-reference/linear-algebra.md
+    - Calculus for ML: 06-reference/calculus.md
+    - Probability & statistics: 06-reference/probability-statistics.md
+    - scikit-learn cheatsheet: 06-reference/sklearn-cheatsheet.md
+    - Datasets: 06-reference/datasets.md
+    - Glossary: 06-reference/glossary.md
+    - Further reading: 06-reference/further-reading.md
