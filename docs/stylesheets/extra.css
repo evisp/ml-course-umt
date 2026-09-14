@@ -29,3 +29,114 @@
 .md-typeset .task-list-item {
   margin-bottom: 0.2rem;
 }
+
+/* ---- Homepage hero ------------------------------------------------------- */
+
+.md-typeset .hero {
+  text-align: center;
+  padding: 2.5rem 0 1rem;
+}
+
+.md-typeset .hero h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.6rem;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .hero-tagline {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--md-primary-fg-color);
+  margin: 0 auto 1.2rem;
+  max-width: 34rem;
+}
+
+.md-typeset .hero-lede {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--md-default-fg-color--light);
+  max-width: 36rem;
+  margin: 0 auto 1.8rem;
+}
+
+.md-typeset .hero .md-button {
+  margin: 0.25rem 0.3rem;
+}
+
+/* ---- Stats strip --------------------------------------------------------- */
+
+.md-typeset .stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 1.5rem 0 0.5rem;
+}
+
+.md-typeset .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 6rem;
+}
+
+.md-typeset .stat b {
+  font-size: 2.2rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--md-primary-fg-color);
+}
+
+.md-typeset .stat span {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.35rem;
+}
+
+/* ---- Closing pull quote -------------------------------------------------- */
+
+.md-typeset .closing {
+  margin: 2rem 0;
+}
+
+.md-typeset .closing blockquote {
+  border-left: none;
+  border-top: 2px solid var(--md-primary-fg-color);
+  border-bottom: 2px solid var(--md-primary-fg-color);
+  padding: 1.4rem 1rem;
+  margin: 0;
+  text-align: center;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .closing blockquote p {
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: 500;
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+/* ---- Homepage footer note ------------------------------------------------ */
+
+.md-typeset .hero-footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--md-default-fg-color--light);
+  padding: 1rem 0 2rem;
+}
+
+/* ---- Small screens ------------------------------------------------------- */
+
+@media screen and (max-width: 600px) {
+  .md-typeset .hero h1 { font-size: 2.1rem; }
+  .md-typeset .hero-tagline { font-size: 1rem; }
+  .md-typeset .stats { gap: 1.5rem; }
+  .md-typeset .stat b { font-size: 1.8rem; }
+}
+

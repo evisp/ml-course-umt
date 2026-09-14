@@ -252,16 +252,16 @@ Final grades are capped at 100.
 
 | Points | Grade |
 |---|:--:|
-| 90 to 100 | **10** |
-| 80 to 89 | **9** |
-| 70 to 79 | **8** |
-| 60 to 69 | **7** |
-| 50 to 59 | **6** |
-| 40 to 49 | **5** |
-| Below 40 | **4** (fail) |
+| 95 to 100 | **10** |
+| 85 to 94 | **9** |
+| 75 to 84 | **8** |
+| 65 to 74 | **7** |
+| 55 to 64 | **6** |
+| 44 to 54 | **5** |
+| Below 45 | **4** (fail) |
 
 !!! info "Passing requires both halves"
-    You need 40 points overall **and** at least 15 of 40 on the final exam. A team cannot carry you to a pass. This is the one place where the individual component is a gate rather than a weight.
+    You need 45 points overall **and** at least 20 of 40 on the final exam. A team cannot carry you to a pass. This is the one place where the individual component is a gate rather than a weight.
 
 ---
 
