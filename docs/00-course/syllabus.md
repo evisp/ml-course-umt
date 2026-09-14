@@ -4,7 +4,7 @@
     **Programme:** Bachelor, Year 3 — University Metropolitan Tirana
     **Duration:** 14 weeks · one lecture + one lab per week
     **Format:** Project-based — you build three portfolio projects, not three exam answers
-    **Assessment:** 85% projects, 15% labs and participation
+    **Assessment:** 3 team projects at 20 points, final exam at 40 points
     **Prerequisites:** Python, basic statistics, introductory programming
 
 ---
@@ -160,14 +160,17 @@ Real data mostly has no labels, and a model that lives only in your notebook has
 
 ## Assessment
 
-| Component | Weight | Due |
-|---|:--:|---|
-| Project 1 — Validated baseline | 20% | End of Week 4 |
-| Project 2 — Model comparison | 30% | End of Week 9 |
-| Project 3 — Capstone | 35% | Week 14 (presented) |
-| Labs & participation | 15% | Continuous |
+| Component | Points | Mode | Due |
+|---|:--:|---|---|
+| Project 1 — Validated baseline | 20 | Team of 3 | End of Week 4 |
+| Project 2 — Model comparison | 20 | Team of 3 | End of Week 9 |
+| Project 3 — Capstone | 20 | Team of 3 | Week 14 |
+| Final exam | 40 | Individual | Exam session |
+| League bonus | up to +5 | Team | End of semester |
 
-Project 1 carries real weight on purpose: methodological sloppiness in Week 4 should cost you something. The capstone carries the most because it is the thing you will actually show people.
+Sixty points reward what you can build with other people. Forty reward what you
+understand on your own. See **[Assessment & grading](assessment.md)** for teams,
+peer ratings, and the League.
 
 !!! info "Rubrics are published in advance"
     Every project is graded against a criterion-by-criterion rubric you can read before you start. See **[Rubrics](../05-projects/rubrics.md)**.
