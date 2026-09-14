@@ -853,6 +853,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy & pandas refresher
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -869,6 +887,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-page-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this page exists
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2080,6 +2128,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-page-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this page exists
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2152,11 +2219,270 @@
 
 
 <h1 id="numpy-pandas-refresher">NumPy &amp; pandas Refresher<a class="headerlink" href="#numpy-pandas-refresher" title="Permanent link">&para;</a></h1>
-<p>Array thinking and dataframe fluency.</p>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This page is a placeholder. Content lands before it is needed in the schedule.</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>Estimated time:</strong> 40 minutes
+<strong>You need:</strong> the <a href="../python-refresher/">Python refresher</a> behind you
+<strong>This is:</strong> the operations you will use every single week, and the two warnings that confuse everyone</p>
 </div>
+<h2 id="why-this-page-exists">Why this page exists<a class="headerlink" href="#why-this-page-exists" title="Permanent link">&para;</a></h2>
+<p>Roughly eighty percent of your time in this course is spent moving data around before a model ever sees it. That work happens in pandas, sitting on top of NumPy. Being fluent here is the difference between spending a lab thinking about your problem and spending it fighting your tools.</p>
+<pre class="mermaid"><code>flowchart LR
+    N["&lt;b&gt;NumPy&lt;/b&gt;&lt;br/&gt;arrays, fast maths,&lt;br/&gt;the layer underneath"] --&gt; P["&lt;b&gt;pandas&lt;/b&gt;&lt;br/&gt;labelled tables,&lt;br/&gt;where you work"]
+    P --&gt; S["&lt;b&gt;scikit-learn&lt;/b&gt;&lt;br/&gt;takes arrays&lt;br/&gt;and dataframes"]</code></pre>
+<hr />
+<h1 id="numpy">NumPy<a class="headerlink" href="#numpy" title="Permanent link">&para;</a></h1>
+<h2 id="arrays-not-lists">Arrays, not lists<a class="headerlink" href="#arrays-not-lists" title="Permanent link">&para;</a></h2>
+<p>An array holds one type and stores it contiguously, which is why operations on it run in compiled code rather than a Python loop.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>            <span class="c1"># [2 4 6 8], no loop needed</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">a</span> <span class="o">+</span> <span class="n">a</span>            <span class="c1"># elementwise</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">a</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">a</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</span></code></pre></div>
+<p>This is vectorization. Write <code>a * 2</code>, never <code>[x * 2 for x in a]</code>. On a real dataset the difference is not stylistic, it is two orders of magnitude.</p>
+<h2 id="shape-is-everything">Shape is everything<a class="headerlink" href="#shape-is-everything" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>     <span class="c1"># 100 rows, 5 features</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">X</span><span class="o">.</span><span class="n">shape</span>       <span class="c1"># (100, 5)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">X</span><span class="o">.</span><span class="n">ndim</span>        <span class="c1"># 2</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">X</span><span class="o">.</span><span class="n">dtype</span>       <span class="c1"># float64</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">X</span><span class="o">.</span><span class="n">T</span>                        <span class="c1"># transpose, (5, 100)</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">The debugging habit</p>
+<p>When an ML operation fails, print the shapes first. A large share of errors are a <code>(100,)</code> where a <code>(100, 1)</code> was expected, or two arrays that do not line up.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<h2 id="indexing-and-masks">Indexing and masks<a class="headerlink" href="#indexing-and-masks" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>              <span class="c1"># first row</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">X</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>           <span class="c1"># third column, all rows</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>       <span class="c1"># slice both axes</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mf">0.5</span>    <span class="c1"># boolean array</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">X</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>           <span class="c1"># rows where the condition holds</span>
+</span></code></pre></div>
+<p>Boolean masking is how you filter without loops, and pandas uses the same idea.</p>
+<h2 id="broadcasting">Broadcasting<a class="headerlink" href="#broadcasting" title="Permanent link">&para;</a></h2>
+<p>NumPy stretches smaller arrays to match larger ones when the shapes are compatible.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">col_means</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>     <span class="c1"># shape (3,)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">centred</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">col_means</span>        <span class="c1"># works, applied to every row</span>
+</span></code></pre></div>
+<p><code>axis=0</code> means "down the rows", giving one value per column. <code>axis=1</code> means "across the columns", giving one value per row. Mixing these up is common, so check the shape of the result when unsure.</p>
+<h2 id="reproducibility">Reproducibility<a class="headerlink" href="#reproducibility" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">sample</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Use a seeded generator, not the older <code>np.random.seed()</code>. Unseeded randomness makes your results unreproducible, which in this course means they are not results.</p>
+<hr />
+<h1 id="pandas">pandas<a class="headerlink" href="#pandas" title="Permanent link">&para;</a></h1>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span></code></pre></div>
+<h2 id="loading-and-first-look">Loading and first look<a class="headerlink" href="#loading-and-first-look" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/raw/listings.csv"</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>            <span class="c1"># dtypes and non-null counts, look here first</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>        <span class="c1"># numeric summary</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">df</span><span class="p">[</span><span class="s2">"city"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>      <span class="c1"># missing values per column</span>
+</span></code></pre></div>
+<p><code>df.info()</code> and <code>df.isna().sum()</code> are the two you run on every new dataset, every time.</p>
+<h2 id="selecting">Selecting<a class="headerlink" href="#selecting" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">"price"</span><span class="p">]</span>                    <span class="c1"># one column, a Series</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">df</span><span class="p">[[</span><span class="s2">"price"</span><span class="p">,</span> <span class="s2">"area_m2"</span><span class="p">]]</span>       <span class="c1"># several columns, a DataFrame</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"price"</span><span class="p">]</span>             <span class="c1"># by label</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>                  <span class="c1"># by position</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"price"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">,</span> <span class="p">[</span><span class="s2">"city"</span><span class="p">,</span> <span class="s2">"price"</span><span class="p">]]</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title"><code>loc</code> versus <code>iloc</code></p>
+<p><code>loc</code> uses labels and includes the end of a slice. <code>iloc</code> uses integer positions and excludes it, like normal Python. When the index is a default range they look identical, which is exactly why people get caught out later when it is not.</p>
+</div>
+<h2 id="filtering">Filtering<a class="headerlink" href="#filtering" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"price"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">]</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">"price"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"city"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Tirana"</span><span class="p">)]</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"city"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">"Tirana"</span><span class="p">,</span> <span class="s2">"Durrës"</span><span class="p">])]</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"price &gt; 200 and city == 'Tirana'"</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Parentheses around each condition are required. Use <code>&amp;</code> and <code>|</code>, not <code>and</code> and <code>or</code>.</p>
+<h2 id="creating-and-changing-columns">Creating and changing columns<a class="headerlink" href="#creating-and-changing-columns" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">"price_per_m2"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"price"</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">"area_m2"</span><span class="p">]</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">df</span><span class="p">[</span><span class="s2">"size_band"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"area_m2"</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>                         <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">"small"</span><span class="p">,</span> <span class="s2">"medium"</span><span class="p">,</span> <span class="s2">"large"</span><span class="p">])</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">df</span><span class="p">[</span><span class="s2">"city"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"city"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">2026</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">"year_built"</span><span class="p">])</span>
+</span></code></pre></div>
+<h2 id="missing-values">Missing values<a class="headerlink" href="#missing-values" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">"area_m2"</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"area_m2"</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"price"</span><span class="p">])</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Do not fill missing values yet</p>
+<p>Imputation is a modelling decision, and when you do it matters more than how. Filling before you split leaks information from your test set into training. Week 2 and Week 3 cover this properly. For now, look at missingness and describe it, but leave the handling until you have a pipeline.</p>
+</div>
+<h2 id="grouping">Grouping<a class="headerlink" href="#grouping" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"city"</span><span class="p">)[</span><span class="s2">"price"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"city"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">median_price</span><span class="o">=</span><span class="p">(</span><span class="s2">"price"</span><span class="p">,</span> <span class="s2">"median"</span><span class="p">),</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">n</span><span class="o">=</span><span class="p">(</span><span class="s2">"price"</span><span class="p">,</span> <span class="s2">"size"</span><span class="p">),</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">)</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"city"</span><span class="p">,</span> <span class="s2">"size_band"</span><span class="p">])[</span><span class="s2">"price"</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</span></code></pre></div>
+<p>Grouped aggregation is how you answer most exploratory questions. Get comfortable with the <code>agg</code> form, since it names the output columns for you.</p>
+<h2 id="joining">Joining<a class="headerlink" href="#joining" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">merged</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">neighbourhoods</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"zip_code"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th><code>how</code></th>
+<th>Keeps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>left</code></td>
+<td>All rows from the left table</td>
+</tr>
+<tr>
+<td><code>inner</code></td>
+<td>Only rows matching in both</td>
+</tr>
+<tr>
+<td><code>outer</code></td>
+<td>Everything from both</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">Check your row count after every merge</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">merged</span><span class="p">))</span>
+</span></code></pre></div>
+<p>If the number grew, your join key is not unique and you have silently duplicated rows. This is quiet, common, and it will wreck your model. Check every time.</p>
+</div>
+<h2 id="chaining">Chaining<a class="headerlink" href="#chaining" title="Permanent link">&para;</a></h2>
+<p>Long chains keep the sequence of operations visible and avoid intermediate variables you then forget to update.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">summary</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="n">df</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"price &gt; 0"</span><span class="p">)</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">price_per_m2</span><span class="o">=</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s2">"price"</span><span class="p">]</span> <span class="o">/</span> <span class="n">d</span><span class="p">[</span><span class="s2">"area_m2"</span><span class="p">])</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"city"</span><span class="p">)</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">median_ppm2</span><span class="o">=</span><span class="p">(</span><span class="s2">"price_per_m2"</span><span class="p">,</span> <span class="s2">"median"</span><span class="p">),</span> <span class="n">n</span><span class="o">=</span><span class="p">(</span><span class="s2">"price"</span><span class="p">,</span> <span class="s2">"size"</span><span class="p">))</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"median_ppm2"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>The <code>lambda d:</code> inside <code>assign</code> refers to the dataframe as it is at that point in the chain, which is what lets you use a column you just created.</p>
+<h2 id="the-warning-everyone-hits">The warning everyone hits<a class="headerlink" href="#the-warning-everyone-hits" title="Permanent link">&para;</a></h2>
+<div class="admonition failure">
+<p class="admonition-title"><code>SettingWithCopyWarning</code></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">subset</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"price"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">]</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">subset</span><span class="p">[</span><span class="s2">"flag"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>          <span class="c1"># warning</span>
+</span></code></pre></div>
+<p>pandas cannot tell whether <code>subset</code> is a view into <code>df</code> or a copy, so your assignment may or may not affect the original. Be explicit:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">subset</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"price"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">subset</span><span class="p">[</span><span class="s2">"flag"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>          <span class="c1"># fine</span>
+</span></code></pre></div>
+<p>Rule of thumb: if you filter and then modify, add <code>.copy()</code>.</p>
+</div>
+<h2 id="going-to-scikit-learn">Going to scikit-learn<a class="headerlink" href="#going-to-scikit-learn" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"price"</span><span class="p">])</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"price"</span><span class="p">]</span>
+</span></code></pre></div>
+<p>Modern scikit-learn accepts dataframes directly and keeps your column names, which makes feature importance readable later. Prefer passing the dataframe over converting to <code>.values</code>.</p>
+<h2 id="quick-self-check">Quick self-check<a class="headerlink" href="#quick-self-check" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> What is the difference between <code>df.loc[0]</code> and <code>df.iloc[0]</code>?</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Why does <code>df[df.a &gt; 1 and df.b &lt; 2]</code> fail?</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> What does <code>axis=0</code> mean in <code>X.mean(axis=0)</code>?</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> What should you check immediately after a merge?</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> When does <code>SettingWithCopyWarning</code> appear, and what fixes it?</li>
+</ul>
+<h2 id="quick-reference">Quick reference<a class="headerlink" href="#quick-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Load CSV</td>
+<td><code>pd.read_csv(path)</code></td>
+</tr>
+<tr>
+<td>Structure and dtypes</td>
+<td><code>df.info()</code></td>
+</tr>
+<tr>
+<td>Missing per column</td>
+<td><code>df.isna().sum()</code></td>
+</tr>
+<tr>
+<td>Category counts</td>
+<td><code>df["col"].value_counts()</code></td>
+</tr>
+<tr>
+<td>Filter</td>
+<td><code>df[df["col"] &gt; x]</code></td>
+</tr>
+<tr>
+<td>Select by label</td>
+<td><code>df.loc[rows, cols]</code></td>
+</tr>
+<tr>
+<td>Select by position</td>
+<td><code>df.iloc[rows, cols]</code></td>
+</tr>
+<tr>
+<td>New column</td>
+<td><code>df["new"] = ...</code></td>
+</tr>
+<tr>
+<td>Group and aggregate</td>
+<td><code>df.groupby("k").agg(...)</code></td>
+</tr>
+<tr>
+<td>Join</td>
+<td><code>df.merge(other, on="k", how="left")</code></td>
+</tr>
+<tr>
+<td>Sort</td>
+<td><code>df.sort_values("col", ascending=False)</code></td>
+</tr>
+<tr>
+<td>Drop duplicates</td>
+<td><code>df.drop_duplicates()</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary-and-next-steps">Summary and next steps<a class="headerlink" href="#summary-and-next-steps" title="Permanent link">&para;</a></h2>
+<p>You can load a dataset, understand its shape and gaps, filter and derive columns, aggregate, and join, without writing a single loop. That is the toolkit for the first four weeks.</p>
+<p><strong>Next:</strong> <a href="../repo-conventions/">Project repo conventions</a>, the last setup page, which sets the house rules every project follows.</p>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/user_guide/index.html">pandas user guide</a>, the official reference, better than most tutorials</li>
+<li><a href="https://numpy.org/doc/stable/user/absolute_beginners.html">NumPy absolute basics</a> for a clear introduction to arrays</li>
+<li><a href="https://leanpub.com/effective-pandas">Effective pandas</a> by Matt Harrison for the chaining style used above</li>
+<li><a href="https://pandas.pydata.org/docs/user_guide/10min.html">10 minutes to pandas</a> as a fast tour if you want one more pass</li>
+</ul>
 
 
 
@@ -2177,7 +2503,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 13:54:23 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 17:10:07 UTC">September 14, 2026</span>
   </span>
 
     
