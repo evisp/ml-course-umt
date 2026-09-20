@@ -1,20 +1,28 @@
-<div class="hero" markdown>
+---
+hide:
+  - navigation
+  - toc
+---
+
+<div class="hero-banner" markdown>
+
+<p class="eyebrow">University Metropolitan Tirana · Bachelor, Year 3</p>
 
 # Machine Learning
 
-<p class="hero-tagline">Fourteen weeks of building things that work on data nobody cleaned for you.</p>
+<p class="hero-tagline">Building things that work on real data.</p>
 
-<p class="hero-lede">
-Most courses teach you to call <code>.fit()</code>. You can already do that.
-This one is about everything around it: turning a vague request into a real question,
-knowing whether your data can answer it, and being able to say out loud why your
-model should be trusted.
-</p>
+<div class="chips">
+  <span class="chip">Frame a problem</span>
+  <span class="chip">Split without leaking</span>
+  <span class="chip">Engineer features</span>
+  <span class="chip">Evaluate honestly</span>
+  <span class="chip">Tune and compare</span>
+  <span class="chip">Ship a model</span>
+</div>
 
 [Start here](00-course/index.md){ .md-button .md-button--primary }
 [Set up your machine](01-toolkit/index.md){ .md-button }
-
-</div>
 
 <div class="stats">
   <div class="stat"><b>14</b><span>weeks</span></div>
@@ -22,20 +30,37 @@ model should be trusted.
   <div class="stat"><b>1</b><span>portfolio you can show</span></div>
 </div>
 
----
+</div>
 
-## How it works
+## How a week runs { .section-label }
 
-You work in teams of three. Every five weeks the team changes and a project is due. Labs are not exercises, they are time on your own project, so by the deadline most of it is already built.
+<div class="beats">
+  <div class="beat">
+    <span class="beat-time">1 hour</span>
+    <b>Learn</b>
+    <p>The concept, and the problem it exists to solve.</p>
+  </div>
+  <div class="beat">
+    <span class="beat-time">2 hours</span>
+    <b>Build</b>
+    <p>A short drill together, then straight onto your own project.</p>
+  </div>
+  <div class="beat">
+    <span class="beat-time">1 hour</span>
+    <b>Defend</b>
+    <p>Show what you did. Answer questions about it.</p>
+  </div>
+</div>
 
-There is one commitment the whole course is arranged around, and it is worth reading twice.
+<div class="principle" markdown>
 
-> **The pipeline is the deliverable, not the model.**
-> A score of 95% because you leaked the answer is worth less than 71% you can defend.
+**The pipeline is the deliverable, not the model.**
 
----
+A score of 95% because you leaked the answer is worth less than 71% you can defend.
 
-## Find your way
+</div>
+
+## Find your way { .section-label }
 
 <div class="grid cards" markdown>
 
@@ -89,15 +114,15 @@ There is one commitment the whole course is arranged around, and it is worth rea
 
 </div>
 
----
+## Where this ends { .section-label }
 
-## Where this ends
+Week 14, in front of the room, defending a system you chose and built.
 
-In Week 14 you stand in front of the room with a system you chose, built, and deployed, and you answer questions about it from people who have read your code.
-
-By then you will have argued with two different teams about how to split a dataset. You will have watched a model that looked brilliant on Friday fall apart against data it had never seen. You will have written a README at least once that a stranger could actually follow, and you will know exactly how rare that is.
-
-None of that is about algorithms. It is about becoming the person who can be handed a messy problem and be trusted with it.
+<div class="outcomes">
+  <div class="outcome">Three projects on GitHub you can send to anyone who asks what you can do.</div>
+  <div class="outcome">The instinct to spot a leak before it flatters you.</div>
+  <div class="outcome">A README a stranger can follow, which is rarer than it sounds.</div>
+</div>
 
 <div class="closing" markdown>
 
@@ -108,6 +133,6 @@ None of that is about algorithms. It is about becoming the person who can be han
 
 <div class="hero-footer" markdown>
 
-**New here?** Read the [course overview](00-course/index.md), then spend an afternoon on the [toolkit](01-toolkit/index.md). Week 1 assumes both are done.
+**New here?** Read the [course overview](00-course/index.md), spend an afternoon on the [toolkit](01-toolkit/index.md), then go to [Week 1](02-data-pipeline/week-01-problem-framing.md).
 
 </div>
