@@ -29,7 +29,7 @@
     
     
       
-        <title>Overview - Machine Learning — UMT</title>
+        <title>Reference - Machine Learning — UMT</title>
       
     
     
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Reference
             
           </span>
         </div>
@@ -1726,10 +1726,6 @@
       
         
       
-        
-      
-        
-      
     
     
     
@@ -1878,6 +1874,34 @@
   
   
     <li class="md-nav__item">
+      <a href="metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choosing a metric
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="sklearn-cheatsheet/" class="md-nav__link">
         
   
@@ -1886,90 +1910,6 @@
     
   
     scikit-learn cheatsheet
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="datasets/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Datasets
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="glossary/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Glossary
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="further-reading/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Further reading
   
 
     
@@ -2009,6 +1949,69 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-you-need-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When you need what
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maths-you-actually-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maths you actually use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#while-you-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        While you work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-find-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to find data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#going-further" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Going further
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2082,10 +2085,114 @@
 
 
 <h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
-<p>Topic-based material you return to across the whole course.</p>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This page is a placeholder. Content lands before it is needed in the schedule.</p>
+<p>Material you come back to, rather than read once. Nothing here is assigned. Open a page when a week needs it, or when something in a lab stops making sense.</p>
+<h2 class="section-label" id="when-you-need-what">When you need what<a class="headerlink" href="#when-you-need-what" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Week</th>
+<th>You are doing</th>
+<th>Open this</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>04</strong></td>
+<td>Evaluation and error analysis</td>
+<td><a href="metrics/">Choosing a metric</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>05</strong></td>
+<td>Linear models and the loss landscape</td>
+<td><a href="linear-algebra/">Linear algebra</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>06</strong></td>
+<td>Optimization and gradient descent</td>
+<td><a href="calculus/">Calculus for ML</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>07</strong></td>
+<td>Bias, variance and regularization</td>
+<td><a href="linear-algebra/">Linear algebra</a>, norms section</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>09</strong></td>
+<td>Model selection and calibration</td>
+<td><a href="probability-statistics/">Probability and statistics</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>11</strong></td>
+<td>Dimensionality reduction and PCA</td>
+<td><a href="linear-algebra/">Linear algebra</a>, SVD section</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>any</strong></td>
+<td>Writing pipeline code</td>
+<td><a href="sklearn-cheatsheet/">scikit-learn cheatsheet</a></td>
+</tr>
+</tbody>
+</table>
+<p>If you are in Weeks 1 to 3, you can ignore this whole section. The maths arrives in Block 2.</p>
+<h2 class="section-label" id="maths-you-actually-use">Maths you actually use<a class="headerlink" href="#maths-you-actually-use" title="Permanent link">&para;</a></h2>
+<p>Each page is scoped to the two or three weeks that need it, and says up front what it leaves out.</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 2h4v2H4v16h2v2H2zm18 2h-2V2h4v20h-4v-2h2zM9 5h1v5h1v1H8v-1h1V6l-1 .5v-1zm6 8h1v5h1v1h-3v-1h1v-4l-1 .5v-1zm-6 0c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2m6-9c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2"/></svg></span> <strong>Linear algebra</strong></p>
+<hr />
+<p>Vectors, dot products, matrix shapes, norms, projection, and the SVD that PCA is built on.</p>
+<p><a href="linear-algebra/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Open</a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.42 5.29c-1.1-.1-2.07.71-2.17 1.82L10 10h2.82v2h-3l-.44 5.07A4.001 4.001 0 0 1 2 18.83l1.5-1.5c.33 1.05 1.46 1.64 2.5 1.3.78-.24 1.33-.93 1.4-1.74L7.82 12h-3v-2H8l.27-3.07a4.01 4.01 0 0 1 4.33-3.65c1.26.11 2.4.81 3.06 1.89l-1.5 1.5c-.25-.77-.93-1.31-1.74-1.38M22 13.65l-1.41-1.41-2.83 2.83-2.83-2.83-1.43 1.41 2.85 2.85-2.85 2.81 1.43 1.41 2.83-2.83 2.83 2.83L22 19.31l-2.83-2.81z"/></svg></span> <strong>Calculus for ML</strong></p>
+<hr />
+<p>Derivatives, gradients, the chain rule, and deriving the update rule that gradient descent runs on.</p>
+<p><a href="calculus/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Open</a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19v1h18v2H2V2h2v15c3 0 6-2 8.1-5.6 3-5 6.3-7.4 9.9-7.4v2c-2.8 0-5.5 2.1-8.1 6.5C11.3 16.6 7.7 19 4 19"/></svg></span> <strong>Probability &amp; statistics</strong></p>
+<hr />
+<p>Distributions, expectation and variance, sampling, and deciding whether a difference between two models is real.</p>
+<p><a href="probability-statistics/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Open</a></p>
+</li>
+</ul>
+</div>
+<h2 class="section-label" id="while-you-work">While you work<a class="headerlink" href="#while-you-work" title="Permanent link">&para;</a></h2>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-1.27 0-2.4.8-2.82 2H3v2h1.95L2 14c-.47 2 1 3 3.5 3s4.06-1 3.5-3L6.05 7h3.12c.33.85.98 1.5 1.83 1.83V20H2v2h20v-2h-9V8.82c.85-.32 1.5-.97 1.82-1.82h3.13L15 14c-.47 2 1 3 3.5 3s4.06-1 3.5-3l-2.95-7H21V5h-6.17C14.4 3.8 13.27 3 12 3m0 2a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-6.5 5.25L7 14H4zm13 0L20 14h-3z"/></svg></span> <strong>Choosing a metric</strong></p>
+<hr />
+<p>Precision against recall, ROC against PR under imbalance, RMSE against MAE, and what each one hides from you.</p>
+<p><a href="metrics/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Open</a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5zm-4.28 11.79c-.4 0-.72.3-.72.89s.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68zM9.14 5.71c.4 0 .72-.3.72-.89s-.32-.71-.72-.71c-.39 0-.71.12-.71.71s.32.89.71.89"/></svg></span> <strong>scikit-learn cheatsheet</strong></p>
+<hr />
+<p>Pipelines, column transformers, cross-validation, and the API patterns worth committing to memory.</p>
+<p><a href="sklearn-cheatsheet/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Open</a></p>
+</li>
+</ul>
+</div>
+<h2 class="section-label" id="where-to-find-data">Where to find data<a class="headerlink" href="#where-to-find-data" title="Permanent link">&para;</a></h2>
+<p>For the capstone, and for anything you build after this course. Your project dataset has to meet the requirements in the project brief, so read those before you fall in love with something.</p>
+<div class="outcomes">
+  <div class="outcome"><b><a href="https://www.kaggle.com/datasets">Kaggle Datasets</a>.</b> Enormous and uneven. Filter hard, and avoid anything with a thousand published notebooks.</div>
+  <div class="outcome"><b><a href="https://archive.ics.uci.edu/">UCI Machine Learning Repository</a>.</b> Small, clean, well documented. Good for drills, usually too tidy for a project.</div>
+  <div class="outcome"><b><a href="https://open-data.europa.eu/">EU Open Data Portal</a> and <a href="https://www.instat.gov.al/">INSTAT</a>.</b> Real administrative data, genuinely messy, and local.</div>
+  <div class="outcome"><b><a href="https://huggingface.co/datasets">Hugging Face Datasets</a>.</b> Strong for text and images, with licences stated properly.</div>
+  <div class="outcome"><b><a href="https://datasetsearch.research.google.com/">Google Dataset Search</a>.</b> Use when you know the domain but not the source.</div>
+</div>
+
+<h2 class="section-label" id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
+<p>Five things worth your time, in rough order of how soon they are useful.</p>
+<div class="outcomes">
+  <div class="outcome"><b><a href="https://www.3blue1brown.com/topics/linear-algebra">3Blue1Brown, Essence of Linear Algebra</a>.</b> Fifteen short videos. The best intuition for matrices anyone has built. Watch it even if you did linear algebra already.</div>
+  <div class="outcome"><b><a href="https://mml-book.github.io/">Mathematics for Machine Learning</a>, Deisenroth, Faisal and Ong.</b> Free PDF. The maths pages here are a scoped version of its first five chapters.</div>
+  <div class="outcome"><b><a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/">Hands-On Machine Learning</a>, Géron.</b> The closest thing to a textbook for this course. Chapters 1 to 7 track Blocks 1 and 2 closely.</div>
+  <div class="outcome"><b><a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>, James et al.</b> Free PDF. Stronger than Géron on why methods work, lighter on code.</div>
+  <div class="outcome"><b><a href="https://scikit-learn.org/stable/user_guide.html">scikit-learn user guide</a>.</b> Not a fallback for when documentation fails. It is genuinely one of the better explanations of applied machine learning in existence.</div>
 </div>
 
 
@@ -2107,7 +2214,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 13:54:23 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 18:44:40 UTC">September 20, 2026</span>
   </span>
 
     
