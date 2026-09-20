@@ -223,7 +223,7 @@ One structure, reused across all three projects, so the shape of the work stops 
 - **Raw data is read-only, and everything downstream rebuilds from it.**
 - **The README is the deliverable that makes the rest of the deliverable usable.**
 
-**Next:** you are set up. Read [how to work in this course](../00-course/how-to-work.md) if you have not, then go to [Week 1](../02-data-pipeline/week-01-problem-framing.md).
+**Next:** you are set up. Go to [Week 1](../02-data-pipeline/week-01-problem-framing.md).
 
 ## Resources
 

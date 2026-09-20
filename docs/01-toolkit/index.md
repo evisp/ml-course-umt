@@ -115,7 +115,7 @@ Pages one to three are installation and configuration, in order. Pages four and 
 All six ticked means you are done here.
 
 !!! question "Something not working?"
-    Each page has a **Common problems** section covering the errors that come up most. If you are still stuck after twenty minutes, ask in the course channel rather than alone. Your question is almost certainly someone else's too, and the [twenty-minute rule](../00-course/how-to-work.md) applies from day one.
+    Each page has a **Common problems** section covering the errors that come up most. If you are still stuck after twenty minutes, ask in the course channel rather than alone. Your question is almost certainly someone else's too, and the twenty-minute rule applies from day one.
 
 ---
 

@@ -103,10 +103,8 @@ nav:
   - Home: index.md
 
   - Course:
-    - Overview: 00-course/index.md
-    - Syllabus: 00-course/syllabus.md
-    - Assessment & grading: 00-course/assessment.md
-    - How to work in this course: 00-course/how-to-work.md
+    - 00-course/index.md
+    - Grading: 00-course/grading.md
 
   - Toolkit:
     - Overview: 01-toolkit/index.md

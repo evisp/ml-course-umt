@@ -464,3 +464,304 @@
     transform: none;
   }
 }
+
+/* ==========================================================================
+   12. Course section: roadmap and grading
+   ========================================================================== */
+
+/* ---- Roadmap track ------------------------------------------------------- */
+
+.md-typeset .roadmap-track {
+  display: flex;
+  gap: 0.4rem;
+  margin: 2rem 0 2.6rem;
+}
+
+.md-typeset .track-seg {
+  flex: 1;
+  padding: 0.9rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--course-edge);
+  text-align: center;
+}
+
+.md-typeset .track-seg.seg-1 {
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 6%, transparent);
+}
+
+.md-typeset .track-seg.seg-2 {
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 11%, transparent);
+}
+
+.md-typeset .track-seg.seg-3 {
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 16%, transparent);
+}
+
+.md-typeset .track-weeks {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--md-primary-fg-color);
+  margin-bottom: 0.3rem;
+}
+
+.md-typeset .track-seg b {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--md-default-fg-color);
+}
+
+
+/* ---- Block cards --------------------------------------------------------- */
+
+.md-typeset .block-card {
+  padding: 1.6rem 1.7rem 1.4rem;
+  margin: 0 0 1.6rem;
+  border-radius: var(--course-radius);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background-color: var(--md-default-bg-color);
+  transition: border-color 140ms ease;
+}
+
+.md-typeset .block-card:hover {
+  border-color: var(--course-edge);
+}
+
+.md-typeset .block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.md-typeset .block-num {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--md-primary-fg-color);
+}
+
+.md-typeset .block-weeks {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .block-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.25rem;
+}
+
+.md-typeset .block-sub {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--md-default-fg-color--light);
+  margin: 0 0 1.3rem;
+}
+
+
+/* ---- Week rows ----------------------------------------------------------- */
+
+.md-typeset .weeks {
+  display: grid;
+  gap: 0.1rem;
+  margin-bottom: 1.4rem;
+}
+
+.md-typeset .week-row {
+  display: flex;
+  gap: 0.9rem;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .week-row:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.md-typeset .week-num {
+  flex-shrink: 0;
+  width: 1.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--md-primary-fg-color);
+}
+
+.md-typeset .week-body b {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.12rem;
+}
+
+.md-typeset .week-body p {
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: var(--md-default-fg-color--light);
+  margin: 0;
+}
+
+
+/* ---- Block skills and project link --------------------------------------- */
+
+.md-typeset .block-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--md-default-fg-color--light);
+  margin: 0 0 0.6rem;
+}
+
+.md-typeset .chips.chips-left {
+  justify-content: flex-start;
+  max-width: none;
+  margin: 0 0 1.3rem;
+}
+
+.md-typeset a.block-project {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1rem;
+  border-radius: 0.4rem;
+  background-color: var(--course-tint);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--md-primary-fg-color);
+  transition: background-color 140ms ease;
+}
+
+.md-typeset a.block-project::before {
+  content: "▸";
+  margin-right: 0.5rem;
+}
+
+.md-typeset a.block-project:hover {
+  background-color: var(--course-tint-strong);
+}
+
+
+/* ---- Grading: points bar ------------------------------------------------- */
+
+.md-typeset .points-bar {
+  display: flex;
+  gap: 0.2rem;
+  margin: 2rem 0 0.8rem;
+}
+
+.md-typeset .points-seg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0.4rem;
+  border-radius: 0.4rem;
+  text-align: center;
+  min-width: 0;
+}
+
+.md-typeset .points-seg.seg-team {
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 12%, transparent);
+}
+
+.md-typeset .points-seg.seg-exam {
+  background-color: var(--md-primary-fg-color);
+}
+
+.md-typeset .points-seg b {
+  font-size: 1.7rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--md-primary-fg-color);
+}
+
+.md-typeset .points-seg.seg-exam b {
+  color: var(--md-primary-bg-color);
+}
+
+.md-typeset .points-seg span {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.4rem;
+}
+
+.md-typeset .points-seg.seg-exam span {
+  color: var(--md-primary-bg-color);
+  opacity: 0.85;
+}
+
+.md-typeset .points-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin-bottom: 2rem;
+  font-size: 0.68rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .legend-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.md-typeset .legend-item::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-right: 0.45rem;
+  border-radius: 0.15rem;
+}
+
+.md-typeset .legend-team::before {
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 35%, transparent);
+}
+
+.md-typeset .legend-exam::before {
+  background-color: var(--md-primary-fg-color);
+}
+
+
+/* ---- Course section: responsive ------------------------------------------ */
+
+@media screen and (max-width: 44.9375em) {
+  .md-typeset .roadmap-track {
+    flex-direction: column;
+  }
+
+  .md-typeset .block-card {
+    padding: 1.2rem 1.1rem 1.1rem;
+  }
+
+  .md-typeset .block-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .md-typeset .points-bar {
+    flex-wrap: wrap;
+  }
+
+  .md-typeset .points-seg {
+    flex: 1 1 45% !important;
+    padding: 1.1rem 0.3rem;
+  }
+
+  .md-typeset .points-seg b {
+    font-size: 1.4rem;
+  }
+}
