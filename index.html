@@ -414,7 +414,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -515,10 +517,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#how-a-week-runs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it works
+        How a week runs
       
     </span>
   </a>
@@ -2131,7 +2133,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -2150,10 +2154,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#how-a-week-runs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it works
+        How a week runs
       
     </span>
   </a>
@@ -2195,6 +2199,8 @@
               
                 
 
+  
+
 
 
   
@@ -2204,6 +2210,8 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
@@ -2215,34 +2223,50 @@
   
 
 
-<div class="hero">
+<div class="hero-banner">
+<p class="eyebrow">University Metropolitan Tirana · Bachelor, Year 3</p>
 <h1 id="machine-learning">Machine Learning<a class="headerlink" href="#machine-learning" title="Permanent link">&para;</a></h1>
-<p class="hero-tagline">Fourteen weeks of building things that work on data nobody cleaned for you.</p>
-<p class="hero-lede">
-Most courses teach you to call <code>.fit()</code>. You can already do that.
-This one is about everything around it: turning a vague request into a real question,
-knowing whether your data can answer it, and being able to say out loud why your
-model should be trusted.
-</p>
+<p class="hero-tagline">Building things that work on real data.</p>
+<div class="chips">
+  <span class="chip">Frame a problem</span>
+  <span class="chip">Split without leaking</span>
+  <span class="chip">Engineer features</span>
+  <span class="chip">Evaluate honestly</span>
+  <span class="chip">Tune and compare</span>
+  <span class="chip">Ship a model</span>
+</div>
 <p><a class="md-button md-button--primary" href="00-course/">Start here</a>
 <a class="md-button" href="01-toolkit/">Set up your machine</a></p>
-</div>
 <div class="stats">
-  <div class="stat"><b>14</b><span>weeks</span></div>
-  <div class="stat"><b>3</b><span>team projects</span></div>
-  <div class="stat"><b>1</b><span>portfolio you can show</span></div>
+<div class="stat"><b>14</b><span>weeks</span></div>
+<div class="stat"><b>3</b><span>team projects</span></div>
+<div class="stat"><b>1</b><span>portfolio you can show</span></div>
+</div>
+</div>
+<h2 class="section-label" id="how-a-week-runs">How a week runs<a class="headerlink" href="#how-a-week-runs" title="Permanent link">&para;</a></h2>
+<div class="beats">
+  <div class="beat">
+    <span class="beat-time">1 hour</span>
+    <b>Learn</b>
+    <p>The concept, and the problem it exists to solve.</p>
+  </div>
+  <div class="beat">
+    <span class="beat-time">2 hours</span>
+    <b>Build</b>
+    <p>A short drill together, then straight onto your own project.</p>
+  </div>
+  <div class="beat">
+    <span class="beat-time">1 hour</span>
+    <b>Defend</b>
+    <p>Show what you did. Answer questions about it.</p>
+  </div>
 </div>
 
-<hr />
-<h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
-<p>You work in teams of three. Every five weeks the team changes and a project is due. Labs are not exercises, they are time on your own project, so by the deadline most of it is already built.</p>
-<p>There is one commitment the whole course is arranged around, and it is worth reading twice.</p>
-<blockquote>
-<p><strong>The pipeline is the deliverable, not the model.</strong>
-A score of 95% because you leaked the answer is worth less than 71% you can defend.</p>
-</blockquote>
-<hr />
-<h2 id="find-your-way">Find your way<a class="headerlink" href="#find-your-way" title="Permanent link">&para;</a></h2>
+<div class="principle">
+<p><strong>The pipeline is the deliverable, not the model.</strong></p>
+<p>A score of 95% because you leaked the answer is worth less than 71% you can defend.</p>
+</div>
+<h2 class="section-label" id="find-your-way">Find your way<a class="headerlink" href="#find-your-way" title="Permanent link">&para;</a></h2>
 <div class="grid cards">
 <ul>
 <li>
@@ -2283,11 +2307,14 @@ A score of 95% because you leaked the answer is worth less than 71% you can defe
 </li>
 </ul>
 </div>
-<hr />
-<h2 id="where-this-ends">Where this ends<a class="headerlink" href="#where-this-ends" title="Permanent link">&para;</a></h2>
-<p>In Week 14 you stand in front of the room with a system you chose, built, and deployed, and you answer questions about it from people who have read your code.</p>
-<p>By then you will have argued with two different teams about how to split a dataset. You will have watched a model that looked brilliant on Friday fall apart against data it had never seen. You will have written a README at least once that a stranger could actually follow, and you will know exactly how rare that is.</p>
-<p>None of that is about algorithms. It is about becoming the person who can be handed a messy problem and be trusted with it.</p>
+<h2 class="section-label" id="where-this-ends">Where this ends<a class="headerlink" href="#where-this-ends" title="Permanent link">&para;</a></h2>
+<p>Week 14, in front of the room, defending a system you chose and built.</p>
+<div class="outcomes">
+  <div class="outcome">Three projects on GitHub you can send to anyone who asks what you can do.</div>
+  <div class="outcome">The instinct to spot a leak before it flatters you.</div>
+  <div class="outcome">A README a stranger can follow, which is rarer than it sounds.</div>
+</div>
+
 <div class="closing">
 <blockquote>
 <p>Start simple, measure honestly, improve in small steps.
@@ -2295,7 +2322,7 @@ A clear baseline and good metrics beat a clever algorithm every time.</p>
 </blockquote>
 </div>
 <div class="hero-footer">
-<p><strong>New here?</strong> Read the <a href="00-course/">course overview</a>, then spend an afternoon on the <a href="01-toolkit/">toolkit</a>. Week 1 assumes both are done.</p>
+<p><strong>New here?</strong> Read the <a href="00-course/">course overview</a>, spend an afternoon on the <a href="01-toolkit/">toolkit</a>, then go to <a href="02-data-pipeline/week-01-problem-framing/">Week 1</a>.</p>
 </div>
 
 
@@ -2317,7 +2344,7 @@ A clear baseline and good metrics beat a clever algorithm every time.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 17:29:28 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 17:45:40 UTC">September 20, 2026</span>
   </span>
 
     
@@ -2327,6 +2354,8 @@ A clear baseline and good metrics beat a clever algorithm every time.</p>
   </aside>
 
 
+
+  
 
 
 
@@ -2351,6 +2380,8 @@ A clear baseline and good metrics beat a clever algorithm every time.</p>
         <footer class="md-footer">
   
     
+      
+        
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         

@@ -2,174 +2,174 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://evisp.github.io/ml-course-umt/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/00-course/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/00-course/assessment/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/00-course/how-to-work/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/00-course/syllabus/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/01-toolkit/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/01-toolkit/environment-setup/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/01-toolkit/git-and-github/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/01-toolkit/numpy-pandas/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/01-toolkit/python-refresher/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/01-toolkit/repo-conventions/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/01-toolkit/vscode-jupyter/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/02-data-pipeline/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/02-data-pipeline/week-01-problem-framing/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/02-data-pipeline/week-02-data-quality/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/02-data-pipeline/week-03-feature-engineering/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/02-data-pipeline/week-04-evaluation/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/03-models-optimization/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/03-models-optimization/week-05-linear-models/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/03-models-optimization/week-06-optimization/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/03-models-optimization/week-07-regularization/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/03-models-optimization/week-08-tree-models/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/03-models-optimization/week-09-model-selection/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/04-representation-systems/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/04-representation-systems/week-10-clustering/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/04-representation-systems/week-11-dimensionality-reduction/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/04-representation-systems/week-12-neural-bridge/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/04-representation-systems/week-13-ml-systems/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/04-representation-systems/week-14-synthesis/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/05-projects/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/05-projects/project-1-pipeline/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/05-projects/project-2-comparison/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/05-projects/project-3-capstone/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/05-projects/rubrics/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/05-projects/submission-guide/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/06-reference/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/06-reference/calculus/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/06-reference/datasets/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/06-reference/further-reading/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/06-reference/glossary/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/06-reference/linear-algebra/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/06-reference/probability-statistics/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
     <url>
          <loc>https://evisp.github.io/ml-course-umt/06-reference/sklearn-cheatsheet/</loc>
-         <lastmod>2026-09-14</lastmod>
+         <lastmod>2026-09-20</lastmod>
     </url>
 </urlset>
