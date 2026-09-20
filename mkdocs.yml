@@ -147,11 +147,9 @@ nav:
     - Submission guide: 05-projects/submission-guide.md
 
   - Reference:
-    - Overview: 06-reference/index.md
+    - 06-reference/index.md
     - Linear algebra: 06-reference/linear-algebra.md
     - Calculus for ML: 06-reference/calculus.md
     - Probability & statistics: 06-reference/probability-statistics.md
+    - Choosing a metric: 06-reference/metrics.md
     - scikit-learn cheatsheet: 06-reference/sklearn-cheatsheet.md
-    - Datasets: 06-reference/datasets.md
-    - Glossary: 06-reference/glossary.md
-    - Further reading: 06-reference/further-reading.md
