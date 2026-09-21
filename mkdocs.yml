@@ -115,28 +115,28 @@ nav:
     - NumPy & pandas refresher: 01-toolkit/numpy-pandas.md
     - Project repo conventions: 01-toolkit/repo-conventions.md
 
-  - "Block 1 · Data & Pipeline":
+  - "Data & Pipeline":
     - Overview: 02-data-pipeline/index.md
-    - "Week 01 — Problem framing & baselines": 02-data-pipeline/week-01-problem-framing.md
-    - "Week 02 — Data quality & splitting": 02-data-pipeline/week-02-data-quality.md
-    - "Week 03 — Feature engineering": 02-data-pipeline/week-03-feature-engineering.md
-    - "Week 04 — Evaluation & error analysis": 02-data-pipeline/week-04-evaluation.md
+    - "Problem framing & baselines": 02-data-pipeline/week-01-problem-framing.md
+    - "Data quality & splitting": 02-data-pipeline/week-02-data-quality.md
+    - "Feature engineering": 02-data-pipeline/week-03-feature-engineering.md
+    - "Evaluation & error analysis": 02-data-pipeline/week-04-evaluation.md
 
-  - "Block 2 · Models & Optimization":
+  - "Models & Optimization":
     - Overview: 03-models-optimization/index.md
-    - "Week 05 — Linear models": 03-models-optimization/week-05-linear-models.md
-    - "Week 06 — Optimization": 03-models-optimization/week-06-optimization.md
-    - "Week 07 — Bias, variance & regularization": 03-models-optimization/week-07-regularization.md
-    - "Week 08 — Tree-based models": 03-models-optimization/week-08-tree-models.md
-    - "Week 09 — Model selection & calibration": 03-models-optimization/week-09-model-selection.md
+    - "Linear models": 03-models-optimization/week-05-linear-models.md
+    - "Optimization": 03-models-optimization/week-06-optimization.md
+    - "Bias, variance & regularization": 03-models-optimization/week-07-regularization.md
+    - "Tree-based models": 03-models-optimization/week-08-tree-models.md
+    - "Model selection & calibration": 03-models-optimization/week-09-model-selection.md
 
-  - "Block 3 · Representation & Systems":
+  - "Representation & Systems":
     - Overview: 04-representation-systems/index.md
-    - "Week 10 — Clustering": 04-representation-systems/week-10-clustering.md
-    - "Week 11 — Dimensionality reduction": 04-representation-systems/week-11-dimensionality-reduction.md
-    - "Week 12 — Bridge to neural networks": 04-representation-systems/week-12-neural-bridge.md
-    - "Week 13 — ML systems & responsibility": 04-representation-systems/week-13-ml-systems.md
-    - "Week 14 — Synthesis & presentations": 04-representation-systems/week-14-synthesis.md
+    - "Clustering": 04-representation-systems/week-10-clustering.md
+    - "Dimensionality reduction": 04-representation-systems/week-11-dimensionality-reduction.md
+    - "Bridge to neural networks": 04-representation-systems/week-12-neural-bridge.md
+    - "ML systems & responsibility": 04-representation-systems/week-13-ml-systems.md
+    - "Synthesis & presentations": 04-representation-systems/week-14-synthesis.md
 
   - Projects:
     - Overview: 05-projects/index.md

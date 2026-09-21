@@ -765,3 +765,25 @@
     font-size: 1.4rem;
   }
 }
+
+/* ==========================================================================
+   13. Block pages: extra track steps
+   ========================================================================== */
+
+.md-typeset .track-seg.seg-4 {
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 21%, transparent);
+}
+
+.md-typeset .track-seg.seg-project {
+  background-color: var(--md-primary-fg-color);
+  border-color: var(--md-primary-fg-color);
+}
+
+.md-typeset .track-seg.seg-project .track-weeks,
+.md-typeset .track-seg.seg-project b {
+  color: var(--md-primary-bg-color);
+}
+
+.md-typeset .track-seg.seg-project .track-weeks {
+  opacity: 0.8;
+}

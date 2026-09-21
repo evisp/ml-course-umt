@@ -1,0 +1,6 @@
+# Libraries for the figure scripts in scripts/figures/.
+# Not needed to build the site itself.
+numpy>=1.26
+pandas>=2.2
+matplotlib>=3.9
+scikit-learn>=1.5
