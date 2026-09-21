@@ -787,3 +787,60 @@
 .md-typeset .track-seg.seg-project .track-weeks {
   opacity: 0.8;
 }
+
+/* ==========================================================================
+   14. Custom callouts for week pages
+       !!! olist "In our example"     the running Olist example
+       !!! project "In your project"  apply the idea to your own data
+       Change the two colours below to restyle them everywhere.
+   ========================================================================== */
+
+:root {
+  --course-olist-color: #5c6bc0;
+  --course-project-color: #ec407a;
+  --md-admonition-icon--olist: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.75 1.03H8.1l-.9 1.63-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1zm6 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7 2.78-5H6.14l2.36 5z"/></svg>');
+  --md-admonition-icon--project: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.06 9 .94.94L5.92 19H5v-.92zm3.6-6c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/></svg>');
+}
+
+.md-typeset .admonition.olist,
+.md-typeset details.olist {
+  border-color: var(--course-olist-color);
+}
+
+.md-typeset .olist > .admonition-title,
+.md-typeset .olist > summary {
+  background-color: color-mix(in srgb, var(--course-olist-color) 10%, transparent);
+}
+
+.md-typeset .olist > .admonition-title::before,
+.md-typeset .olist > summary::before {
+  background-color: var(--course-olist-color);
+  -webkit-mask-image: var(--md-admonition-icon--olist);
+          mask-image: var(--md-admonition-icon--olist);
+}
+
+.md-typeset .admonition.project,
+.md-typeset details.project {
+  border-color: var(--course-project-color);
+}
+
+.md-typeset .project > .admonition-title,
+.md-typeset .project > summary {
+  background-color: color-mix(in srgb, var(--course-project-color) 10%, transparent);
+}
+
+.md-typeset .project > .admonition-title::before,
+.md-typeset .project > summary::before {
+  background-color: var(--course-project-color);
+  -webkit-mask-image: var(--md-admonition-icon--project);
+          mask-image: var(--md-admonition-icon--project);
+}
+
+/* "Elsewhere" lines: a quiet one-line example from another domain */
+.md-typeset p.elsewhere {
+  font-size: 0.74rem;
+  color: var(--md-default-fg-color--light);
+  border-left: 2px solid var(--md-default-fg-color--lightest);
+  padding-left: 0.8rem;
+  margin: 0.8rem 0 1.2rem;
+}
