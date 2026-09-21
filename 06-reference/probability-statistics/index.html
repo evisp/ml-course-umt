@@ -2357,8 +2357,8 @@
 <p><strong>Bernoulli.</strong> A yes or no outcome with probability <span class="arithmatex">\(p\)</span> of yes. Every binary target is one. The class balance of your dataset is your estimate of <span class="arithmatex">\(p\)</span>.</p>
 <p><strong>Normal.</strong> The symmetric bell curve, described completely by its mean and standard deviation. The residuals of a good regression look roughly like this, and it is the default assumption behind a lot of statistics.</p>
 <p><strong>Right-skewed.</strong> Most values modest, a few very large. Prices, salaries, and counts almost always look like this, and it matters more than the other two put together.</p>
-<p><img alt="A skewed price distribution before and after a log transform" src="../assets/images/06-reference/skewed-prices-light.png#only-light" />
-<img alt="A skewed price distribution before and after a log transform" src="../assets/images/06-reference/skewed-prices-dark.png#only-dark" /></p>
+<p><img alt="A skewed price distribution before and after a log transform" src="../../assets/images/06-reference/skewed-prices-light.png#only-light" />
+<img alt="A skewed price distribution before and after a log transform" src="../../assets/images/06-reference/skewed-prices-dark.png#only-dark" /></p>
 <p><em>Synthetic apartment prices. The long tail drags the mean above the median. Taking the log pulls the tail in and makes the distribution roughly symmetric.</em></p>
 <p>A skewed target causes two problems. The few expensive listings dominate the squared error, so the model spends its effort on them. And the errors grow with the price, so a single error measure hides very different performance at the cheap and expensive ends.</p>
 <p>The usual fix is to model the log and convert back:</p>
@@ -2464,8 +2464,8 @@
 </div>
 <h2 id="7-your-test-score-is-a-random-variable">7. Your test score is a random variable<a class="headerlink" href="#7-your-test-score-is-a-random-variable" title="Permanent link">&para;</a></h2>
 <p>Split the data differently and you get a different score. Same model, same data, different number.</p>
-<p><img alt="Test accuracy across 200 random splits" src="../assets/images/06-reference/score-variability-light.png#only-light" />
-<img alt="Test accuracy across 200 random splits" src="../assets/images/06-reference/score-variability-dark.png#only-dark" /></p>
+<p><img alt="Test accuracy across 200 random splits" src="../../assets/images/06-reference/score-variability-light.png#only-light" />
+<img alt="Test accuracy across 200 random splits" src="../../assets/images/06-reference/score-variability-dark.png#only-dark" /></p>
 <p><em>One logistic regression, one synthetic dataset, 200 random splits. The score you report depends heavily on which split you happened to draw.</em></p>
 <p>Your single test score is one draw from that histogram. A one-point improvement measured on one split can be entirely luck of the draw. This is the reason cross-validation exists, and the reason every score in your projects comes with a spread attached.</p>
 <h2 id="8-is-the-difference-real">8. Is the difference real?<a class="headerlink" href="#8-is-the-difference-real" title="Permanent link">&para;</a></h2>
@@ -2473,8 +2473,8 @@
 <p><strong>Report a spread, never a single number.</strong> Mean and standard deviation across folds.</p>
 <p><strong>Compare on the same folds.</strong> Some folds are simply harder than others, and a hard fold drags both models down together. Comparing fold by fold cancels that shared difficulty out, which is far more sensitive than comparing two averages.</p>
 <p><strong>Count the wins.</strong> If model B beats model A on nearly every fold, that is a claim. If it wins on about half, it is noise.</p>
-<p><img alt="Paired fold comparison, noise versus a real difference" src="../assets/images/06-reference/fold-comparison-light.png#only-light" />
-<img alt="Paired fold comparison, noise versus a real difference" src="../assets/images/06-reference/fold-comparison-dark.png#only-dark" /></p>
+<p><img alt="Paired fold comparison, noise versus a real difference" src="../../assets/images/06-reference/fold-comparison-light.png#only-light" />
+<img alt="Paired fold comparison, noise versus a real difference" src="../../assets/images/06-reference/fold-comparison-dark.png#only-dark" /></p>
 <p><em>Each line is one fold, joining model A's score to model B's. Black markers show mean and standard deviation. On the right the error bars overlap heavily, yet B wins on every single fold. The averages alone would not convince you. The pairing does.</em></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">RepeatedStratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -2510,8 +2510,8 @@
 </div>
 <h2 id="9-calibration">9. Calibration<a class="headerlink" href="#9-calibration" title="Permanent link">&para;</a></h2>
 <p>A classifier that outputs 0.8 is saying: <em>of all the cases I give 0.8, about 80% should turn out positive.</em> A calibrated model keeps that promise.</p>
-<p><img alt="Reliability diagram" src="../assets/images/06-reference/calibration-light.png#only-light" />
-<img alt="Reliability diagram" src="../assets/images/06-reference/calibration-dark.png#only-dark" /></p>
+<p><img alt="Reliability diagram" src="../../assets/images/06-reference/calibration-light.png#only-light" />
+<img alt="Reliability diagram" src="../../assets/images/06-reference/calibration-dark.png#only-dark" /></p>
 <p><em>Group predictions into bins, then check how often each bin was actually positive. The overconfident model pushes its probabilities towards 0 and 1 further than reality justifies.</em></p>
 <p>Logistic regression is often reasonably calibrated out of the box. Tree ensembles, boosting, and support vector machines frequently are not. It matters whenever the probability itself drives a decision, such as choosing a threshold or estimating an expected cost. If you only care about ranking, it matters much less.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.calibration</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalibrationDisplay</span><span class="p">,</span> <span class="n">CalibratedClassifierCV</span>
