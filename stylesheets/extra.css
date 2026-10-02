@@ -49,8 +49,11 @@
   --md-typeset-a-color: #3d5a80;
   --md-code-bg-color: #f2eee7;
   --md-code-fg-color: #37506f;
-  --md-footer-bg-color: #272b33;
-  --md-footer-bg-color--dark: #1d2026;
+  --md-footer-bg-color: #f2eee7;
+  --md-footer-bg-color--dark: #ebe5db;
+  --md-footer-fg-color: #23252b;
+  --md-footer-fg-color--light: #5f636d;
+  --md-footer-fg-color--lighter: #8b8f98;
 
   --course-primary: #3d5a80;
   --course-accent: #c05d3e;
@@ -81,7 +84,11 @@
   --md-typeset-a-color: #8fb0d4;
   --md-code-bg-color: #1e2127;
   --md-code-fg-color: #c3d4e8;
-  --md-footer-bg-color: #111317;
+  --md-footer-bg-color: #1a1d22;
+  --md-footer-bg-color--dark: #141619;
+  --md-footer-fg-color: #e8e6e3;
+  --md-footer-fg-color--light: #a8abb4;
+  --md-footer-fg-color--lighter: #767a85;
 
   --course-primary: #8fb0d4;
   --course-accent: #e0855f;
@@ -270,10 +277,10 @@
 .md-typeset .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
-  gap: 3rem;
+  gap: 2.6rem;
   align-items: center;
-  padding: 2.4rem 0 2.8rem;
-  margin-bottom: 2.6rem;
+  padding: 1.6rem 0 2.2rem;
+  margin-bottom: 2.4rem;
   border-bottom: 1px solid var(--course-line);
 }
 
@@ -288,28 +295,28 @@
 }
 
 .md-typeset .hero h1 {
-  font-size: 3.1rem;
-  line-height: 1.02;
+  font-size: 2.75rem;
+  line-height: 1.04;
   font-weight: 700;
   letter-spacing: -0.045em;
   margin: 0 0 0.75rem;
 }
 
 .md-typeset .hero-tagline {
-  font-size: 1.02rem;
+  font-size: 0.97rem;
   font-weight: 500;
   line-height: 1.5;
   color: var(--course-ink);
-  max-width: 24rem;
-  margin: 0 0 0.7rem;
+  max-width: 23rem;
+  margin: 0 0 0.6rem;
 }
 
 .md-typeset .hero-lede {
-  font-size: 0.8rem;
-  line-height: 1.75;
+  font-size: 0.78rem;
+  line-height: 1.7;
   color: var(--course-muted);
-  max-width: 25rem;
-  margin: 0 0 1.5rem;
+  max-width: 24rem;
+  margin: 0 0 1.25rem;
 }
 
 .md-typeset .hero .md-button {
@@ -339,8 +346,8 @@
 }
 
 .md-typeset .hero-facts {
-  margin: 1.8rem 0 0;
-  padding-top: 1.2rem;
+  margin: 1.5rem 0 0;
+  padding-top: 1.1rem;
   border-top: 1px solid var(--course-line);
   font-size: 0.74rem;
   line-height: 1.7;
@@ -364,8 +371,9 @@
 .md-typeset .hero-art {
   width: 100%;
   height: auto;
-  max-width: 28rem;
-  justify-self: end;
+  max-width: 23rem;
+  justify-self: center;
+  align-self: center;
 }
 
 .hero-art .hero-plate { fill: var(--course-plate); }
@@ -443,7 +451,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin: 0 0 1.6rem;
+  margin: 0 0 1.3rem;
 }
 
 .md-typeset .chips-left {
@@ -1052,4 +1060,76 @@
 .md-typeset .hero-banner .chips,
 .md-typeset .hero-banner .stats {
   justify-content: center;
+}
+
+/* ---- 22. Footer ---------------------------------------------------------- */
+
+.md-footer {
+  border-top: 1px solid var(--course-line);
+}
+
+.md-footer-meta {
+  border-top: 1px solid var(--course-line);
+}
+
+.md-footer__link {
+  opacity: 0.8;
+}
+
+.md-footer__link:hover {
+  opacity: 1;
+}
+
+.md-footer__direction {
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.md-footer__title {
+  font-family: var(--course-display);
+  font-weight: 600;
+}
+
+.md-copyright {
+  width: 100%;
+  text-align: center;
+  font-family: var(--course-display);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--course-muted);
+  padding: 0.6rem 0;
+}
+
+.md-copyright__highlight {
+  color: var(--course-muted);
+}
+
+/* The page's "last update" line, if the git revision plugin is enabled */
+.md-source-file {
+  display: none;
+}
+
+/* ---- 23. Figures and captions -------------------------------------------- */
+
+.md-typeset img[src*="/assets/images/"] {
+  border-radius: var(--course-radius-sm);
+  background-color: var(--course-surface);
+  padding: 0.4rem;
+  border: 1px solid var(--course-line);
+}
+
+/* A paragraph that is nothing but italics, right after a figure, reads as its caption */
+.md-typeset p > em:only-child {
+  display: block;
+  font-style: normal;
+  font-size: 0.72rem;
+  line-height: 1.6;
+  color: var(--course-muted);
+  border-left: 2px solid var(--course-line-strong);
+  padding-left: 0.8rem;
+  margin: -0.4rem 0 1.6rem;
 }
