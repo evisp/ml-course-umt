@@ -81,14 +81,19 @@ The weights do not change. The expectations do.
 | **Project 2 · Model comparison** | Method and communication. Comparing model families fairly needs an equal tuning budget and an honest claim about which differences are real. |
 | **Project 3 · Capstone** | All four, with less help. You choose the problem, so framing it well is part of the method, and you defend the whole system live. |
 
-## How a team grade becomes yours { .section-label }
+## Built together, defended on your own { .section-label }
+
+One repository, three people, and a grade that is still yours.
 
 <div class="outcomes">
-  <div class="outcome"><b>The project grade is a team grade.</b> All three of you receive it.</div>
-  <div class="outcome"><b>Contribution is visible.</b> At the end of each project, every member privately rates the other two. A member whose contribution was clearly below the rest can receive a reduced share of the team's points, and a member who carried the team can receive a little more.</div>
-  <div class="outcome"><b>The commit history is evidence.</b> Work that happened shows up as work that happened.</div>
-  <div class="outcome"><b>If a teammate goes missing</b>, say so in the week it happens, not in the rating after the deadline. A team of two with notice is fine.</div>
+  <div class="outcome"><b>The work is the team's.</b> You plan it together, divide it sensibly, review each other's code, and carry each other through the hard parts. That is the point of working in threes, and it is how the job works.</div>
+  <div class="outcome"><b>The grade is individual.</b> The repository sets what the team achieved. What you can explain about it sets what you earn. In the Defend hour I choose who answers, and the question can be about any part of the project, not the part you wrote.</div>
+  <div class="outcome"><b>So grades inside a team can differ.</b> Three people who built one project and understand it equally well will land in the same place. Someone who cannot explain what the team submitted will not.</div>
+  <div class="outcome"><b>The evidence is public.</b> Your commits show what you built; the defence shows what you understood. Neither alone is enough.</div>
 </div>
+
+!!! tip "Carrying a teammate is not cheating, and being carried is not safe"
+    Helping someone catch up is exactly what a team is for, and it costs you nothing in the rubric. But the help has to leave them able to explain the work, because that is what they will be asked to do. If a teammate stops contributing altogether, tell me in the week it happens, not after the deadline. A team of two with notice is fine.
 
 !!! tip "Small bonuses for going further"
     Work that clearly goes beyond the brief can earn a small bonus: an extension that is genuinely well done, a tool that helps the whole class, a bug found in the course materials, or help given to other teams that they credit. Bonuses are modest and discretionary, they are never needed to reach full marks, and the total is still capped at 100.

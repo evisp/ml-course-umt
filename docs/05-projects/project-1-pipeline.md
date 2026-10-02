@@ -296,7 +296,9 @@ One GitHub repository per team, following the [repo conventions](../01-toolkit/r
 
 **Peer review:** A reviews B, B reviews C, C reviews D, D reviews A. Clone the repository, follow the README exactly, and write what ran, what did not, and at least one real question about their method. The review you give counts towards your Craft points.
 
-**Teams and AI:** the project grade is a team grade, adjusted by a private contribution rating at the end. If a teammate stops contributing, tell the instructor that week. AI assistants are allowed if you **declare** where you used them in your README, and every member can **explain** every line. Work nobody in the team can explain is handled under university regulations.
+**Teams and grading:** you build one project together and carry each other through the hard parts, but the grade is individual. The repository sets what the team achieved; what you can explain about it in the Defend hour sets what you earn, and the question can be about any part of the project, not the part you wrote. Grades inside a team can therefore differ. If a teammate stops contributing, tell me in the week it happens, not after the deadline. The [rubrics page](rubrics.md) has the detail.
+
+**AI:** assistants are allowed if you **declare** where you used them in your README, and every member can **explain** every line. Work nobody in the team can explain is handled under university regulations.
 
 ---
 
