@@ -200,3 +200,5 @@ The class works on Olist together. Your team then applies every stage to data yo
 ---
 
 **Before you start:** make sure the [toolkit](../01-toolkit/index.md) readiness checklist is done. Then go to [Week 01](week-01-problem-framing.md).
+
+At the end of the block, [Block 1 in review](review.md) brings the four weeks together.

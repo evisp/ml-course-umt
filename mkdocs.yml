@@ -121,6 +121,7 @@ nav:
     - "Data quality & splitting": 02-data-pipeline/week-02-data-quality.md
     - "Feature engineering": 02-data-pipeline/week-03-feature-engineering.md
     - "Evaluation & error analysis": 02-data-pipeline/week-04-evaluation.md
+    - "Block 1 in review": 02-data-pipeline/review.md
 
   - "Models & Optimization":
     - Overview: 03-models-optimization/index.md

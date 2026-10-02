@@ -39,6 +39,7 @@ ml-project-1/
 │   └── report.md
 ├── .gitignore
 ├── PROBLEM.md              # the problem card, written first
+├── MODEL_CARD.md           # the model card, written last
 ├── requirements.txt
 └── README.md
 ```
@@ -47,7 +48,7 @@ Create it in one line:
 
 ```bash
 mkdir -p data/raw data/processed notebooks src models reports/figures
-touch src/__init__.py README.md PROBLEM.md requirements.txt
+touch src/__init__.py README.md PROBLEM.md MODEL_CARD.md requirements.txt
 ```
 
 !!! note "Not every project needs every folder"
@@ -64,6 +65,7 @@ touch src/__init__.py README.md PROBLEM.md requirements.txt
 | A trained model or encoder | `models/` | Output, not source |
 | A figure for your report | `reports/figures/` | Findable when writing |
 | The problem card | `PROBLEM.md` at the root | Decided before any modelling, kept up to date |
+| The model card | `MODEL_CARD.md` at the root | What was built and found, including where it fails |
 
 The rule that decides most cases: **if code generates it, it does not belong in Git. If a person wrote it, it does.**
 
@@ -194,6 +196,7 @@ Where you used AI tools and for what.
 Run through this every time.
 
 - [ ] `PROBLEM.md` states the target, the moment of prediction, the metric, and the baseline
+- [ ] `MODEL_CARD.md` reports test performance with an interval, results by slice, and known failures
 - [ ] `README.md` complete, with setup and run instructions that work
 - [ ] `requirements.txt` current and complete
 - [ ] `.gitignore` excluding `.venv/`, `data/`, `models/`
