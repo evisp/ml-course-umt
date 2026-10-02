@@ -6,7 +6,9 @@ repo_url: https://github.com/evisp/ml-course-umt
 repo_name: evisp/ml-course-umt
 edit_uri: edit/main/docs/
 
-copyright: Copyright &copy; Evis Plaku — University Metropolitan Tirana
+copyright: Copyright &copy; Evis Plaku, Learn it · Build it · Show it
+extra:
+  generator: false
 
 theme:
   name: material
