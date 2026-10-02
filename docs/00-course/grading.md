@@ -52,6 +52,8 @@ Full specifications are on the [projects pages](../05-projects/index.md).
 !!! tip "Where points are actually lost"
     Almost never on modelling. They go on a leaked feature, a repo that will not clone and run, a conclusion the measured variance does not support, and a README written at midnight. Three of those four are settled before you write a line of model code.
 
+Each criterion is split into bands on the [rubrics page](../05-projects/rubrics.md), so you can see what separates seven points from five before you start. How a team grade becomes your grade, and how work is handed in, are on the [rubrics](../05-projects/rubrics.md) and [submission](../05-projects/submission-guide.md) pages.
+
 ## The final exam { .section-label }
 
 Forty points, individual, closed book except for one page of notes you write yourself.
@@ -67,6 +69,10 @@ Nothing on the exam asks you to recall a formula. It tests whether you can diagn
 !!! success "How to prepare"
     Reread your own project logs. Most exam questions resemble something that went wrong in one of your three projects.
 
+## A little extra { .section-label }
+
+Work that clearly goes beyond a brief can earn a small bonus: an extension done properly, something built that helps the whole class, a real error found in these materials, or help given to other teams that they credit. Bonuses are modest and at my discretion, they are never needed for full marks, and the total is still capped at 100.
+
 ## Grades { .section-label }
 
 | Points | Grade |
@@ -80,10 +86,10 @@ Nothing on the exam asks you to recall a formula. It tests whether you can diagn
 | Below 45 | **4** (fail) |
 
 !!! info "Passing needs both halves"
-    You need 45 points overall **and** at least 20 of the 40 exam points. A team cannot carry you to a pass. This is the one place where the individual component is a gate rather than a weight.
+    You need 45 points overall **and** at least 15 of the 40 exam points. A team cannot carry you to a pass. This is the one place where the individual component is a gate rather than a weight.
 
 ---
 
-Team formation, peer review, and deadlines are set out in each project brief when the project opens.
+Team formation, peer review, and deadlines are set out in each project brief when the project opens. See also the [rubrics](../05-projects/rubrics.md) and [how to submit](../05-projects/submission-guide.md).
 
 **Next:** [Week 1](../02-data-pipeline/week-01-problem-framing.md)
