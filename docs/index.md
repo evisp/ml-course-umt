@@ -4,13 +4,19 @@ hide:
   - toc
 ---
 
-<div class="hero-banner" markdown>
+<div class="hero" markdown>
+
+<div class="hero-copy" markdown>
 
 <p class="eyebrow">University Metropolitan Tirana · Bachelor, Year 3</p>
 
 # Machine Learning
 
-<p class="hero-tagline">Building things that work on real data.</p>
+<p class="hero-tagline">Building things that work on data nobody cleaned for you.</p>
+
+<p class="hero-lede">
+You already know how to train a model. The hard part is knowing whether to trust it.
+</p>
 
 <div class="chips">
   <span class="chip">Frame a problem</span>
@@ -24,11 +30,49 @@ hide:
 [Start here](00-course/index.md){ .md-button .md-button--primary }
 [Set up your machine](01-toolkit/index.md){ .md-button }
 
-<div class="stats">
-  <div class="stat"><b>14</b><span>weeks</span></div>
-  <div class="stat"><b>3</b><span>team projects</span></div>
-  <div class="stat"><b>1</b><span>portfolio you can show</span></div>
+<p class="hero-facts">
+<b>Learn it</b><span class="sep">·</span><b>Build it</b><span class="sep">·</span><b>Show it</b><br>
+Fourteen weeks, three team projects, and a portfolio you can send to anyone who asks what you can do.
+</p>
+
 </div>
+
+<svg class="hero-art" viewBox="0 0 440 360" role="img" aria-label="Gradient descent stepping down a loss surface towards its minimum" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="hero-clip"><rect x="8" y="8" width="424" height="344" rx="18"/></clipPath>
+    <radialGradient id="hero-basin" cx="0.57" cy="0.6" r="0.55">
+      <stop offset="0%" class="basin-in"/>
+      <stop offset="100%" class="basin-out"/>
+    </radialGradient>
+  </defs>
+  <g clip-path="url(#hero-clip)">
+    <rect x="8" y="8" width="424" height="344" rx="18" class="hero-plate"/>
+    <ellipse cx="250" cy="206" rx="200" ry="126" transform="rotate(39 250 206)" fill="url(#hero-basin)"/>
+    <g class="contours" transform="rotate(39 250 206)">
+      <ellipse cx="250" cy="206" rx="196" ry="122"/>
+      <ellipse cx="250" cy="206" rx="160" ry="100"/>
+      <ellipse cx="250" cy="206" rx="126" ry="78"/>
+      <ellipse cx="250" cy="206" rx="94" ry="58"/>
+      <ellipse cx="250" cy="206" rx="64" ry="39"/>
+      <ellipse cx="250" cy="206" rx="36" ry="22"/>
+      <ellipse cx="250" cy="206" rx="14" ry="9"/>
+    </g>
+    <path class="descent" d="M 72 62 L 104 132 L 181 117 L 182 175 L 222 168 L 224 195 L 242 193 L 250 206"/>
+    <g class="steps">
+      <circle class="step" style="--i:0" cx="72"  cy="62"  r="6"/>
+      <circle class="step" style="--i:1" cx="104" cy="132" r="5.4"/>
+      <circle class="step" style="--i:2" cx="181" cy="117" r="4.8"/>
+      <circle class="step" style="--i:3" cx="182" cy="175" r="4.2"/>
+      <circle class="step" style="--i:4" cx="222" cy="168" r="3.6"/>
+      <circle class="step" style="--i:5" cx="224" cy="195" r="3.1"/>
+      <circle class="step" style="--i:6" cx="242" cy="193" r="2.7"/>
+    </g>
+    <g class="minimum">
+      <circle class="halo" cx="250" cy="206" r="16"/>
+      <circle class="core" cx="250" cy="206" r="4.6"/>
+    </g>
+  </g>
+</svg>
 
 </div>
 
@@ -36,17 +80,17 @@ hide:
 
 <div class="beats">
   <div class="beat">
-    <span class="beat-time">1 hour</span>
-    <b>Learn</b>
+    <span class="beat-time">1 hour · learn it</span>
+    <b>Lecture</b>
     <p>The concept, and the problem it exists to solve.</p>
   </div>
   <div class="beat">
-    <span class="beat-time">2 hours</span>
-    <b>Build</b>
+    <span class="beat-time">2 hours · build it</span>
+    <b>Lab</b>
     <p>A short drill together, then straight onto your own project.</p>
   </div>
   <div class="beat">
-    <span class="beat-time">1 hour</span>
+    <span class="beat-time">1 hour · show it</span>
     <b>Defend</b>
     <p>Show what you did. Answer questions about it.</p>
   </div>
@@ -68,7 +112,7 @@ A score of 95% because you leaked the answer is worth less than 71% you can defe
 
     ---
 
-    How the course runs, what the 100 points are made of, and how teams and the League work.
+    How the course runs, what the 100 points are made of, and how the three projects work.
 
     [:octicons-arrow-right-24: Course overview](00-course/index.md)
 

@@ -1,245 +1,510 @@
 /* ==========================================================================
-   Course site styles
-   1. Global tweaks
-   2. Homepage: hero banner
-   3. Homepage: chips
-   4. Homepage: stats
-   5. Homepage: section labels
-   6. Homepage: week beats
-   7. Homepage: principle band
-   8. Homepage: outcomes
-   9. Homepage: closing quote and footer
-   10. Grid cards
-   11. Responsive
+   Machine Learning @ UMT — course site styles
+   Palette: Blueprint (slate blue on warm paper, terracotta accent)
+   Type: Space Grotesk headings, Inter body, JetBrains Mono code
+
+   1.  Palette and type
+   2.  Base typography
+   3.  Tables, admonitions, code, details
+   4.  Grid cards
+   5.  Homepage hero
+   6.  Hero artwork (gradient descent)
+   7.  Chips
+   8.  Section labels
+   9.  Beats
+   10. Principle band
+   11. Outcomes
+   12. Closing quote and footer
+   13. Roadmap track
+   14. Block cards
+   15. Points bar
+   16. Stats (legacy)
+   17. Custom admonitions: olist, project
+   18. Elsewhere line, week badge
+   19. Responsive
+   20. Motion preferences
    ========================================================================== */
 
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap");
 
-/* ---- 1. Global tweaks ---------------------------------------------------- */
+/* ---- 1. Palette and type ------------------------------------------------- */
 
 :root {
-  --md-text-font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --course-display: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --course-radius: 0.85rem;
+  --course-radius-sm: 0.55rem;
+}
 
-  /* Derived surfaces, used across the homepage blocks */
-  --course-tint: color-mix(in srgb, var(--md-primary-fg-color) 7%, transparent);
-  --course-tint-strong: color-mix(in srgb, var(--md-primary-fg-color) 14%, transparent);
-  --course-edge: color-mix(in srgb, var(--md-primary-fg-color) 22%, transparent);
-  --course-radius: 0.9rem;
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #3d5a80;
+  --md-primary-fg-color--light: #5a789e;
+  --md-primary-fg-color--dark: #2d4460;
+  --md-accent-fg-color: #c05d3e;
+
+  --md-default-bg-color: #faf8f5;
+  --md-default-fg-color: #23252b;
+  --md-default-fg-color--light: #5f636d;
+  --md-default-fg-color--lighter: #9a9ca4;
+  --md-default-fg-color--lightest: #e4ded3;
+  --md-typeset-a-color: #3d5a80;
+  --md-code-bg-color: #f2eee7;
+  --md-code-fg-color: #37506f;
+  --md-footer-bg-color: #272b33;
+  --md-footer-bg-color--dark: #1d2026;
+
+  --course-primary: #3d5a80;
+  --course-accent: #c05d3e;
+  --course-ink: #23252b;
+  --course-muted: #5f636d;
+  --course-surface: #ffffff;
+  --course-plate: #f2eee7;
+  --course-line: #e4ded3;
+  --course-line-strong: #cfc6b7;
+  --course-tint: #eef1f6;
+  --course-tint-strong: #e2e8f1;
+  --course-accent-tint: #f8ece6;
+  --course-contour: #b5a995;
+  --course-basin-in: #ddd4c6;
+  --course-basin-out: #f7f4ef;
+  --course-shadow: 0 1px 2px rgba(35, 37, 43, 0.04), 0 8px 24px rgba(35, 37, 43, 0.06);
 }
 
 [data-md-color-scheme="slate"] {
-  --course-tint: color-mix(in srgb, var(--md-primary-fg-color) 14%, transparent);
-  --course-tint-strong: color-mix(in srgb, var(--md-primary-fg-color) 24%, transparent);
-  --course-edge: color-mix(in srgb, var(--md-primary-fg-color) 34%, transparent);
+  --md-primary-fg-color: #28384d;
+  --md-accent-fg-color: #e0855f;
+
+  --md-default-bg-color: #16181d;
+  --md-default-fg-color: #e8e6e3;
+  --md-default-fg-color--light: #a8abb4;
+  --md-default-fg-color--lighter: #767a85;
+  --md-default-fg-color--lightest: #343941;
+  --md-typeset-a-color: #8fb0d4;
+  --md-code-bg-color: #1e2127;
+  --md-code-fg-color: #c3d4e8;
+  --md-footer-bg-color: #111317;
+
+  --course-primary: #8fb0d4;
+  --course-accent: #e0855f;
+  --course-ink: #e8e6e3;
+  --course-muted: #a8abb4;
+  --course-surface: #1e2127;
+  --course-plate: #1e2127;
+  --course-line: #2e333c;
+  --course-line-strong: #3f4651;
+  --course-tint: #212834;
+  --course-tint-strong: #27303f;
+  --course-accent-tint: #2d241f;
+  --course-contour: #454b57;
+  --course-basin-in: #2b3039;
+  --course-basin-out: #191c21;
+  --course-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
-/* Tighter headings throughout */
+/* ---- 2. Base typography -------------------------------------------------- */
+
 .md-typeset h1,
 .md-typeset h2,
-.md-typeset h3 {
+.md-typeset h3,
+.md-typeset h4 {
+  font-family: var(--course-display);
   letter-spacing: -0.02em;
+  color: var(--course-ink);
 }
 
-/* Slightly denser tables, since week schedules get wide */
-.md-typeset table:not([class]) {
-  font-size: 0.72rem;
+.md-typeset h1 {
+  font-weight: 700;
+  font-size: 2.1rem;
+  line-height: 1.15;
+  margin-bottom: 0.7em;
 }
 
-/* Week badge: use with { .week-badge } or inline spans */
-.week-badge {
-  display: inline-block;
-  padding: 0.1rem 0.5rem;
-  border-radius: 1rem;
-  font-size: 0.65rem;
+.md-typeset h2 {
   font-weight: 600;
-  background-color: var(--md-primary-fg-color);
-  color: var(--md-primary-bg-color);
+  margin-top: 2.4em;
 }
 
-/* Learning outcome lists read as objectives, not todos */
-.md-typeset .task-list-item {
-  margin-bottom: 0.2rem;
+.md-typeset h3 {
+  font-weight: 600;
 }
 
-/* Softer admonition corners to match the homepage radius language */
+.md-typeset {
+  line-height: 1.72;
+}
+
+.md-typeset p {
+  margin: 0.9em 0;
+}
+
+.md-typeset blockquote {
+  border-left: 2px solid var(--course-accent);
+  color: var(--md-default-fg-color--light);
+  font-style: normal;
+}
+
+.md-header {
+  box-shadow: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.md-header__title {
+  font-family: var(--course-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.md-nav {
+  font-size: 0.68rem;
+}
+
+.md-nav__title {
+  font-family: var(--course-display);
+}
+
+.md-typeset a {
+  text-underline-offset: 0.2em;
+}
+
+/* ---- 3. Tables, admonitions, code, details ------------------------------- */
+
+.md-typeset table:not([class]) {
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.md-typeset table:not([class]) th {
+  font-family: var(--course-display);
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.02em;
+  background: transparent;
+  color: var(--course-muted);
+  border-bottom: 1px solid var(--course-line-strong);
+  padding: 0.55em 0.9em;
+}
+
+.md-typeset table:not([class]) td {
+  border-top: 1px solid var(--course-line);
+  padding: 0.55em 0.9em;
+  vertical-align: top;
+}
+
+.md-typeset table:not([class]) tr:hover td {
+  background-color: var(--course-tint);
+}
+
 .md-typeset .admonition,
 .md-typeset details {
-  border-radius: 0.5rem;
+  border: 1px solid var(--course-line);
+  border-left: 3px solid var(--course-line-strong);
+  border-radius: var(--course-radius-sm);
+  box-shadow: none;
+  background-color: var(--course-surface);
+  font-size: 0.74rem;
 }
 
+.md-typeset .admonition-title,
+.md-typeset summary {
+  font-family: var(--course-display);
+  font-weight: 600;
+  background-color: transparent !important;
+  border-bottom: none;
+}
 
-/* ---- 2. Homepage: hero banner -------------------------------------------- */
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+  opacity: 0.85;
+}
 
-.md-typeset .hero-banner {
-  position: relative;
-  text-align: center;
-  padding: 3.2rem 1.5rem 2.2rem;
-  margin: 0 0 3rem;
-  border-radius: var(--course-radius);
-  border: 1px solid var(--course-edge);
-  background:
-    radial-gradient(
-      120% 140% at 50% 0%,
-      var(--course-tint-strong) 0%,
-      var(--course-tint) 45%,
-      transparent 100%
-    );
+.md-typeset .note > .admonition-title,
+.md-typeset .note > summary { color: var(--course-primary); }
+
+.md-typeset .highlight code,
+.md-typeset pre > code {
+  border-radius: var(--course-radius-sm);
+}
+
+.md-typeset .highlight {
+  border-radius: var(--course-radius-sm);
+  border: 1px solid var(--course-line);
   overflow: hidden;
 }
 
-.md-typeset .eyebrow {
-  font-size: 0.62rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--md-primary-fg-color);
-  margin: 0 0 0.9rem;
-  opacity: 0.9;
+.md-typeset code {
+  border-radius: 0.25rem;
+  font-size: 0.84em;
 }
 
-.md-typeset .hero-banner h1 {
-  font-size: 3.4rem;
-  line-height: 1.05;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  margin: 0 0 0.7rem;
-  color: var(--md-default-fg-color);
+/* ---- 4. Grid cards ------------------------------------------------------- */
+
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border: 1px solid var(--course-line);
+  border-radius: var(--course-radius);
+  background-color: var(--course-surface);
+  padding: 1.3rem 1.25rem;
+  box-shadow: none;
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--course-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--course-shadow);
+}
+
+.md-typeset .grid.cards > ul > li > hr {
+  margin: 0.7em 0;
+  border-color: var(--course-line);
+}
+
+.md-typeset .grid.cards .twemoji,
+.md-typeset .grid.cards svg {
+  fill: var(--course-primary);
+}
+
+/* ---- 5. Homepage hero ---------------------------------------------------- */
+
+.md-typeset .hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: 3rem;
+  align-items: center;
+  padding: 2.4rem 0 2.8rem;
+  margin-bottom: 2.6rem;
+  border-bottom: 1px solid var(--course-line);
+}
+
+.md-typeset .eyebrow {
+  font-family: var(--course-display);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--course-accent);
+  margin: 0 0 1rem;
+}
+
+.md-typeset .hero h1 {
+  font-size: 3.1rem;
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  margin: 0 0 0.75rem;
 }
 
 .md-typeset .hero-tagline {
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1.45;
-  color: var(--md-default-fg-color);
-  max-width: 30rem;
-  margin: 0 auto 0.8rem;
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--course-ink);
+  max-width: 24rem;
+  margin: 0 0 0.7rem;
 }
 
 .md-typeset .hero-lede {
-  font-size: 0.82rem;
-  line-height: 1.7;
-  color: var(--md-default-fg-color--light);
-  max-width: 30rem;
-  margin: 0 auto 1.8rem;
+  font-size: 0.8rem;
+  line-height: 1.75;
+  color: var(--course-muted);
+  max-width: 25rem;
+  margin: 0 0 1.5rem;
 }
 
-.md-typeset .hero-banner .md-button {
-  margin: 0.3rem 0.25rem 0;
+.md-typeset .hero .md-button {
+  margin: 0 0.4rem 0 0;
   border-radius: 2rem;
-  padding: 0.5rem 1.3rem;
-  font-size: 0.72rem;
+  border-width: 1px;
+  padding: 0.48rem 1.25rem;
+  font-family: var(--course-display);
+  font-size: 0.7rem;
   font-weight: 600;
-  transition: transform 120ms ease, box-shadow 120ms ease;
+  transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
 }
 
-.md-typeset .hero-banner .md-button:hover {
+.md-typeset .hero .md-button--primary {
+  background-color: var(--course-primary);
+  border-color: var(--course-primary);
+  color: #ffffff;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .hero .md-button--primary {
+  color: #16181d;
+}
+
+.md-typeset .hero .md-button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px color-mix(in srgb, var(--md-primary-fg-color) 30%, transparent);
+  box-shadow: var(--course-shadow);
 }
 
+.md-typeset .hero-facts {
+  margin: 1.8rem 0 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--course-line);
+  font-size: 0.74rem;
+  line-height: 1.7;
+  color: var(--course-muted);
+}
 
-/* ---- 3. Homepage: chips -------------------------------------------------- */
+.md-typeset .hero-facts b {
+  font-family: var(--course-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--course-ink);
+}
+
+.md-typeset .hero-facts .sep {
+  color: var(--course-accent);
+  margin: 0 0.45rem;
+}
+
+/* ---- 6. Hero artwork ----------------------------------------------------- */
+
+.md-typeset .hero-art {
+  width: 100%;
+  height: auto;
+  max-width: 28rem;
+  justify-self: end;
+}
+
+.hero-art .hero-plate { fill: var(--course-plate); }
+.hero-art .basin-in { stop-color: var(--course-basin-in); }
+.hero-art .basin-out { stop-color: var(--course-basin-out); }
+
+.hero-art .contours {
+  fill: none;
+  stroke: var(--course-contour);
+  stroke-width: 1.3;
+}
+
+.hero-art .descent {
+  fill: none;
+  stroke: var(--course-primary);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: hero-draw 7s ease-in-out infinite;
+}
+
+.hero-art .step {
+  fill: var(--course-primary);
+  opacity: 0;
+  animation: hero-step 7s ease-in-out infinite;
+  animation-delay: calc(0.42s + var(--i) * 0.26s);
+}
+
+.hero-art .halo {
+  fill: var(--course-accent);
+  opacity: 0;
+  animation: hero-halo 7s ease-in-out infinite;
+  animation-delay: 2.5s;
+  transform-origin: 250px 206px;
+}
+
+.hero-art .core {
+  fill: var(--course-accent);
+  opacity: 0;
+  animation: hero-step 7s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+@keyframes hero-draw {
+  0%   { stroke-dashoffset: 420; }
+  40%  { stroke-dashoffset: 0; }
+  88%  { stroke-dashoffset: 0; opacity: 1; }
+  96%  { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: 420; opacity: 0; }
+}
+
+@keyframes hero-step {
+  0%, 4%  { opacity: 0; transform: scale(0.4); }
+  12%     { opacity: 1; transform: scale(1); }
+  84%     { opacity: 1; }
+  92%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+@keyframes hero-halo {
+  0%, 4%  { opacity: 0; transform: scale(0.6); }
+  14%     { opacity: 0.22; transform: scale(1); }
+  40%     { opacity: 0.12; transform: scale(1.12); }
+  70%     { opacity: 0.22; transform: scale(1); }
+  88%     { opacity: 0.2; }
+  96%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+/* ---- 7. Chips ------------------------------------------------------------ */
 
 .md-typeset .chips {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.45rem;
-  max-width: 36rem;
-  margin: 0 auto 2rem;
+  gap: 0.4rem;
+  margin: 0 0 1.6rem;
+}
+
+.md-typeset .chips-left {
+  justify-content: flex-start;
 }
 
 .md-typeset .chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.32rem 0.8rem;
+  padding: 0.3rem 0.75rem;
   border-radius: 2rem;
-  border: 1px solid var(--course-edge);
-  background-color: var(--md-default-bg-color);
-  font-size: 0.68rem;
+  border: 1px solid var(--course-line-strong);
+  background-color: var(--course-surface);
+  font-size: 0.66rem;
   font-weight: 500;
   line-height: 1.3;
-  color: var(--md-default-fg-color);
+  color: var(--course-ink);
   white-space: nowrap;
-  transition: border-color 120ms ease, color 120ms ease;
+  transition: border-color 140ms ease, color 140ms ease;
 }
 
 .md-typeset .chip::before {
   content: "";
-  width: 0.3rem;
-  height: 0.3rem;
+  width: 0.28rem;
+  height: 0.28rem;
   margin-right: 0.45rem;
   border-radius: 50%;
-  background-color: var(--md-primary-fg-color);
+  background-color: var(--course-accent);
   flex-shrink: 0;
 }
 
 .md-typeset .chip:hover {
-  border-color: var(--md-primary-fg-color);
-  color: var(--md-primary-fg-color);
+  border-color: var(--course-primary);
+  color: var(--course-primary);
 }
 
-
-/* ---- 4. Homepage: stats -------------------------------------------------- */
-
-.md-typeset .stats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 3rem;
-  margin-top: 2.4rem;
-  padding-top: 1.8rem;
-  border-top: 1px solid var(--course-edge);
-}
-
-.md-typeset .stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 6rem;
-}
-
-.md-typeset .stat b {
-  font-size: 2.4rem;
-  line-height: 1;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--md-primary-fg-color);
-}
-
-.md-typeset .stat span {
-  font-size: 0.62rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--md-default-fg-color--light);
-  margin-top: 0.4rem;
-}
-
-
-/* ---- 5. Homepage: section labels ----------------------------------------- */
+/* ---- 8. Section labels --------------------------------------------------- */
 
 .md-typeset h2.section-label {
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-family: var(--course-display);
+  font-size: 0.66rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--md-default-fg-color--light);
-  margin: 3.4rem 0 1.4rem;
-  padding-bottom: 0.7rem;
-  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  letter-spacing: 0.16em;
+  color: var(--course-muted);
+  margin: 3.6rem 0 1.5rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--course-line);
 }
 
 .md-typeset h2.section-label::after {
   content: "";
   display: block;
-  width: 2.2rem;
+  width: 2rem;
   height: 2px;
-  margin-top: 0.7rem;
-  margin-bottom: -0.85rem;
-  background-color: var(--md-primary-fg-color);
+  margin-top: 0.65rem;
+  margin-bottom: -0.78rem;
+  background-color: var(--course-accent);
 }
 
-
-/* ---- 6. Homepage: week beats --------------------------------------------- */
+/* ---- 9. Beats ------------------------------------------------------------ */
 
 .md-typeset .beats {
   display: grid;
@@ -249,53 +514,54 @@
 }
 
 .md-typeset .beat {
-  padding: 1.3rem 1.2rem;
-  border-radius: 0.6rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  background-color: var(--md-default-bg-color);
-  transition: border-color 140ms ease, transform 140ms ease;
+  padding: 1.25rem 1.2rem;
+  border-radius: var(--course-radius);
+  border: 1px solid var(--course-line);
+  background-color: var(--course-surface);
+  transition: border-color 160ms ease, transform 160ms ease;
 }
 
 .md-typeset .beat:hover {
-  border-color: var(--course-edge);
+  border-color: var(--course-primary);
   transform: translateY(-2px);
 }
 
 .md-typeset .beat-time {
   display: block;
-  font-size: 0.6rem;
-  font-weight: 700;
+  font-family: var(--course-display);
+  font-size: 0.58rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--md-primary-fg-color);
+  letter-spacing: 0.12em;
+  color: var(--course-accent);
   margin-bottom: 0.5rem;
 }
 
 .md-typeset .beat b {
   display: block;
+  font-family: var(--course-display);
   font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.35rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.3rem;
 }
 
 .md-typeset .beat p {
   font-size: 0.72rem;
   line-height: 1.6;
-  color: var(--md-default-fg-color--light);
+  color: var(--course-muted);
   margin: 0;
 }
 
-
-/* ---- 7. Homepage: principle band ----------------------------------------- */
+/* ---- 10. Principle band -------------------------------------------------- */
 
 .md-typeset .principle {
   position: relative;
-  padding: 1.5rem 1.6rem 1.5rem 2rem;
+  padding: 1.4rem 1.6rem 1.4rem 1.8rem;
   margin: 0 0 1rem;
-  border-radius: 0.6rem;
+  border-radius: var(--course-radius-sm);
   background-color: var(--course-tint);
-  border-left: 4px solid var(--md-primary-fg-color);
+  border-left: 3px solid var(--course-accent);
 }
 
 .md-typeset .principle p {
@@ -304,31 +570,31 @@
 }
 
 .md-typeset .principle p:first-child {
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-family: var(--course-display);
+  font-size: 1rem;
+  font-weight: 600;
   letter-spacing: -0.02em;
-  color: var(--md-default-fg-color);
+  color: var(--course-ink);
   margin-bottom: 0.4rem;
 }
 
 .md-typeset .principle p:last-child {
-  font-size: 0.78rem;
-  color: var(--md-default-fg-color--light);
+  font-size: 0.76rem;
+  color: var(--course-muted);
 }
 
-
-/* ---- 8. Homepage: outcomes ----------------------------------------------- */
+/* ---- 11. Outcomes -------------------------------------------------------- */
 
 .md-typeset .outcomes {
   display: grid;
-  gap: 0.7rem;
+  gap: 0.65rem;
   margin: 1.4rem 0 2rem;
 }
 
 .md-typeset .outcome {
   position: relative;
-  padding-left: 1.6rem;
-  font-size: 0.82rem;
+  padding-left: 1.5rem;
+  font-size: 0.8rem;
   line-height: 1.65;
   color: var(--md-default-fg-color);
 }
@@ -337,15 +603,14 @@
   content: "";
   position: absolute;
   left: 0;
-  top: 0.45rem;
-  width: 0.5rem;
-  height: 0.5rem;
+  top: 0.48rem;
+  width: 0.45rem;
+  height: 0.45rem;
   transform: rotate(45deg);
-  background-color: var(--md-primary-fg-color);
+  background-color: var(--course-accent);
 }
 
-
-/* ---- 9. Homepage: closing quote and footer ------------------------------- */
+/* ---- 12. Closing quote and footer ---------------------------------------- */
 
 .md-typeset .closing {
   margin: 2.6rem 0 1rem;
@@ -353,19 +618,20 @@
 
 .md-typeset .closing blockquote {
   border-left: none;
-  border-top: 2px solid var(--md-primary-fg-color);
-  border-bottom: 2px solid var(--md-primary-fg-color);
+  border-top: 1px solid var(--course-line-strong);
+  border-bottom: 1px solid var(--course-line-strong);
   padding: 1.6rem 1rem;
   margin: 0;
   text-align: center;
-  color: var(--md-default-fg-color);
+  color: var(--course-ink);
 }
 
 .md-typeset .closing blockquote p {
-  font-size: 1rem;
+  font-family: var(--course-display);
+  font-size: 0.95rem;
   line-height: 1.7;
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   max-width: 32rem;
   margin: 0 auto;
 }
@@ -373,27 +639,304 @@
 .md-typeset .hero-footer {
   text-align: center;
   font-size: 0.74rem;
-  color: var(--md-default-fg-color--light);
+  color: var(--course-muted);
   padding: 1.4rem 0 3rem;
 }
 
+/* ---- 13. Roadmap track --------------------------------------------------- */
 
-/* ---- 10. Grid cards ------------------------------------------------------ */
-
-.md-typeset .grid.cards > ul > li {
-  border-radius: 0.6rem;
-  border-color: var(--md-default-fg-color--lightest);
-  transition: border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+.md-typeset .roadmap-track {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.4rem 0 2.4rem;
 }
 
-.md-typeset .grid.cards > ul > li:hover {
-  border-color: var(--course-edge);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--md-default-fg-color) 8%, transparent);
+.md-typeset .track-seg {
+  flex: 1 1 8rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: var(--course-radius-sm);
+  background-color: var(--course-tint);
+  border-top: 3px solid var(--course-primary);
+  font-size: 0.72rem;
+  line-height: 1.4;
 }
 
+.md-typeset .track-seg b {
+  font-family: var(--course-display);
+  font-weight: 600;
+  color: var(--course-ink);
+}
 
-/* ---- 11. Responsive ------------------------------------------------------ */
+.md-typeset .track-weeks {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--course-muted);
+  margin-bottom: 0.35rem;
+}
+
+.md-typeset .seg-1 { border-top-color: var(--course-primary); }
+.md-typeset .seg-2 { border-top-color: color-mix(in srgb, var(--course-primary) 70%, var(--course-accent)); }
+.md-typeset .seg-3 { border-top-color: color-mix(in srgb, var(--course-primary) 40%, var(--course-accent)); }
+.md-typeset .seg-4 { border-top-color: var(--course-accent); }
+.md-typeset .seg-project,
+.md-typeset .seg-team { border-top-color: var(--course-accent); background-color: var(--course-accent-tint); }
+.md-typeset .seg-exam { border-top-color: var(--course-line-strong); }
+
+/* ---- 14. Block cards ----------------------------------------------------- */
+
+.md-typeset .block-card {
+  border: 1px solid var(--course-line);
+  border-radius: var(--course-radius);
+  background-color: var(--course-surface);
+  padding: 1.4rem 1.5rem;
+  margin: 1.2rem 0 1.6rem;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.md-typeset .block-card:hover {
+  border-color: var(--course-line-strong);
+  box-shadow: var(--course-shadow);
+}
+
+.md-typeset .block-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.3rem;
+}
+
+.md-typeset .block-num {
+  font-family: var(--course-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--course-accent);
+  letter-spacing: -0.03em;
+}
+
+.md-typeset .block-label {
+  font-family: var(--course-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--course-ink);
+}
+
+.md-typeset .block-weeks,
+.md-typeset .weeks {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--course-muted);
+}
+
+.md-typeset .block-sub {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--course-muted);
+  margin: 0 0 1rem;
+}
+
+.md-typeset .week-row {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  gap: 0.8rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--course-line);
+  align-items: start;
+}
+
+.md-typeset .week-num {
+  font-family: var(--course-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--course-primary);
+  padding-top: 0.08rem;
+}
+
+.md-typeset .week-body {
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.md-typeset .week-body b {
+  font-weight: 600;
+  color: var(--course-ink);
+}
+
+.md-typeset .block-project {
+  margin-top: 0.9rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--course-radius-sm);
+  background-color: var(--course-accent-tint);
+  font-size: 0.74rem;
+  color: var(--course-ink);
+}
+
+/* ---- 15. Points bar ------------------------------------------------------ */
+
+.md-typeset .points-bar {
+  display: flex;
+  height: 2.6rem;
+  border-radius: var(--course-radius-sm);
+  overflow: hidden;
+  margin: 1.2rem 0 0.7rem;
+  border: 1px solid var(--course-line);
+}
+
+.md-typeset .points-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--course-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--course-primary);
+}
+
+.md-typeset .points-seg:nth-child(2) { background-color: color-mix(in srgb, var(--course-primary) 82%, #ffffff); }
+.md-typeset .points-seg:nth-child(3) { background-color: color-mix(in srgb, var(--course-primary) 64%, #ffffff); }
+.md-typeset .points-seg:last-child { background-color: var(--course-accent); }
+
+.md-typeset .points-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  font-size: 0.68rem;
+  color: var(--course-muted);
+  margin-bottom: 2rem;
+}
+
+.md-typeset .legend-item::before {
+  content: "";
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 0.15rem;
+  margin-right: 0.4rem;
+  background-color: var(--course-primary);
+}
+
+.md-typeset .legend-exam::before { background-color: var(--course-accent); }
+.md-typeset .legend-team::before { background-color: color-mix(in srgb, var(--course-primary) 64%, #ffffff); }
+
+/* ---- 16. Stats (legacy) -------------------------------------------------- */
+
+.md-typeset .stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.4rem;
+  margin-top: 2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--course-line);
+}
+
+.md-typeset .stat {
+  display: flex;
+  flex-direction: column;
+  min-width: 5rem;
+}
+
+.md-typeset .stat b {
+  font-family: var(--course-display);
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--course-primary);
+}
+
+.md-typeset .stat span {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--course-muted);
+  margin-top: 0.35rem;
+}
+
+/* ---- 17. Custom admonitions: olist, project ------------------------------ */
+
+:root {
+  --md-admonition-icon--olist: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.75 1.03H8.1l-.9 1.63-.3.12a1 1 0 0 1-1-1c0-.17.05-.34.12-.5L7 11 3 2H1V2m6 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2m0-2 .25-.5h8.42l-.25.5H7Z"/></svg>');
+  --md-admonition-icon--project: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>');
+}
+
+.md-typeset .admonition.olist,
+.md-typeset details.olist {
+  border-left-color: var(--course-primary);
+  background-color: var(--course-tint);
+}
+
+.md-typeset .olist > .admonition-title,
+.md-typeset .olist > summary {
+  color: var(--course-primary);
+}
+
+.md-typeset .olist > .admonition-title::before,
+.md-typeset .olist > summary::before {
+  background-color: var(--course-primary);
+  -webkit-mask-image: var(--md-admonition-icon--olist);
+          mask-image: var(--md-admonition-icon--olist);
+}
+
+.md-typeset .admonition.project,
+.md-typeset details.project {
+  border-left-color: var(--course-accent);
+  background-color: var(--course-accent-tint);
+}
+
+.md-typeset .project > .admonition-title,
+.md-typeset .project > summary {
+  color: var(--course-accent);
+}
+
+.md-typeset .project > .admonition-title::before,
+.md-typeset .project > summary::before {
+  background-color: var(--course-accent);
+  -webkit-mask-image: var(--md-admonition-icon--project);
+          mask-image: var(--md-admonition-icon--project);
+}
+
+/* ---- 18. Elsewhere line, week badge -------------------------------------- */
+
+.md-typeset p.elsewhere {
+  font-size: 0.74rem;
+  line-height: 1.65;
+  color: var(--course-muted);
+  border-left: 2px solid var(--course-line-strong);
+  padding: 0.1rem 0 0.1rem 0.9rem;
+  margin: 1.1rem 0 1.4rem;
+}
+
+.md-typeset p.elsewhere em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--course-ink);
+}
+
+.week-badge {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 1rem;
+  font-family: var(--course-display);
+  font-size: 0.62rem;
+  font-weight: 600;
+  background-color: var(--course-primary);
+  color: var(--md-default-bg-color);
+}
+
+.md-typeset .task-list-item {
+  margin-bottom: 0.25rem;
+}
+
+/* ---- 19. Responsive ------------------------------------------------------ */
 
 @media screen and (max-width: 76.1875em) {
   .md-typeset .beats {
@@ -401,446 +944,112 @@
   }
 }
 
-@media screen and (max-width: 44.9375em) {
-  .md-typeset .hero-banner {
-    padding: 2.2rem 1rem 1.8rem;
-    margin-bottom: 2rem;
+@media screen and (max-width: 59.9375em) {
+  .md-typeset .hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-top: 1.6rem;
   }
 
-  .md-typeset .hero-banner h1 {
-    font-size: 2.2rem;
+  .md-typeset .hero-art {
+    order: -1;
+    max-width: 22rem;
+    justify-self: start;
+  }
+
+  .md-typeset .hero h1 {
+    font-size: 2.4rem;
+  }
+}
+
+@media screen and (max-width: 44.9375em) {
+  .md-typeset .hero h1 {
+    font-size: 2.1rem;
   }
 
   .md-typeset .hero-tagline {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+  }
+
+  .md-typeset .hero-art {
+    max-width: 100%;
   }
 
   .md-typeset .chips {
-    gap: 0.35rem;
+    gap: 0.3rem;
   }
 
   .md-typeset .chip {
     font-size: 0.62rem;
-    padding: 0.28rem 0.65rem;
+    padding: 0.26rem 0.62rem;
   }
 
-  .md-typeset .stats {
-    gap: 1.6rem;
-    margin-top: 1.8rem;
-    padding-top: 1.4rem;
-  }
-
-  .md-typeset .stat {
-    min-width: 4.5rem;
-  }
-
-  .md-typeset .stat b {
-    font-size: 1.8rem;
-  }
-
-  .md-typeset .principle {
-    padding: 1.2rem 1.1rem 1.2rem 1.4rem;
-  }
-
-  .md-typeset .principle p:first-child {
-    font-size: 0.92rem;
-  }
-}
-
-
-/* ---- Motion preferences -------------------------------------------------- */
-
-@media (prefers-reduced-motion: reduce) {
-  .md-typeset .hero-banner .md-button,
-  .md-typeset .chip,
-  .md-typeset .beat,
-  .md-typeset .grid.cards > ul > li {
-    transition: none;
-  }
-
-  .md-typeset .hero-banner .md-button:hover,
-  .md-typeset .beat:hover,
-  .md-typeset .grid.cards > ul > li:hover {
-    transform: none;
-  }
-}
-
-/* ==========================================================================
-   12. Course section: roadmap and grading
-   ========================================================================== */
-
-/* ---- Roadmap track ------------------------------------------------------- */
-
-.md-typeset .roadmap-track {
-  display: flex;
-  gap: 0.4rem;
-  margin: 2rem 0 2.6rem;
-}
-
-.md-typeset .track-seg {
-  flex: 1;
-  padding: 0.9rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--course-edge);
-  text-align: center;
-}
-
-.md-typeset .track-seg.seg-1 {
-  background-color: color-mix(in srgb, var(--md-primary-fg-color) 6%, transparent);
-}
-
-.md-typeset .track-seg.seg-2 {
-  background-color: color-mix(in srgb, var(--md-primary-fg-color) 11%, transparent);
-}
-
-.md-typeset .track-seg.seg-3 {
-  background-color: color-mix(in srgb, var(--md-primary-fg-color) 16%, transparent);
-}
-
-.md-typeset .track-weeks {
-  display: block;
-  font-size: 0.58rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--md-primary-fg-color);
-  margin-bottom: 0.3rem;
-}
-
-.md-typeset .track-seg b {
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--md-default-fg-color);
-}
-
-
-/* ---- Block cards --------------------------------------------------------- */
-
-.md-typeset .block-card {
-  padding: 1.6rem 1.7rem 1.4rem;
-  margin: 0 0 1.6rem;
-  border-radius: var(--course-radius);
-  border: 1px solid var(--md-default-fg-color--lightest);
-  background-color: var(--md-default-bg-color);
-  transition: border-color 140ms ease;
-}
-
-.md-typeset .block-card:hover {
-  border-color: var(--course-edge);
-}
-
-.md-typeset .block-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.md-typeset .block-num {
-  font-size: 0.6rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--md-primary-fg-color);
-}
-
-.md-typeset .block-weeks {
-  font-size: 0.6rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--md-default-fg-color--light);
-}
-
-.md-typeset .block-card h3 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  margin: 0 0 0.25rem;
-}
-
-.md-typeset .block-sub {
-  font-size: 0.78rem;
-  font-style: italic;
-  color: var(--md-default-fg-color--light);
-  margin: 0 0 1.3rem;
-}
-
-
-/* ---- Week rows ----------------------------------------------------------- */
-
-.md-typeset .weeks {
-  display: grid;
-  gap: 0.1rem;
-  margin-bottom: 1.4rem;
-}
-
-.md-typeset .week-row {
-  display: flex;
-  gap: 0.9rem;
-  align-items: baseline;
-  padding: 0.6rem 0;
-  border-top: 1px solid var(--md-default-fg-color--lightest);
-}
-
-.md-typeset .week-row:first-child {
-  border-top: none;
-  padding-top: 0;
-}
-
-.md-typeset .week-num {
-  flex-shrink: 0;
-  width: 1.7rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  color: var(--md-primary-fg-color);
-}
-
-.md-typeset .week-body b {
-  display: block;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.12rem;
-}
-
-.md-typeset .week-body p {
-  font-size: 0.72rem;
-  line-height: 1.55;
-  color: var(--md-default-fg-color--light);
-  margin: 0;
-}
-
-
-/* ---- Block skills and project link --------------------------------------- */
-
-.md-typeset .block-label {
-  font-size: 0.58rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--md-default-fg-color--light);
-  margin: 0 0 0.6rem;
-}
-
-.md-typeset .chips.chips-left {
-  justify-content: flex-start;
-  max-width: none;
-  margin: 0 0 1.3rem;
-}
-
-.md-typeset a.block-project {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.55rem 1rem;
-  border-radius: 0.4rem;
-  background-color: var(--course-tint);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--md-primary-fg-color);
-  transition: background-color 140ms ease;
-}
-
-.md-typeset a.block-project::before {
-  content: "▸";
-  margin-right: 0.5rem;
-}
-
-.md-typeset a.block-project:hover {
-  background-color: var(--course-tint-strong);
-}
-
-
-/* ---- Grading: points bar ------------------------------------------------- */
-
-.md-typeset .points-bar {
-  display: flex;
-  gap: 0.2rem;
-  margin: 2rem 0 0.8rem;
-}
-
-.md-typeset .points-seg {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem 0.4rem;
-  border-radius: 0.4rem;
-  text-align: center;
-  min-width: 0;
-}
-
-.md-typeset .points-seg.seg-team {
-  background-color: color-mix(in srgb, var(--md-primary-fg-color) 12%, transparent);
-}
-
-.md-typeset .points-seg.seg-exam {
-  background-color: var(--md-primary-fg-color);
-}
-
-.md-typeset .points-seg b {
-  font-size: 1.7rem;
-  line-height: 1;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--md-primary-fg-color);
-}
-
-.md-typeset .points-seg.seg-exam b {
-  color: var(--md-primary-bg-color);
-}
-
-.md-typeset .points-seg span {
-  font-size: 0.6rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--md-default-fg-color--light);
-  margin-top: 0.4rem;
-}
-
-.md-typeset .points-seg.seg-exam span {
-  color: var(--md-primary-bg-color);
-  opacity: 0.85;
-}
-
-.md-typeset .points-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.4rem;
-  margin-bottom: 2rem;
-  font-size: 0.68rem;
-  color: var(--md-default-fg-color--light);
-}
-
-.md-typeset .legend-item {
-  display: inline-flex;
-  align-items: center;
-}
-
-.md-typeset .legend-item::before {
-  content: "";
-  width: 0.6rem;
-  height: 0.6rem;
-  margin-right: 0.45rem;
-  border-radius: 0.15rem;
-}
-
-.md-typeset .legend-team::before {
-  background-color: color-mix(in srgb, var(--md-primary-fg-color) 35%, transparent);
-}
-
-.md-typeset .legend-exam::before {
-  background-color: var(--md-primary-fg-color);
-}
-
-
-/* ---- Course section: responsive ------------------------------------------ */
-
-@media screen and (max-width: 44.9375em) {
   .md-typeset .roadmap-track {
     flex-direction: column;
   }
 
-  .md-typeset .block-card {
-    padding: 1.2rem 1.1rem 1.1rem;
+  .md-typeset .week-row {
+    grid-template-columns: 1.8rem 1fr;
   }
 
-  .md-typeset .block-card h3 {
-    font-size: 1.15rem;
-  }
-
-  .md-typeset .points-bar {
-    flex-wrap: wrap;
-  }
-
-  .md-typeset .points-seg {
-    flex: 1 1 45% !important;
-    padding: 1.1rem 0.3rem;
-  }
-
-  .md-typeset .points-seg b {
-    font-size: 1.4rem;
+  .md-typeset .principle {
+    padding: 1.2rem 1.1rem 1.2rem 1.3rem;
   }
 }
 
-/* ==========================================================================
-   13. Block pages: extra track steps
-   ========================================================================== */
+/* ---- 20. Motion preferences ---------------------------------------------- */
 
-.md-typeset .track-seg.seg-4 {
-  background-color: color-mix(in srgb, var(--md-primary-fg-color) 21%, transparent);
+@media (prefers-reduced-motion: reduce) {
+  .md-typeset .hero .md-button,
+  .md-typeset .chip,
+  .md-typeset .beat,
+  .md-typeset .block-card,
+  .md-typeset .grid.cards > ul > li {
+    transition: none;
+  }
+
+  .md-typeset .hero .md-button:hover,
+  .md-typeset .beat:hover,
+  .md-typeset .grid.cards > ul > li:hover {
+    transform: none;
+  }
+
+  .hero-art .descent {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .hero-art .step,
+  .hero-art .core {
+    opacity: 1;
+    animation: none;
+  }
+
+  .hero-art .halo {
+    opacity: 0.2;
+    animation: none;
+  }
 }
 
-.md-typeset .track-seg.seg-project {
-  background-color: var(--md-primary-fg-color);
-  border-color: var(--md-primary-fg-color);
+/* ---- 21. Legacy hero wrapper (pre-redesign pages) ------------------------ */
+
+.md-typeset .hero-banner {
+  text-align: center;
+  padding: 2.8rem 1.5rem 2.2rem;
+  margin: 0 0 2.6rem;
+  border-radius: var(--course-radius);
+  border: 1px solid var(--course-line);
+  background-color: var(--course-plate);
 }
 
-.md-typeset .track-seg.seg-project .track-weeks,
-.md-typeset .track-seg.seg-project b {
-  color: var(--md-primary-bg-color);
+.md-typeset .hero-banner h1 {
+  font-size: 2.8rem;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0 0 0.7rem;
 }
 
-.md-typeset .track-seg.seg-project .track-weeks {
-  opacity: 0.8;
-}
-
-/* ==========================================================================
-   14. Custom callouts for week pages
-       !!! olist "In our example"     the running Olist example
-       !!! project "In your project"  apply the idea to your own data
-       Change the two colours below to restyle them everywhere.
-   ========================================================================== */
-
-:root {
-  --course-olist-color: #5c6bc0;
-  --course-project-color: #ec407a;
-  --md-admonition-icon--olist: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.75 1.03H8.1l-.9 1.63-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1zm6 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7 2.78-5H6.14l2.36 5z"/></svg>');
-  --md-admonition-icon--project: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.06 9 .94.94L5.92 19H5v-.92zm3.6-6c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/></svg>');
-}
-
-.md-typeset .admonition.olist,
-.md-typeset details.olist {
-  border-color: var(--course-olist-color);
-}
-
-.md-typeset .olist > .admonition-title,
-.md-typeset .olist > summary {
-  background-color: color-mix(in srgb, var(--course-olist-color) 10%, transparent);
-}
-
-.md-typeset .olist > .admonition-title::before,
-.md-typeset .olist > summary::before {
-  background-color: var(--course-olist-color);
-  -webkit-mask-image: var(--md-admonition-icon--olist);
-          mask-image: var(--md-admonition-icon--olist);
-}
-
-.md-typeset .admonition.project,
-.md-typeset details.project {
-  border-color: var(--course-project-color);
-}
-
-.md-typeset .project > .admonition-title,
-.md-typeset .project > summary {
-  background-color: color-mix(in srgb, var(--course-project-color) 10%, transparent);
-}
-
-.md-typeset .project > .admonition-title::before,
-.md-typeset .project > summary::before {
-  background-color: var(--course-project-color);
-  -webkit-mask-image: var(--md-admonition-icon--project);
-          mask-image: var(--md-admonition-icon--project);
-}
-
-/* "Elsewhere" lines: a quiet one-line example from another domain */
-.md-typeset p.elsewhere {
-  font-size: 0.74rem;
-  color: var(--md-default-fg-color--light);
-  border-left: 2px solid var(--md-default-fg-color--lightest);
-  padding-left: 0.8rem;
-  margin: 0.8rem 0 1.2rem;
+.md-typeset .hero-banner .chips,
+.md-typeset .hero-banner .stats {
+  justify-content: center;
 }
