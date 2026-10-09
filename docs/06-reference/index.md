@@ -70,6 +70,20 @@ Each page is scoped to the two or three weeks that need it, and says up front wh
 
 </div>
 
+## The data this course uses { .section-label }
+
+Two datasets carry the whole course, and both are public. You never download either by hand: a script fetches them, which is the same habit the projects are graded on.
+
+| Dataset | Used in | Published by | Licence | How to get it |
+|---|---|---|---|---|
+| **Olist Brazilian e-commerce**, about 100,000 orders, 2016 to 2018 | Block 1 labs, Weeks 1 to 4 | [Olist, on Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), so non-commercial use with attribution | `python data/download.py` |
+| **New York yellow taxi trips**, a fixed 600,000-trip extract, May to July 2026 | Project 1, and Block 2 from Week 5 | [NYC Taxi and Limousine Commission](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page), as open data | Published by the City of New York under its open data terms | `python data/download.py --taxi` |
+
+Both commands read from the [course data releases](https://github.com/evisp/ml-course-labs/releases), where the exact files are pinned so that every student works with identical rows. The taxi release also carries the [official data dictionary](https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf) and the zone lookup table.
+
+!!! tip "Why this table exists"
+    Your own `PROBLEM.md` is asked to record where your data came from, who published it, and under what terms. It seemed fair to do the same here.
+
 ## Where to find data { .section-label }
 
 For the capstone, and for anything you build after this course. Your project dataset has to meet the requirements in the project brief, so read those before you fall in love with something.

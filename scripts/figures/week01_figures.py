@@ -10,6 +10,7 @@ Run from the repository root, pointing at your copy of ml-course-labs:
     python scripts/figures/week01_figures.py --labs ../ml-course-labs
 
 Outputs into docs/assets/images/02-data-pipeline/:
+    w01-target-funnel-{light,dark}.png
     w01-late-by-month-{light,dark}.png
     w01-late-by-state-{light,dark}.png
     w01-baseline-ladder-{light,dark}.png
@@ -56,6 +57,96 @@ def style_axes(ax, c) -> None:
     for side in ("left", "bottom"):
         ax.spines[side].set_color(c["faint"])
     ax.tick_params(colors=c["muted"], labelsize=8)
+
+
+# --- The target's funnel, straight from the raw orders table -------------------
+
+
+def funnel_counts(labs: Path) -> dict:
+    """Every decision in the target, and what it costs in orders."""
+    orders = pd.read_csv(
+        labs / "data" / "raw" / "olist" / "olist_orders_dataset.csv",
+        parse_dates=["order_purchase_timestamp", "order_delivered_customer_date", "order_estimated_delivery_date"],
+    )
+    # Labelled exactly as checkpoints.week_01 does: anything with a delivery date
+    # can be labelled, whatever the status column says.
+    delivered = orders[orders["order_delivered_customer_date"].notna()]
+    purchased = delivered["order_purchase_timestamp"]
+    in_window = delivered[(purchased >= "2017-01-01") & (purchased < "2018-09-01")]
+
+    arrived = in_window["order_delivered_customer_date"]
+    promised = in_window["order_estimated_delivery_date"]
+    by_timestamp = arrived > promised
+    by_day = arrived.dt.normalize() > promised
+
+    return {
+        "total": len(orders),
+        "no_date": len(orders) - len(delivered),
+        "outside_window": len(delivered) - len(in_window),
+        "kept": len(in_window),
+        "late_by_day": int(by_day.sum()),
+        "disagree": int((by_timestamp != by_day).sum()),
+        "rate_timestamp": float(by_timestamp.mean()),
+        "rate_day": float(by_day.mean()),
+    }
+
+
+def target_funnel(counts: dict, theme: str) -> None:
+    """Two bars: what the target's decisions cost, and which labels they put in dispute."""
+    c = THEMES[theme]
+    total = counts["total"]
+
+    rows = [
+        ("Every order in the table", [
+            (counts["kept"], c["accent"], "kept: 96,204"),
+            (counts["no_date"], c["faint"], "never delivered"),
+            (counts["outside_window"], c["muted"], "outside the window"),
+        ]),
+        ("The orders we keep", [
+            (counts["kept"] - counts["late_by_day"], c["accent"], "on time"),
+            (counts["disagree"], c["warm"], "late or on time, depending on the rule"),
+            (counts["late_by_day"] - counts["disagree"], c["muted"], "late either way"),
+        ]),
+    ]
+
+    fig, ax = plt.subplots(figsize=(9, 3.2))
+    for row, (title, segments) in enumerate(rows):
+        y = 1 - row
+        left = 0
+        for value, colour, _ in segments:
+            ax.barh(y, value, left=left, height=0.46, color=colour)
+            left += value
+        ax.text(0, y + 0.42, title, ha="left", va="bottom", color=c["fg"], fontsize=10, weight="bold")
+
+    notes = [
+        (counts["kept"] / 2, 1, f"{counts['kept']:,}", "#ffffff", 11),
+        (counts["kept"] + counts["no_date"] / 2, 1.42, f"{counts['no_date']:,} never delivered", c["muted"], 8.5),
+    ]
+    for x, y, text, colour, size in notes:
+        ax.text(x, y, text, ha="center", va="center", color=colour, fontsize=size,
+                weight="bold" if size > 9 else "normal")
+
+    ax.annotate("", xy=(counts["kept"] + counts["no_date"] / 2, 1.3), xytext=(counts["kept"] + counts["no_date"] / 2, 1.18),
+                arrowprops=dict(arrowstyle="-", color=c["muted"], lw=0.9))
+
+    on_time = counts["kept"] - counts["late_by_day"]
+    ax.text(on_time / 2, 0, f"{on_time:,} on time", ha="center", va="center", color="#ffffff", fontsize=10, weight="bold")
+    middle = on_time + counts["disagree"] / 2
+    ax.annotate(f"{counts['disagree']:,} orders change label depending only\non how the comparison is written",
+                xy=(middle, -0.24), xytext=(middle - total * 0.30, -1.0),
+                ha="center", color=c["warm"], fontsize=9,
+                arrowprops=dict(arrowstyle="->", color=c["warm"], lw=1.1,
+                                connectionstyle="arc3,rad=-0.15"))
+    late_only = counts["late_by_day"] - counts["disagree"]
+    ax.annotate(f"{late_only:,} late either way",
+                xy=(counts["kept"] - late_only / 2, -0.24), xytext=(total * 0.995, -0.62),
+                ha="right", color=c["muted"], fontsize=8.5,
+                arrowprops=dict(arrowstyle="->", color=c["muted"], lw=0.9))
+
+    ax.set_xlim(0, total * 1.02)
+    ax.set_ylim(-1.3, 1.75)
+    ax.axis("off")
+    save(fig, f"w01-target-funnel-{theme}.png")
 
 
 # --- Data, exactly as the Week 1 solution builds it ---------------------------
@@ -238,12 +329,19 @@ def main() -> int:
 
     OUT.mkdir(parents=True, exist_ok=True)
     print("Loading data from", labs)
+    counts = funnel_counts(labs)
+    print(f"  target funnel: {counts['total']:,} -> {counts['kept']:,} kept "
+          f"({counts['no_date']:,} never delivered, {counts['outside_window']:,} outside the window); "
+          f"{counts['late_by_day']:,} late by day, {counts['disagree']:,} disagree "
+          f"({counts['rate_timestamp']:.3f} by timestamp vs {counts['rate_day']:.3f} by day)")
+
     df = load(labs)
     results = ladder(df)
     print(results.round(3).to_string(index=False))
 
     print("Generating Week 1 figures")
     for theme in THEMES:
+        target_funnel(counts, theme)
         late_by_month(df, theme)
         late_by_state(df, theme)
         baseline_ladder(results, theme)

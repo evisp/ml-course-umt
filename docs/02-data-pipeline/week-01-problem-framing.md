@@ -4,6 +4,7 @@
     **Block:** 1 · Data & the Pipeline
     **Running example:** Olist orders. *Will this order arrive late?* New to it? Start with the [Block 1 overview](index.md).
     **Lab:** [`week-01/lab.ipynb`](https://github.com/evisp/ml-course-labs/blob/main/week-01/lab.ipynb) in the labs repository
+    **Data:** the lab fetches it for you with `python data/download.py`. Source and licence on the [Block 1 overview](index.md).
     **Before class:** read sections 1, 4 and 6, about fifteen minutes
 
 ## Why this matters
@@ -13,6 +14,20 @@
 The costly mistakes are rarely algorithmic. They happen in a meeting room, in the first hour, when somebody says "let's use AI to improve things" and nobody asks what exactly will be predicted, for whom, or at what moment. Whatever gets built later is stuck with that answer.
 
 So we spend that first hour properly. You will take a vague request and turn it into a question you can test, find that even the definition of the answer hides a handful of decisions, and then measure how far you get with almost no effort at all. That last number is the one a real model has to beat.
+
+## This week at a glance
+
+```mermaid
+flowchart LR
+    A["<b>A wish</b><br/>use AI to improve things"] --> B["<b>One sentence</b><br/>moment, target, unit, action · §1 to §3"]
+    B --> C["<b>A target you can compute</b><br/>with every decision written down · §4"]
+    C --> D["<b>A look at that target</b><br/>over time, across groups · §5"]
+    D --> E["<b>What exists when</b><br/>the moment of prediction · §6, §8"]
+    E --> F["<b>A baseline ladder</b><br/>the floor every model must clear · §7"]
+    F --> G["<b>PROBLEM.md</b><br/>all of it, written down · §9"]
+```
+
+Sections 1 to 3 turn the wish into a question. Sections 4 to 6 settle what the answer is and what you are allowed to use to predict it. Sections 7 to 9 set the floor and write everything down.
 
 ## Learning outcomes
 
@@ -128,6 +143,11 @@ Each decision changes the **positive rate**, the share of cases with the answer 
     ```
 
     The two definitions disagree on **1,291 orders**, every one of them delivered on the promised day. We compare calendar days. The positive rate is 6.8%, so always predicting *on time* is right 93% of the time.
+
+    ![What the target's decisions cost, and which labels they put in dispute](../assets/images/02-data-pipeline/w01-target-funnel-light.png#only-light)
+    ![What the target's decisions cost, and which labels they put in dispute](../assets/images/02-data-pipeline/w01-target-funnel-dark.png#only-dark)
+
+    *The decisions are cheap in rows: 3,237 orders go, most of them never delivered. The expensive one is invisible. Of the orders we keep, 1,291 are labelled late or on time depending only on how a single comparison is written, which moves the positive rate from 8.1% to 6.8%.*
 
 **Elsewhere:** for customer churn, "no purchase for 30 days" and "no purchase for 60 days" describe very different customers, and the churn rate can double between them.
 { .elsewhere }

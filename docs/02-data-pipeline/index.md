@@ -46,6 +46,8 @@ Olist connects small Brazilian shops to the big online marketplaces. In 2018 the
 
 Few things lose a customer faster than a parcel that turns up late. Spot it at the moment of purchase and there is still time to do something: send a warning, move the shipment up the queue, pick a different carrier. Somebody would pay for that answer, which is what makes it worth practising on.
 
+The data is the [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), published under CC BY-NC-SA 4.0. You do not download it by hand: the labs repository fetches it with `python data/download.py`, from the [course data release](https://github.com/evisp/ml-course-labs/releases). Everything provenance-related is listed on the [reference page](../06-reference/index.md).
+
 <div class="chips chips-left">
 <span class="chip">About 100,000 orders</span>
 <span class="chip">Nine linked tables</span>
@@ -91,8 +93,6 @@ Few things lose a customer faster than a parcel that turns up late. Spot it at t
             float freight_value
         }
     ```
-
-    The data is the [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), shared under CC BY-NC-SA 4.0.
 
 ## Four ways a score can lie { .section-label }
 
