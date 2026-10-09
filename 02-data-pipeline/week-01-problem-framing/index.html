@@ -1292,7 +1292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../review.md" class="md-nav__link">
+      <a href="../review/" class="md-nav__link">
         
   
   
@@ -2536,8 +2536,8 @@
 <blockquote>
 <p>Most failed machine learning projects answer the wrong question very well.</p>
 </blockquote>
-<p>The expensive mistakes in this field are rarely about algorithms. They happen in the first hour, when someone agrees to "use AI to improve things" without deciding what exactly will be predicted, for whom, and at what moment. Everything built afterwards inherits that vagueness.</p>
-<p>This week is about that first hour. You turn a vague request into a precise question, discover that even the definition of the answer is a set of decisions, and measure how well you can do by barely trying. Only then does a real model have something to beat.</p>
+<p>The costly mistakes are rarely algorithmic. They happen in a meeting room, in the first hour, when somebody says "let's use AI to improve things" and nobody asks what exactly will be predicted, for whom, or at what moment. Whatever gets built later is stuck with that answer.</p>
+<p>So we spend that first hour properly. You will take a vague request and turn it into a question you can test, find that even the definition of the answer hides a handful of decisions, and then measure how far you get with almost no effort at all. That last number is the one a real model has to beat.</p>
 <h2 id="learning-outcomes">Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permanent link">&para;</a></h2>
 <p>By the end of this week you can:</p>
 <ul class="task-list">
@@ -2555,14 +2555,14 @@
 </div>
 <hr />
 <h2 id="1-turn-a-request-into-a-question">1. Turn a request into a question<a class="headerlink" href="#1-turn-a-request-into-a-question" title="Permanent link">&para;</a></h2>
-<p>Projects rarely start with a question. They start with a wish: <em>use AI to reduce churn</em>, <em>improve satisfaction</em>, <em>cut costs</em>. Nothing in a wish can be predicted. It has to be narrowed, and four questions do most of the narrowing:</p>
+<p>Projects almost never arrive as questions. They arrive as wishes: <em>use AI to reduce churn</em>, <em>improve satisfaction</em>, <em>cut costs</em>. You cannot predict a wish, but you can narrow one, and four questions do most of that work:</p>
 <ol>
 <li><strong>What actually goes wrong?</strong> Find the concrete event behind the wish.</li>
 <li><strong>What would anyone do differently if they knew in advance?</strong> No action, no point predicting.</li>
 <li><strong>When would they need to know?</strong> This fixes the moment of prediction.</li>
 <li><strong>What exactly is predicted, and for one what?</strong> One customer, one order, one day.</li>
 </ol>
-<p>The answers fit into one sentence, and if you cannot write it, the problem is not framed yet:</p>
+<p>Their answers fit in a single sentence. If you cannot write that sentence, the problem is not framed yet:</p>
 <div class="principle">
 <p><strong>At <em>[moment]</em>, predict <em>[target]</em> for each <em>[unit]</em>, so that <em>[someone]</em> can <em>[act]</em>.</strong></p>
 </div>
@@ -2597,7 +2597,7 @@
 </table>
 <p><strong>At the moment an order is placed, predict whether it will arrive after the promised date, so the support team can warn the customer or prioritise the shipment.</strong></p>
 </div>
-<p class="elsewhere"><em>Elsewhere:</em> "reduce hospital readmissions" becomes <em>at discharge, predict whether this patient returns within 30 days, so a nurse can schedule a follow-up call.</em></p>
+<p class="elsewhere"><strong>Elsewhere:</strong> "reduce hospital readmissions" becomes <em>at discharge, predict whether this patient returns within 30 days, so a nurse can schedule a follow-up call.</em></p>
 <div class="admonition project">
 <p class="admonition-title">In your project</p>
 <p>Write your question as one sentence in the form above. If any bracket is hard to fill, that is where the framing work still is.</p>
@@ -2630,8 +2630,8 @@
 </tr>
 </tbody>
 </table>
-<p>And one question that is easy to skip: <strong>would a simple rule do almost as well?</strong> If two lines of logic get you most of the way, use them. A rule is cheaper to run, easier to explain, and easier to fix. Section 7 puts this to the test.</p>
-<p>Also ask whether the pattern <strong>changes over time</strong>. That is not a reason to stop, but it is a reason for care, and Week 2 is built around it.</p>
+<p>There is a fifth question that people skip: <strong>would a simple rule do almost as well?</strong> If two lines of logic get you most of the way there, write the two lines. A rule is cheaper to run and far easier to explain when somebody questions it. Section 7 puts that to the test on our data.</p>
+<p>Worth asking too: does the pattern <strong>change over time</strong>? That is not a reason to stop, but it is a reason to be careful, and the whole of Week 2 is built around it.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p>Some states and some promises go wrong more than others, so there is a pattern. There are about 96,000 labelled orders. A wrong warning costs one unnecessary message. And the support team can act before the parcel ships. All four checks pass. The pattern also changes a lot over time, which section 5 shows.</p>
@@ -2674,9 +2674,9 @@
 </div>
 <h2 id="4-define-the-target-precisely">4. Define the target precisely<a class="headerlink" href="#4-define-the-target-precisely" title="Permanent link">&para;</a></h2>
 <p>A target that sounds obvious usually hides three decisions.</p>
-<p><strong>Which cases can be labelled at all.</strong> Some cases have not finished yet, or never will: an order still in transit, a loan not yet due, a patient still in hospital. They have no answer, so they cannot teach the model anything, and leaving them out is a decision that belongs in writing.</p>
+<p><strong>Which cases can be labelled at all.</strong> Some have not finished yet, and some never will: an order still in transit, a loan not yet due, a patient still in hospital. There is no answer attached to them, so there is nothing for a model to learn. Leaving them out is the right call. Leaving it unwritten is not.</p>
 <p><strong>Which period and population count.</strong> The edges of a dataset are often thin or unusual: the first weeks of a new system, the last weeks before an export. Choose a window where the process was running normally.</p>
-<p><strong>The exact rule.</strong> The classic trap is comparing two values stored at different precision: a date against a timestamp, a rounded figure against an exact one, a local time against a universal one. The comparison looks right and quietly mislabels the cases at the boundary.</p>
+<p><strong>The exact rule.</strong> The classic trap is comparing two values that are stored at different precision: a date against a timestamp, a rounded figure against an exact one, local time against UTC. The comparison reads perfectly well and quietly mislabels everything sitting on the boundary.</p>
 <p>Each decision changes the <strong>positive rate</strong>, the share of cases with the answer you are predicting. Always compute it: it tells you how rare your target is and what doing nothing will score.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
@@ -2708,7 +2708,7 @@
 </span></code></pre></div>
 <p>The two definitions disagree on <strong>1,291 orders</strong>, every one of them delivered on the promised day. We compare calendar days. The positive rate is 6.8%, so always predicting <em>on time</em> is right 93% of the time.</p>
 </div>
-<p class="elsewhere"><em>Elsewhere:</em> for customer churn, "no purchase for 30 days" and "no purchase for 60 days" describe very different customers, and the churn rate can double between them.</p>
+<p class="elsewhere"><strong>Elsewhere:</strong> for customer churn, "no purchase for 30 days" and "no purchase for 60 days" describe very different customers, and the churn rate can double between them.</p>
 <div class="admonition note">
 <p class="admonition-title">Key insight</p>
 <p><strong>The target is something you decide, not something you find.</strong> Write every decision down, with what it did to the positive rate.</p>
@@ -2718,10 +2718,10 @@
 <p>List each decision your target involves: what you could not label, which window you kept, and the exact rule. Record the positive rate after each one.</p>
 </div>
 <h2 id="5-look-before-you-model">5. Look before you model<a class="headerlink" href="#5-look-before-you-model" title="Permanent link">&para;</a></h2>
-<p>Before any model, two cheap views of the target tell you more than most first models will.</p>
+<p>Two cheap charts, drawn before you model anything, will usually teach you more than your first model does.</p>
 <p><strong>The target over time.</strong> Is the rate stable, or does it drift? A model learns the world as it was during training. If the rate moves a lot, a model trained on one period faces a different problem in the next.</p>
 <p><strong>The target across groups.</strong> Pick the grouping that matters most in your data, such as region, category, or department, and see where the target concentrates. Write down your guess first. Then look.</p>
-<p>Two cautions. <strong>Small groups lie</strong>: a rate from forty cases swings wildly by chance. And <strong>targets defined against a reference behave differently from raw quantities</strong>. "Late" is measured against a promise, "over budget" against a budget. The reference can hide or reverse the pattern you expect.</p>
+<p>Two warnings. <strong>Small groups lie:</strong> a rate computed from forty cases swings around on chance alone. And <strong>a target measured against a reference does not behave like a raw quantity.</strong> "Late" is relative to a promise, "over budget" to a budget. That reference can hide the pattern you expect, or turn it upside down, as it does below.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p><img alt="Late rate by month of purchase" src="../../assets/images/02-data-pipeline/w01-late-by-month-light.png#only-light" />
@@ -2732,14 +2732,14 @@
 <p><em>The most remote states are among the most reliable. The worst are in the northeast, and Rio de Janeiro is late about one time in eight.</em></p>
 <p>Most people guess the far north, thousands of kilometres from the sellers in São Paulo, would be worst. The four states deep in the Amazon are in fact the most reliable in the country. Their customers are promised long windows, so even slow parcels arrive "on time": lateness is measured against the promise, not the distance. Roraima, with only 40 orders, shows how noisy small groups are.</p>
 </div>
-<p class="elsewhere"><em>Elsewhere:</em> fraud rates by merchant category, or readmission rates by hospital department, routinely overturn what experienced staff expect.</p>
+<p class="elsewhere"><strong>Elsewhere:</strong> fraud rates by merchant category, or readmission rates by hospital department, routinely overturn what experienced staff expect.</p>
 <div class="admonition project">
 <p class="admonition-title">In your project</p>
 <p>Plot the target over time and across your most important group. Before each plot, write down what you expect. Afterwards, write one sentence on what surprised you.</p>
 </div>
 <h2 id="6-fix-the-moment-of-prediction">6. Fix the moment of prediction<a class="headerlink" href="#6-fix-the-moment-of-prediction" title="Permanent link">&para;</a></h2>
 <p>The question from section 1 names a moment. From then on, one rule decides every feature: <strong>a feature is allowed only if its value exists at that moment.</strong></p>
-<p>The practical way to apply it is to draw the timeline of your data. Put each event in order, mark the moment of prediction, and sort every column into <em>known by then</em> or <em>not yet</em>. Anything recorded afterwards is forbidden, however innocent it looks. The dangerous columns are rarely the obvious ones. They are the ones recorded a few minutes or hours later.</p>
+<p>In practice, draw your data's timeline. Put the events in order, mark the moment of prediction on it, and sort every column into <em>known by then</em> or <em>not yet</em>. Anything recorded afterwards is out, however innocent it looks. The columns that catch people are rarely the obvious ones; they are the ones recorded a few minutes later, which feel like part of the same event.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <pre class="mermaid"><code>flowchart LR
@@ -2782,7 +2782,7 @@
 </table>
 <p>Four features survive: the promised window in days (typically 24), the weekday and hour of purchase, and the customer's state.</p>
 </div>
-<p class="elsewhere"><em>Elsewhere:</em> predicting loan default at the moment of application, the stated income is allowed. The number of missed payments is not. It only exists once the loan is running.</p>
+<p class="elsewhere"><strong>Elsewhere:</strong> predicting loan default at the moment of application, the stated income is allowed. The number of missed payments is not. It only exists once the loan is running.</p>
 <div class="admonition project">
 <p class="admonition-title">In your project</p>
 <p>Draw your own timeline, mark the moment of prediction, and sort every column. Keep the sorted list: Week 3 builds on it.</p>
@@ -2871,8 +2871,8 @@
 <p>Build all three rungs and keep the results table. Every model you train from now on is compared against it.</p>
 </div>
 <h2 id="8-recognise-a-leak">8. Recognise a leak<a class="headerlink" href="#8-recognise-a-leak" title="Permanent link">&para;</a></h2>
-<p>A <strong>leak</strong> is a feature that carries information about the answer that would not be available at the moment of prediction. The model does not learn the problem. It learns to read the answer.</p>
-<p>Leaks have one reliable symptom: <strong>the score is too good</strong>. And one reliable test: for each feature, ask <em>when is this value recorded?</em> If the answer is after the moment of prediction, it leaks.</p>
+<p>A <strong>leak</strong> is a feature that smuggles in information about the answer, information you would not actually have when the prediction is made. What the model learns is not the problem; it is where somebody wrote the answer down.</p>
+<p>There is one reliable symptom, <strong>a score that is too good</strong>, and one reliable test: for every feature, ask <em>when is this value recorded?</em> If the answer is "after the moment of prediction", it leaks.</p>
 <p>Three common sources, from obvious to quiet:</p>
 <ul>
 <li><strong>Future timestamps and durations</strong>, like delivery dates or time to resolution</li>
@@ -2920,7 +2920,7 @@
 <p>For every feature, write down when its value is recorded. Any feature recorded after your moment of prediction goes.</p>
 </div>
 <h2 id="9-write-a-problem-card">9. Write a problem card<a class="headerlink" href="#9-write-a-problem-card" title="Permanent link">&para;</a></h2>
-<p>A problem card puts every framing decision in one place. It lives in a file called <code>PROBLEM.md</code> at the root of your repository, written <strong>before</strong> any modelling. When a decision changes later, update the card and add a line saying what changed and why. A card that drifts silently away from the project is worse than no card.</p>
+<p>A problem card gathers every framing decision in one place. It lives in <code>PROBLEM.md</code> at the root of your repository and gets written <strong>before</strong> any modelling. When something changes later, update the card and add a line saying what changed and why. A card that has quietly stopped matching the project is worse than no card at all.</p>
 <p>Copy the template with the button in the corner of the block:</p>
 <div class="language-markdown highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gh"># Problem card</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
@@ -3102,7 +3102,7 @@
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"is_late"</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>      <span class="c1"># keep the positive rate in both parts</span>
 </span></code></pre></div>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>A wish becomes a question when you fix the target, the unit, and the moment of prediction, in one sentence. The target itself is a set of decisions, and a small one can silently mislabel over a thousand cases. Looking at the target over time and across groups, before any model, can overturn a confident guess. The baseline ladder sets the floor every model must clear, and shows why accuracy misleads when one class is rare. And a leak does not announce itself: it just makes a useless model look brilliant.</p>
+<p>A wish turns into a question once you have fixed the target, the unit and the moment of prediction in a single sentence. The target is itself a pile of decisions, and one small one here mislabelled 1,291 orders. Charting that target over time and across states, before any modelling, overturned what most people would have guessed about Brazil. The baseline ladder set the floor every later model has to clear, and showed why 93% accuracy can mean nothing. And the leak never announced itself; it just made a useless model look brilliant.</p>
 <p><strong>Next week</strong> takes up the question this week left open. If the target drifts over time, what happens when we test the way a model will really be used, trained on the past and judged on the future?</p>
 <p><strong>Next:</strong> <a href="../week-02-data-quality/">Week 02 · Data quality &amp; splitting</a></p>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
@@ -3135,7 +3135,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 13:03:52 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 9, 2026 07:21:36 UTC">October 9, 2026</span>
   </span>
 
     

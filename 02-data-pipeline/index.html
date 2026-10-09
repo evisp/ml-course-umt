@@ -1036,7 +1036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="review.md" class="md-nav__link">
+      <a href="review/" class="md-nav__link">
         
   
   
@@ -2145,8 +2145,8 @@
 <h1 id="block-1-data-the-pipeline">Block 1 · Data &amp; the Pipeline<a class="headerlink" href="#block-1-data-the-pipeline" title="Permanent link">&para;</a></h1>
 <p class="block-sub">A model is the easy part.</p>
 
-<p>Four weeks, and you will barely train a model. That is deliberate. Everything that quietly ruins a machine learning project goes wrong before training starts, and none of it throws an error. A bad split or a leaked feature does not crash your code. It hands you an excellent score and a system that fails the day it meets real data.</p>
-<p>So this block builds the part that decides whether a score can be trusted: one pipeline, one stage a week.</p>
+<p>You will hardly train a model in these four weeks, and that is on purpose. By the time you call <code>.fit()</code>, most of what can ruin a project has already happened, and none of it raises an error. Split the data carelessly, or let one column leak, and the code runs perfectly. You get a great score. Then the model meets real data and falls over.</p>
+<p>So we start at the other end, with the pipeline that decides whether a score can be trusted at all. One stage a week.</p>
 <div class="roadmap-track">
   <div class="track-seg seg-1">
     <span class="track-weeks">Week 01</span>
@@ -2178,8 +2178,8 @@
 </div>
 <h3 id="will-this-order-arrive-late">Will this order arrive late?<a class="headerlink" href="#will-this-order-arrive-late" title="Permanent link">&para;</a></h3>
 <p class="block-sub">Predicted at the moment the customer clicks buy.</p>
-<p>Olist is a Brazilian marketplace that connects small shops to large online stores. In 2018 it released a real, anonymised record of its orders, and that is the data every lecture, figure, and lab in this block uses.</p>
-<p>A late order is one of the surest ways to lose a customer. A prediction made at purchase time leaves room to act on it: warn the customer early, prioritise the shipment, choose a different carrier. That makes it a question a real company would pay to have answered, which is the only kind worth practising on.</p>
+<p>Olist connects small Brazilian shops to the big online marketplaces. In 2018 the company published an anonymised record of about a hundred thousand real orders, and that is what every lecture, figure and lab in this block runs on.</p>
+<p>Few things lose a customer faster than a parcel that turns up late. Spot it at the moment of purchase and there is still time to do something: send a warning, move the shipment up the queue, pick a different carrier. Somebody would pay for that answer, which is what makes it worth practising on.</p>
 <div class="chips chips-left">
 <span class="chip">About 100,000 orders</span>
 <span class="chip">Nine linked tables</span>
@@ -2224,7 +2224,7 @@
 <p>The data is the <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce">Brazilian E-Commerce Public Dataset by Olist</a>, shared under CC BY-NC-SA 4.0.</p>
 </details>
 <h2 class="section-label" id="four-ways-a-score-can-lie">Four ways a score can lie<a class="headerlink" href="#four-ways-a-score-can-lie" title="Permanent link">&para;</a></h2>
-<p>Each week closes one of them. By the end of the block, a score you report has survived all four.</p>
+<p>Each week shuts one of them down, so that by the end of the block any score you report has survived all four.</p>
 <div class="grid cards">
 <ul>
 <li>
@@ -2258,7 +2258,7 @@
 </ul>
 </div>
 <h2 class="section-label" id="what-you-build">What you build<a class="headerlink" href="#what-you-build" title="Permanent link">&para;</a></h2>
-<p>Every week leaves something concrete in your repository. Together they are most of Project 1.</p>
+<p>Every week leaves something real in your repository. Put together, they are most of Project 1 already.</p>
 <table>
 <thead>
 <tr>
@@ -2314,17 +2314,16 @@
 
 <div class="admonition tip">
 <p class="admonition-title">Missed a week? You are not locked out</p>
-<p>Each lab starts from a checkpoint file produced by the previous week's solution. You can pick up the story at any week without having finished the one before it.</p>
+<p>Each lab starts from a checkpoint produced by the previous week's solution, so you can join at any week without having finished the one before.</p>
 </div>
 <h2 class="section-label" id="where-it-leads">Where it leads<a class="headerlink" href="#where-it-leads" title="Permanent link">&para;</a></h2>
 <div class="principle">
 <p><strong>Project 1: the same four stages, on a different dataset.</strong></p>
-<p>The class works on Olist together. Your team then applies every stage to data you have not seen in class, which is where you find out whether you understood the idea or only followed the notebook.</p>
+<p>We work through Olist together in class. Your team then runs the same four stages on data you have never seen, which is where you find out whether you understood the idea or were following along.</p>
 </div>
 <p><a class="block-project" href="../05-projects/project-1-pipeline/">Project 1 brief</a></p>
 <hr />
 <p><strong>Before you start:</strong> make sure the <a href="../01-toolkit/">toolkit</a> readiness checklist is done. Then go to <a href="week-01-problem-framing/">Week 01</a>.</p>
-<p>At the end of the block, <a href="review.md">Block 1 in review</a> brings the four weeks together.</p>
 
 
 
@@ -2345,7 +2344,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 2, 2026 10:04:39 UTC">October 2, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 9, 2026 07:21:36 UTC">October 9, 2026</span>
   </span>
 
     
