@@ -10,9 +10,9 @@
 
 > Most failed machine learning projects answer the wrong question very well.
 
-The expensive mistakes in this field are rarely about algorithms. They happen in the first hour, when someone agrees to "use AI to improve things" without deciding what exactly will be predicted, for whom, and at what moment. Everything built afterwards inherits that vagueness.
+The costly mistakes are rarely algorithmic. They happen in a meeting room, in the first hour, when somebody says "let's use AI to improve things" and nobody asks what exactly will be predicted, for whom, or at what moment. Whatever gets built later is stuck with that answer.
 
-This week is about that first hour. You turn a vague request into a precise question, discover that even the definition of the answer is a set of decisions, and measure how well you can do by barely trying. Only then does a real model have something to beat.
+So we spend that first hour properly. You will take a vague request and turn it into a question you can test, find that even the definition of the answer hides a handful of decisions, and then measure how far you get with almost no effort at all. That last number is the one a real model has to beat.
 
 ## Learning outcomes
 
@@ -34,14 +34,14 @@ By the end of this week you can:
 
 ## 1. Turn a request into a question
 
-Projects rarely start with a question. They start with a wish: *use AI to reduce churn*, *improve satisfaction*, *cut costs*. Nothing in a wish can be predicted. It has to be narrowed, and four questions do most of the narrowing:
+Projects almost never arrive as questions. They arrive as wishes: *use AI to reduce churn*, *improve satisfaction*, *cut costs*. You cannot predict a wish, but you can narrow one, and four questions do most of that work:
 
 1. **What actually goes wrong?** Find the concrete event behind the wish.
 2. **What would anyone do differently if they knew in advance?** No action, no point predicting.
 3. **When would they need to know?** This fixes the moment of prediction.
 4. **What exactly is predicted, and for one what?** One customer, one order, one day.
 
-The answers fit into one sentence, and if you cannot write it, the problem is not framed yet:
+Their answers fit in a single sentence. If you cannot write that sentence, the problem is not framed yet:
 
 <div class="principle" markdown>
 
@@ -61,7 +61,7 @@ The answers fit into one sentence, and if you cannot write it, the problem is no
 
     **At the moment an order is placed, predict whether it will arrive after the promised date, so the support team can warn the customer or prioritise the shipment.**
 
-*Elsewhere:* "reduce hospital readmissions" becomes *at discharge, predict whether this patient returns within 30 days, so a nurse can schedule a follow-up call.*
+**Elsewhere:** "reduce hospital readmissions" becomes *at discharge, predict whether this patient returns within 30 days, so a nurse can schedule a follow-up call.*
 { .elsewhere }
 
 !!! project "In your project"
@@ -78,9 +78,9 @@ Machine learning earns its cost only when four things are true:
 | **Mistakes are tolerable** | Every model is sometimes wrong. What does a wrong answer cost? |
 | **Someone can act on it** | A perfect prediction nobody uses is worth nothing |
 
-And one question that is easy to skip: **would a simple rule do almost as well?** If two lines of logic get you most of the way, use them. A rule is cheaper to run, easier to explain, and easier to fix. Section 7 puts this to the test.
+There is a fifth question that people skip: **would a simple rule do almost as well?** If two lines of logic get you most of the way there, write the two lines. A rule is cheaper to run and far easier to explain when somebody questions it. Section 7 puts that to the test on our data.
 
-Also ask whether the pattern **changes over time**. That is not a reason to stop, but it is a reason for care, and Week 2 is built around it.
+Worth asking too: does the pattern **change over time**? That is not a reason to stop, but it is a reason to be careful, and the whole of Week 2 is built around it.
 
 !!! olist "In our example"
     Some states and some promises go wrong more than others, so there is a pattern. There are about 96,000 labelled orders. A wrong warning costs one unnecessary message. And the support team can act before the parcel ships. All four checks pass. The pattern also changes a lot over time, which section 5 shows.
@@ -105,11 +105,11 @@ Knowing which family you are in tells you which metrics and baselines apply. One
 
 A target that sounds obvious usually hides three decisions.
 
-**Which cases can be labelled at all.** Some cases have not finished yet, or never will: an order still in transit, a loan not yet due, a patient still in hospital. They have no answer, so they cannot teach the model anything, and leaving them out is a decision that belongs in writing.
+**Which cases can be labelled at all.** Some have not finished yet, and some never will: an order still in transit, a loan not yet due, a patient still in hospital. There is no answer attached to them, so there is nothing for a model to learn. Leaving them out is the right call. Leaving it unwritten is not.
 
 **Which period and population count.** The edges of a dataset are often thin or unusual: the first weeks of a new system, the last weeks before an export. Choose a window where the process was running normally.
 
-**The exact rule.** The classic trap is comparing two values stored at different precision: a date against a timestamp, a rounded figure against an exact one, a local time against a universal one. The comparison looks right and quietly mislabels the cases at the boundary.
+**The exact rule.** The classic trap is comparing two values that are stored at different precision: a date against a timestamp, a rounded figure against an exact one, local time against UTC. The comparison reads perfectly well and quietly mislabels everything sitting on the boundary.
 
 Each decision changes the **positive rate**, the share of cases with the answer you are predicting. Always compute it: it tells you how rare your target is and what doing nothing will score.
 
@@ -129,7 +129,7 @@ Each decision changes the **positive rate**, the share of cases with the answer 
 
     The two definitions disagree on **1,291 orders**, every one of them delivered on the promised day. We compare calendar days. The positive rate is 6.8%, so always predicting *on time* is right 93% of the time.
 
-*Elsewhere:* for customer churn, "no purchase for 30 days" and "no purchase for 60 days" describe very different customers, and the churn rate can double between them.
+**Elsewhere:** for customer churn, "no purchase for 30 days" and "no purchase for 60 days" describe very different customers, and the churn rate can double between them.
 { .elsewhere }
 
 !!! note "Key insight"
@@ -140,13 +140,13 @@ Each decision changes the **positive rate**, the share of cases with the answer 
 
 ## 5. Look before you model
 
-Before any model, two cheap views of the target tell you more than most first models will.
+Two cheap charts, drawn before you model anything, will usually teach you more than your first model does.
 
 **The target over time.** Is the rate stable, or does it drift? A model learns the world as it was during training. If the rate moves a lot, a model trained on one period faces a different problem in the next.
 
 **The target across groups.** Pick the grouping that matters most in your data, such as region, category, or department, and see where the target concentrates. Write down your guess first. Then look.
 
-Two cautions. **Small groups lie**: a rate from forty cases swings wildly by chance. And **targets defined against a reference behave differently from raw quantities**. "Late" is measured against a promise, "over budget" against a budget. The reference can hide or reverse the pattern you expect.
+Two warnings. **Small groups lie:** a rate computed from forty cases swings around on chance alone. And **a target measured against a reference does not behave like a raw quantity.** "Late" is relative to a promise, "over budget" to a budget. That reference can hide the pattern you expect, or turn it upside down, as it does below.
 
 !!! olist "In our example"
     ![Late rate by month of purchase](../assets/images/02-data-pipeline/w01-late-by-month-light.png#only-light)
@@ -161,7 +161,7 @@ Two cautions. **Small groups lie**: a rate from forty cases swings wildly by cha
 
     Most people guess the far north, thousands of kilometres from the sellers in São Paulo, would be worst. The four states deep in the Amazon are in fact the most reliable in the country. Their customers are promised long windows, so even slow parcels arrive "on time": lateness is measured against the promise, not the distance. Roraima, with only 40 orders, shows how noisy small groups are.
 
-*Elsewhere:* fraud rates by merchant category, or readmission rates by hospital department, routinely overturn what experienced staff expect.
+**Elsewhere:** fraud rates by merchant category, or readmission rates by hospital department, routinely overturn what experienced staff expect.
 { .elsewhere }
 
 !!! project "In your project"
@@ -171,7 +171,7 @@ Two cautions. **Small groups lie**: a rate from forty cases swings wildly by cha
 
 The question from section 1 names a moment. From then on, one rule decides every feature: **a feature is allowed only if its value exists at that moment.**
 
-The practical way to apply it is to draw the timeline of your data. Put each event in order, mark the moment of prediction, and sort every column into *known by then* or *not yet*. Anything recorded afterwards is forbidden, however innocent it looks. The dangerous columns are rarely the obvious ones. They are the ones recorded a few minutes or hours later.
+In practice, draw your data's timeline. Put the events in order, mark the moment of prediction on it, and sort every column into *known by then* or *not yet*. Anything recorded afterwards is out, however innocent it looks. The columns that catch people are rarely the obvious ones; they are the ones recorded a few minutes later, which feel like part of the same event.
 
 !!! olist "In our example"
     ```mermaid
@@ -192,7 +192,7 @@ The practical way to apply it is to draw the timeline of your data. Put each eve
 
     Four features survive: the promised window in days (typically 24), the weekday and hour of purchase, and the customer's state.
 
-*Elsewhere:* predicting loan default at the moment of application, the stated income is allowed. The number of missed payments is not. It only exists once the loan is running.
+**Elsewhere:** predicting loan default at the moment of application, the stated income is allowed. The number of missed payments is not. It only exists once the loan is running.
 { .elsewhere }
 
 !!! project "In your project"
@@ -248,9 +248,9 @@ Three things to watch as you climb.
 
 ## 8. Recognise a leak
 
-A **leak** is a feature that carries information about the answer that would not be available at the moment of prediction. The model does not learn the problem. It learns to read the answer.
+A **leak** is a feature that smuggles in information about the answer, information you would not actually have when the prediction is made. What the model learns is not the problem; it is where somebody wrote the answer down.
 
-Leaks have one reliable symptom: **the score is too good**. And one reliable test: for each feature, ask *when is this value recorded?* If the answer is after the moment of prediction, it leaks.
+There is one reliable symptom, **a score that is too good**, and one reliable test: for every feature, ask *when is this value recorded?* If the answer is "after the moment of prediction", it leaks.
 
 Three common sources, from obvious to quiet:
 
@@ -276,7 +276,7 @@ Three common sources, from obvious to quiet:
 
 ## 9. Write a problem card
 
-A problem card puts every framing decision in one place. It lives in a file called `PROBLEM.md` at the root of your repository, written **before** any modelling. When a decision changes later, update the card and add a line saying what changed and why. A card that drifts silently away from the project is worse than no card.
+A problem card gathers every framing decision in one place. It lives in `PROBLEM.md` at the root of your repository and gets written **before** any modelling. When something changes later, update the card and add a line saying what changed and why. A card that has quietly stopped matching the project is worse than no card at all.
 
 Copy the template with the button in the corner of the block:
 
@@ -392,7 +392,7 @@ train_test_split(df, stratify=df["is_late"], ...)      # keep the positive rate 
 
 ## Summary
 
-A wish becomes a question when you fix the target, the unit, and the moment of prediction, in one sentence. The target itself is a set of decisions, and a small one can silently mislabel over a thousand cases. Looking at the target over time and across groups, before any model, can overturn a confident guess. The baseline ladder sets the floor every model must clear, and shows why accuracy misleads when one class is rare. And a leak does not announce itself: it just makes a useless model look brilliant.
+A wish turns into a question once you have fixed the target, the unit and the moment of prediction in a single sentence. The target is itself a pile of decisions, and one small one here mislabelled 1,291 orders. Charting that target over time and across states, before any modelling, overturned what most people would have guessed about Brazil. The baseline ladder set the floor every later model has to clear, and showed why 93% accuracy can mean nothing. And the leak never announced itself; it just made a useless model look brilliant.
 
 **Next week** takes up the question this week left open. If the target drifts over time, what happens when we test the way a model will really be used, trained on the past and judged on the future?
 

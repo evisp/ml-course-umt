@@ -2,9 +2,9 @@
 
 <p class="block-sub">A model is the easy part.</p>
 
-Four weeks, and you will barely train a model. That is deliberate. Everything that quietly ruins a machine learning project goes wrong before training starts, and none of it throws an error. A bad split or a leaked feature does not crash your code. It hands you an excellent score and a system that fails the day it meets real data.
+You will hardly train a model in these four weeks, and that is on purpose. By the time you call `.fit()`, most of what can ruin a project has already happened, and none of it raises an error. Split the data carelessly, or let one column leak, and the code runs perfectly. You get a great score. Then the model meets real data and falls over.
 
-So this block builds the part that decides whether a score can be trusted: one pipeline, one stage a week.
+So we start at the other end, with the pipeline that decides whether a score can be trusted at all. One stage a week.
 
 <div class="roadmap-track">
   <div class="track-seg seg-1">
@@ -42,9 +42,9 @@ So this block builds the part that decides whether a score can be trusted: one p
 
 <p class="block-sub">Predicted at the moment the customer clicks buy.</p>
 
-Olist is a Brazilian marketplace that connects small shops to large online stores. In 2018 it released a real, anonymised record of its orders, and that is the data every lecture, figure, and lab in this block uses.
+Olist connects small Brazilian shops to the big online marketplaces. In 2018 the company published an anonymised record of about a hundred thousand real orders, and that is what every lecture, figure and lab in this block runs on.
 
-A late order is one of the surest ways to lose a customer. A prediction made at purchase time leaves room to act on it: warn the customer early, prioritise the shipment, choose a different carrier. That makes it a question a real company would pay to have answered, which is the only kind worth practising on.
+Few things lose a customer faster than a parcel that turns up late. Spot it at the moment of purchase and there is still time to do something: send a warning, move the shipment up the queue, pick a different carrier. Somebody would pay for that answer, which is what makes it worth practising on.
 
 <div class="chips chips-left">
 <span class="chip">About 100,000 orders</span>
@@ -96,7 +96,7 @@ A late order is one of the surest ways to lose a customer. A prediction made at 
 
 ## Four ways a score can lie { .section-label }
 
-Each week closes one of them. By the end of the block, a score you report has survived all four.
+Each week shuts one of them down, so that by the end of the block any score you report has survived all four.
 
 <div class="grid cards" markdown>
 
@@ -144,7 +144,7 @@ Each week closes one of them. By the end of the block, a score you report has su
 
 ## What you build { .section-label }
 
-Every week leaves something concrete in your repository. Together they are most of Project 1.
+Every week leaves something real in your repository. Put together, they are most of Project 1 already.
 
 | Week | By the end of the week, your repo has |
 |:--:|---|
@@ -183,7 +183,7 @@ Every week leaves something concrete in your repository. Together they are most 
 </div>
 
 !!! tip "Missed a week? You are not locked out"
-    Each lab starts from a checkpoint file produced by the previous week's solution. You can pick up the story at any week without having finished the one before it.
+    Each lab starts from a checkpoint produced by the previous week's solution, so you can join at any week without having finished the one before.
 
 ## Where it leads { .section-label }
 
@@ -191,7 +191,7 @@ Every week leaves something concrete in your repository. Together they are most 
 
 **Project 1: the same four stages, on a different dataset.**
 
-The class works on Olist together. Your team then applies every stage to data you have not seen in class, which is where you find out whether you understood the idea or only followed the notebook.
+We work through Olist together in class. Your team then runs the same four stages on data you have never seen, which is where you find out whether you understood the idea or were following along.
 
 </div>
 
@@ -200,5 +200,3 @@ The class works on Olist together. Your team then applies every stage to data yo
 ---
 
 **Before you start:** make sure the [toolkit](../01-toolkit/index.md) readiness checklist is done. Then go to [Week 01](week-01-problem-framing.md).
-
-At the end of the block, [Block 1 in review](review.md) brings the four weeks together.
