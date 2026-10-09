@@ -2538,8 +2538,8 @@
 </blockquote>
 <p>Real data never arrives as one clean table. It arrives as several, each recorded by a different system, at a different grain, with its own gaps and mistakes. Joining them looks like plumbing. It is where some of the most expensive errors in this field are made, and none of them raise an error.</p>
 <p>The second half of the week is about the split, the line between what a model learns from and what it is judged on. Draw that line in the wrong place and every score you report is flattering you. Last week's baselines looked one and a half times better than guessing. This week we find out how much of that was real.</p>
-<p><img alt="Every order as a line from seller to customer" src="../assets/images/02-data-pipeline/w02-flow-map-light.png#only-light" />
-<img alt="Every order as a line from seller to customer" src="../assets/images/02-data-pipeline/w02-flow-map-dark.png#only-dark" /></p>
+<p><img alt="Every order as a line from seller to customer" src="../../assets/images/02-data-pipeline/w02-flow-map-light.png#only-light" />
+<img alt="Every order as a line from seller to customer" src="../../assets/images/02-data-pipeline/w02-flow-map-dark.png#only-dark" /></p>
 <p><em>Each line joins a seller to a customer. The seller comes from one table, the customer from another, and the order that connects them from a third. Getting from three tables to one line is this week's work.</em></p>
 <h2 id="this-week-at-a-glance">This week at a glance<a class="headerlink" href="#this-week-at-a-glance" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
@@ -2860,8 +2860,8 @@
 <p>With a time-based split, the three parts come in time order: train on the oldest data, validate on what comes next, test on the most recent.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
-<p><img alt="The monthly late rate with train, validation and test shaded" src="../assets/images/02-data-pipeline/w02-split-light.png#only-light" />
-<img alt="The monthly late rate with train, validation and test shaded" src="../assets/images/02-data-pipeline/w02-split-dark.png#only-dark" /></p>
+<p><img alt="The monthly late rate with train, validation and test shaded" src="../../assets/images/02-data-pipeline/w02-split-light.png#only-light" />
+<img alt="The monthly late rate with train, validation and test shaded" src="../../assets/images/02-data-pipeline/w02-split-dark.png#only-dark" /></p>
 <p><em>Three periods, three different worlds. Validation catches the spike of early 2018. Test covers the calm that followed.</em></p>
 <table>
 <thead>
@@ -2905,8 +2905,8 @@
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p>Week 1's rule and tree, judged three ways:</p>
-<p><img alt="Lift over guessing on a random split and on time-based splits" src="../assets/images/02-data-pipeline/w02-lift-light.png#only-light" />
-<img alt="Lift over guessing on a random split and on time-based splits" src="../assets/images/02-data-pipeline/w02-lift-dark.png#only-dark" /></p>
+<p><img alt="Lift over guessing on a random split and on time-based splits" src="../../assets/images/02-data-pipeline/w02-lift-light.png#only-light" />
+<img alt="Lift over guessing on a random split and on time-based splits" src="../../assets/images/02-data-pipeline/w02-lift-dark.png#only-dark" /></p>
 <table>
 <thead>
 <tr>
@@ -2967,14 +2967,14 @@
 <p>A chart that says <em>not this</em> is still useful. It saves you from building a feature that will not help.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
-<p><img alt="The late rate across Brazil in the training period" src="../assets/images/02-data-pipeline/w02-brazil-light.png#only-light" />
-<img alt="The late rate across Brazil in the training period" src="../assets/images/02-data-pipeline/w02-brazil-dark.png#only-dark" /></p>
+<p><img alt="The late rate across Brazil in the training period" src="../../assets/images/02-data-pipeline/w02-brazil-light.png#only-light" />
+<img alt="The late rate across Brazil in the training period" src="../../assets/images/02-data-pipeline/w02-brazil-dark.png#only-dark" /></p>
 <p><em>Customers' locations, coloured by late rate. Lateness clusters along the northeastern coast and around Rio, and neighbouring cells can differ a lot: location matters at a finer level than the state.</em></p>
-<p><img alt="Promised versus actual delivery time" src="../assets/images/02-data-pipeline/w02-promised-light.png#only-light" />
-<img alt="Promised versus actual delivery time" src="../assets/images/02-data-pipeline/w02-promised-dark.png#only-dark" /></p>
+<p><img alt="Promised versus actual delivery time" src="../../assets/images/02-data-pipeline/w02-promised-light.png#only-light" />
+<img alt="Promised versus actual delivery time" src="../../assets/images/02-data-pipeline/w02-promised-dark.png#only-dark" /></p>
 <p><em>Olist promises about 25 days and usually delivers in 11: 82% of orders arrive a week or more early. The promise is padded, so a late order is one where something went wrong beyond the usual.</em></p>
-<p><img alt="Late rate within one state versus across states" src="../assets/images/02-data-pipeline/w02-same-state-light.png#only-light" />
-<img alt="Late rate within one state versus across states" src="../assets/images/02-data-pipeline/w02-same-state-dark.png#only-dark" /></p>
+<p><img alt="Late rate within one state versus across states" src="../../assets/images/02-data-pipeline/w02-same-state-light.png#only-light" />
+<img alt="Late rate within one state versus across states" src="../../assets/images/02-data-pipeline/w02-same-state-dark.png#only-dark" /></p>
 <p><em>Orders crossing a state border are late almost twice as often. The strongest single pattern so far, computed in one line.</em></p>
 <p>The lab has two more charts. <strong>When Brazil shops</strong> shows a striking weekly rhythm, peaking on Tuesday afternoons, but the late rate barely moves with the hour: 5.7% to 7.5% across the busy hours. The 3.8% at three in the morning comes from only 158 orders. And <strong>categories</strong> differ modestly, from about 5% for housewares to 9% for baby products, across more than seventy categories.</p>
 <p>What the charts point to for Week 3:</p>

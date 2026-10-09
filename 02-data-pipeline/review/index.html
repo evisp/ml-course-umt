@@ -2265,12 +2265,12 @@
 
 <p>Block 1 asked a single question, <em>will this order arrive late?</em>, and spent four weeks learning how to answer it honestly. Almost none of that time went on the model. It went on everything that decides whether a model's score means anything: what exactly is being predicted, what the model is allowed to know, what it is tested on, and what the score hides.</p>
 <p>This page pulls the four weeks together, and hands over to Project 1 and Block 2.</p>
-<p><img alt="Block 1 at a glance: four weeks into Project 1" src="../assets/images/02-data-pipeline/b1-progression-light.png#only-light" />
-<img alt="Block 1 at a glance: four weeks into Project 1" src="../assets/images/02-data-pipeline/b1-progression-dark.png#only-dark" /></p>
+<p><img alt="Block 1 at a glance: four weeks into Project 1" src="../../assets/images/02-data-pipeline/b1-progression-light.png#only-light" />
+<img alt="Block 1 at a glance: four weeks into Project 1" src="../../assets/images/02-data-pipeline/b1-progression-dark.png#only-dark" /></p>
 <h2 class="section-label" id="the-journey-of-one-number">The journey of one number<a class="headerlink" href="#the-journey-of-one-number" title="Permanent link">&para;</a></h2>
 <p>Lift, how many times better than guessing, was the block's running score. Follow it across the four weeks and the whole argument is there.</p>
-<p><img alt="The lift across Block 1" src="../assets/images/02-data-pipeline/b1-journey-light.png#only-light" />
-<img alt="The lift across Block 1" src="../assets/images/02-data-pipeline/b1-journey-dark.png#only-dark" /></p>
+<p><img alt="The lift across Block 1" src="../../assets/images/02-data-pipeline/b1-journey-light.png#only-light" />
+<img alt="The lift across Block 1" src="../../assets/images/02-data-pipeline/b1-journey-dark.png#only-dark" /></p>
 <p>In <strong>Week 1</strong>, simple baselines scored one and a half times better than guessing. It looked like a start. In <strong>Week 2</strong>, the honest split, training on the past and testing on the future, showed they were barely better than guessing at all: the random split had let them learn from the months they were judged on. In <strong>Week 3</strong>, features built from what exists at the moment of purchase lifted the honest score to 1.87. In <strong>Week 4</strong>, that number gained an interval, 1.73 to 2.06, clear of the baseline on every resample.</p>
 <p>And then the lesson a single number cannot hold. At a threshold chosen carefully on validation, the same model saved 43% of the cost of mistakes in one period, and cost more than doing nothing in the calmer months that followed. The ranking held. The decision did not.</p>
 <div class="principle">

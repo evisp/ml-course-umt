@@ -2538,8 +2538,8 @@
 </blockquote>
 <p>A single score, however honest, is a summary, and every summary hides something. It hides the threshold someone will use to act on the model. It hides what a mistake costs. It hides which customers the model fails, how uncertain the number itself is, and whether the decision built on it will still make sense next month.</p>
 <p>This week you look at everything the score hides. By the end you will have evaluated a model the way it would need to be evaluated before anyone relied on it, and written the document that says so.</p>
-<p><img alt="The same decision's cost on validation and on test" src="../assets/images/02-data-pipeline/w04-decision-light.png#only-light" />
-<img alt="The same decision's cost on validation and on test" src="../assets/images/02-data-pipeline/w04-decision-dark.png#only-dark" /></p>
+<p><img alt="The same decision's cost on validation and on test" src="../../assets/images/02-data-pipeline/w04-decision-light.png#only-light" />
+<img alt="The same decision's cost on validation and on test" src="../../assets/images/02-data-pipeline/w04-decision-dark.png#only-dark" /></p>
 <p><em>The same model, the same threshold, chosen carefully. In one period it cut the cost of mistakes by 43%. In the next, it cost more than doing nothing. This week explains why.</em></p>
 <h2 id="this-week-at-a-glance">This week at a glance<a class="headerlink" href="#this-week-at-a-glance" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
@@ -2578,8 +2578,8 @@
 <p>And like every choice, the threshold is made on <strong>validation</strong>, never on test.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
-<p><img alt="Precision, recall and share flagged at every threshold" src="../assets/images/02-data-pipeline/w04-threshold-light.png#only-light" />
-<img alt="Precision, recall and share flagged at every threshold" src="../assets/images/02-data-pipeline/w04-threshold-dark.png#only-dark" /></p>
+<p><img alt="Precision, recall and share flagged at every threshold" src="../../assets/images/02-data-pipeline/w04-threshold-light.png#only-light" />
+<img alt="Precision, recall and share flagged at every threshold" src="../../assets/images/02-data-pipeline/w04-threshold-dark.png#only-dark" /></p>
 <p><em>As the threshold rises, fewer orders are flagged, recall falls, and precision climbs. At the right edge, almost nothing is flagged at all.</em></p>
 <table>
 <thead>
@@ -2637,8 +2637,8 @@
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p>The Week 1 problem card said missing a late order is the costly mistake. Say a <strong>miss costs 10</strong> (an angry customer, perhaps a bad review) and a <strong>false alarm costs 1</strong> (one message sent for nothing). These are business assumptions, not facts: a real team would agree them with the people who pay for each mistake.</p>
-<p><img alt="The cost of mistakes at every threshold" src="../assets/images/02-data-pipeline/w04-cost-light.png#only-light" />
-<img alt="The cost of mistakes at every threshold" src="../assets/images/02-data-pipeline/w04-cost-dark.png#only-dark" /></p>
+<p><img alt="The cost of mistakes at every threshold" src="../../assets/images/02-data-pipeline/w04-cost-light.png#only-light" />
+<img alt="The cost of mistakes at every threshold" src="../../assets/images/02-data-pipeline/w04-cost-dark.png#only-dark" /></p>
 <p><em>The cheapest threshold on validation is 0.48.</em></p>
 <table>
 <thead>
@@ -2674,8 +2674,8 @@
 <p>Many models are not, for ordinary reasons. Weighting classes to handle imbalance pushes scores up. Resampling does the same. Some model families are overconfident by nature. None of this hurts ranking, and none of it hurts a threshold chosen on validation, because both only use the <em>order</em> of the scores. It only hurts someone who reads a score as a chance.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
-<p><img alt="Average score against the share actually late" src="../assets/images/02-data-pipeline/w04-reliability-light.png#only-light" />
-<img alt="Average score against the share actually late" src="../assets/images/02-data-pipeline/w04-reliability-dark.png#only-dark" /></p>
+<p><img alt="Average score against the share actually late" src="../../assets/images/02-data-pipeline/w04-reliability-light.png#only-light" />
+<img alt="Average score against the share actually late" src="../../assets/images/02-data-pipeline/w04-reliability-dark.png#only-dark" /></p>
 <p><em>Far below the diagonal. The average score on validation is 0.47, while only 12% of orders are late. Orders scored above 0.8 are late only 36% of the time.</em></p>
 <p>The cause is <code>class_weight="balanced"</code> from Week 3. It helped the model rank the rare late orders, and pushed every score upwards.</p>
 </div>
@@ -2698,8 +2698,8 @@
 <p>And remember Week 1: a rate from a small slice is mostly noise. Always report how many cases each slice holds.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
-<p><img alt="Recall by slice against the overall recall" src="../assets/images/02-data-pipeline/w04-slices-light.png#only-light" />
-<img alt="Recall by slice against the overall recall" src="../assets/images/02-data-pipeline/w04-slices-dark.png#only-dark" /></p>
+<p><img alt="Recall by slice against the overall recall" src="../../assets/images/02-data-pipeline/w04-slices-light.png#only-light" />
+<img alt="Recall by slice against the overall recall" src="../../assets/images/02-data-pipeline/w04-slices-dark.png#only-dark" /></p>
 <p><em>Overall, the model catches 68% of late orders. Within one state, 15%. For São Paulo, 20%. For Rio, 99%.</em></p>
 <p>The model catches nearly every late order going over 1,000 km or to Rio, and most of those crossing a state border. It misses most late orders staying close. That follows from what it learned in Week 3: distance and crossing a border were its strongest signals. It learned that far means risky, and it was right. It learned nothing that spots trouble close to home.</p>
 <p>São Paulo is the biggest market in the data. A warning system that almost never warns São Paulo customers might be unacceptable, whatever its overall score.</p>
@@ -2718,8 +2718,8 @@
 <p>Neither step gives you an answer. Both give you <strong>hypotheses</strong>: a feature to build, a column to find, a question to ask someone who knows the business. That is how the next version of a model begins.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
-<p><img alt="Late orders the model missed against the ones it caught" src="../assets/images/02-data-pipeline/w04-profile-light.png#only-light" />
-<img alt="Late orders the model missed against the ones it caught" src="../assets/images/02-data-pipeline/w04-profile-dark.png#only-dark" /></p>
+<p><img alt="Late orders the model missed against the ones it caught" src="../../assets/images/02-data-pipeline/w04-profile-light.png#only-light" />
+<img alt="Late orders the model missed against the ones it caught" src="../../assets/images/02-data-pipeline/w04-profile-dark.png#only-dark" /></p>
 <p><em>Two different kinds of late order. The model catches the long-haul disasters and misses the local near-misses.</em></p>
 <p>Reading the most confident mistakes adds a second story. The late orders the model was surest about had distances from 138 km to over 2,000, but they shared <strong>generous promises</strong>: a median of about 30 days, against 23 for a typical order. In Week 3 the promised window had the strongest coefficient. The model learned that a long promise means safety, and for these orders it did not. The most confident false alarms are the mirror image: long trips, almost all from São Paulo to the northeast, a median of nearly 2,000 km. Exactly what the model fears, and this time the parcels arrived on time.</p>
 <p>Two hypotheses follow. Local lateness may come from the seller rather than the journey, so a seller's recent reliability, built properly, is worth another try. And a long promise may be long <em>because</em> the seller expects trouble, which the model reads the wrong way round.</p>
@@ -2733,8 +2733,8 @@
 <p>The <strong>bootstrap</strong> measures that uncertainty without any formulas: resample the test cases with replacement many times, recompute the score each time, and see how much it moves. To compare two models fairly, compute both on the <strong>same</strong> resamples, and look at the difference. If the interval for the difference stays clear of zero, the improvement is real. The <a href="../../06-reference/probability-statistics/">probability page</a> explains why this is the practical way to answer "is the difference real?"</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
-<p><img alt="Bootstrap distributions of test lift" src="../assets/images/02-data-pipeline/w04-bootstrap-light.png#only-light" />
-<img alt="Bootstrap distributions of test lift" src="../assets/images/02-data-pipeline/w04-bootstrap-dark.png#only-dark" /></p>
+<p><img alt="Bootstrap distributions of test lift" src="../../assets/images/02-data-pipeline/w04-bootstrap-light.png#only-light" />
+<img alt="Bootstrap distributions of test lift" src="../../assets/images/02-data-pipeline/w04-bootstrap-dark.png#only-dark" /></p>
 <p><em>A thousand resamples of the test orders. The model and Week 1's rule do not even overlap.</em></p>
 <p>Test lift <strong>1.87</strong>, with a 95% interval of <strong>1.73 to 2.06</strong>. The gain over Week 1's rule, on the same resamples, is <strong>0.66 to 0.92</strong>: never near zero. The improvement from Weeks 2 and 3 is real.</p>
 </div>
@@ -2756,8 +2756,8 @@
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p>On test, the threshold chosen on validation <strong>cost more than doing nothing</strong>: 0.55 per order against 0.44. The model still ranked just as well, as section 6 showed. Month by month:</p>
-<p><img alt="Precision of flags month by month against break-even" src="../assets/images/02-data-pipeline/w04-months-light.png#only-light" />
-<img alt="Precision of flags month by month against break-even" src="../assets/images/02-data-pipeline/w04-months-dark.png#only-dark" /></p>
+<p><img alt="Precision of flags month by month against break-even" src="../../assets/images/02-data-pipeline/w04-months-light.png#only-light" />
+<img alt="Precision of flags month by month against break-even" src="../../assets/images/02-data-pipeline/w04-months-dark.png#only-dark" /></p>
 <p><em>Precision tracks the late rate, month by month. Only March, the spike, clears break-even comfortably.</em></p>
 <p>The saving on validation came almost entirely from March 2018, when 19% of orders were late. April was already at break-even. In the calm test months, precision fell below 10% in three of four. Meanwhile the model's average score barely moved, between 0.40 and 0.54, whether 6% of orders were late or 1%. <strong>The model did not know the world had changed.</strong> Nothing in it could.</p>
 <p>As a diagnosis, not a choice: even flagging only the top 10% of orders would have been right about 10% of the time in the test months, exactly at break-even. With these costs, in months this calm, warning customers barely pays, however good the ranking.</p>

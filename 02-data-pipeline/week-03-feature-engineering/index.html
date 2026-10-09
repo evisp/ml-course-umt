@@ -2538,8 +2538,8 @@
 </blockquote>
 <p>Last week ended badly. Judged on the future, Week 1's baselines were barely better than guessing. The model was never the problem: the features were. This week you build better ones, from what exists at the moment of prediction, and you build them inside a structure that makes leaking hard to do by accident.</p>
 <p>Two things make this week different from simply "adding columns". Some features are computed from a single row and are safe anywhere. Others are learned from many rows, and those are where the quietest leaks in machine learning live. Telling the two apart is most of the skill.</p>
-<p><img alt="Test lift, Week 1 baselines against the Week 3 model" src="../assets/images/02-data-pipeline/w03-progress-light.png#only-light" />
-<img alt="Test lift, Week 1 baselines against the Week 3 model" src="../assets/images/02-data-pipeline/w03-progress-dark.png#only-dark" /></p>
+<p><img alt="Test lift, Week 1 baselines against the Week 3 model" src="../../assets/images/02-data-pipeline/w03-progress-light.png#only-light" />
+<img alt="Test lift, Week 1 baselines against the Week 3 model" src="../../assets/images/02-data-pipeline/w03-progress-dark.png#only-dark" /></p>
 <p><em>Where this week ends up: judged once on the future months, the Week 3 model is 1.87 times better than guessing, against 1.10 and 1.18 for Week 1's baselines.</em></p>
 <h2 id="this-week-at-a-glance">This week at a glance<a class="headerlink" href="#this-week-at-a-glance" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
@@ -2570,8 +2570,8 @@
 <hr />
 <h2 id="1-know-the-two-kinds-of-feature">1. Know the two kinds of feature<a class="headerlink" href="#1-know-the-two-kinds-of-feature" title="Permanent link">&para;</a></h2>
 <p>Every feature you will ever build is one of two kinds, and the difference decides whether it can leak.</p>
-<p><img alt="Row-wise features against learned features" src="../assets/images/02-data-pipeline/w03-two-kinds-light.png#only-light" />
-<img alt="Row-wise features against learned features" src="../assets/images/02-data-pipeline/w03-two-kinds-dark.png#only-dark" /></p>
+<p><img alt="Row-wise features against learned features" src="../../assets/images/02-data-pipeline/w03-two-kinds-light.png#only-light" />
+<img alt="Row-wise features against learned features" src="../../assets/images/02-data-pipeline/w03-two-kinds-dark.png#only-dark" /></p>
 <p><strong>Row-wise</strong> features are computed from one row on its own: a distance, a ratio, a flag, the day of the week. The value for a row is the same whether that row lands in training or in test. They cannot leak through the split, so you can build them before or after it.</p>
 <p><strong>Learned</strong> features are computed from many rows: an average, a typical value, a rate per category. The value for a row depends on <em>which other rows</em> were used. If those include test rows, the feature carries information from the test set into training. Learned features must be computed from training rows only, after the split.</p>
 <div class="admonition note">
@@ -2661,8 +2661,8 @@
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p>Four row-wise features, each from one row: <code>distance_km</code> (using the haversine formula, the straight-line distance on a sphere), <code>same_state</code>, <code>window_days</code>, and <code>freight_ratio</code>. The typical order travels about 450 km, a third stay within one state, and freight costs about a fifth of the price.</p>
-<p><img alt="Each row-wise feature used alone, on validation" src="../assets/images/02-data-pipeline/w03-single-light.png#only-light" />
-<img alt="Each row-wise feature used alone, on validation" src="../assets/images/02-data-pipeline/w03-single-dark.png#only-dark" /></p>
+<p><img alt="Each row-wise feature used alone, on validation" src="../../assets/images/02-data-pipeline/w03-single-light.png#only-light" />
+<img alt="Each row-wise feature used alone, on validation" src="../../assets/images/02-data-pipeline/w03-single-dark.png#only-dark" /></p>
 <p><em>Distance says the most on its own. Weight, price, basket size, and the length of the promise say almost nothing alone. Section 7 shows why "alone" is not the whole story.</em></p>
 </div>
 <p class="elsewhere"><em>Elsewhere:</em> for predicting whether a flight is delayed, the distance of the route, the hour of departure, and whether it is the last flight of the day are all row-wise and all available at booking.</p>
@@ -2676,8 +2676,8 @@
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p>Some sellers are late far more often than others, so a seller's late rate sounds like an excellent feature. The only question is which orders it is computed from.</p>
-<p><img alt="The seller's late rate computed on all orders versus training orders" src="../assets/images/02-data-pipeline/w03-leak-light.png#only-light" />
-<img alt="The seller's late rate computed on all orders versus training orders" src="../assets/images/02-data-pipeline/w03-leak-dark.png#only-dark" /></p>
+<p><img alt="The seller's late rate computed on all orders versus training orders" src="../../assets/images/02-data-pipeline/w03-leak-light.png#only-light" />
+<img alt="The seller's late rate computed on all orders versus training orders" src="../../assets/images/02-data-pipeline/w03-leak-dark.png#only-dark" /></p>
 <p><em>The same feature, scored on the same validation orders. The only difference is where the rate was computed.</em></p>
 <p>Computed from all orders, validation orders' own labels sit inside their sellers' averages, and the feature scores 1.89. Computed honestly, from training orders only, it scores 1.21.</p>
 </div>
@@ -2800,14 +2800,14 @@
 </tbody>
 </table>
 <p><strong>Target encoding</strong> is a learned feature, so it must come from training rows. But there is a second trap. If each <em>training</em> row is encoded with an average that includes its own label, the model sees a feature that is partly the answer, and learns to trust it far too much. The fix is <strong>cross-fitting</strong>:</p>
-<p><img alt="How cross-fitted target encoding works" src="../assets/images/02-data-pipeline/w03-cross-fit-light.png#only-light" />
-<img alt="How cross-fitted target encoding works" src="../assets/images/02-data-pipeline/w03-cross-fit-dark.png#only-dark" /></p>
+<p><img alt="How cross-fitted target encoding works" src="../../assets/images/02-data-pipeline/w03-cross-fit-light.png#only-light" />
+<img alt="How cross-fitted target encoding works" src="../../assets/images/02-data-pipeline/w03-cross-fit-dark.png#only-dark" /></p>
 <p>scikit-learn's <code>TargetEncoder</code> does this for you inside <code>fit_transform</code>, which is one more reason to keep it in a pipeline.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p>States have 27 values, so they are one-hot encoded. Sellers have almost 3,000. Encode them naively, with rates computed on the same training rows, and compare with cross-fitting:</p>
-<p><img alt="Naive against cross-fitted target encoding" src="../assets/images/02-data-pipeline/w03-encoding-light.png#only-light" />
-<img alt="Naive against cross-fitted target encoding" src="../assets/images/02-data-pipeline/w03-encoding-dark.png#only-dark" /></p>
+<p><img alt="Naive against cross-fitted target encoding" src="../../assets/images/02-data-pipeline/w03-encoding-light.png#only-light" />
+<img alt="Naive against cross-fitted target encoding" src="../../assets/images/02-data-pipeline/w03-encoding-dark.png#only-dark" /></p>
 <p><em>Naive encoding looks brilliant on training data, 3.97, and falls to 1.74 on validation. Cross-fitting gives a lower training score and a higher validation score: the gap shrinks because the model is no longer fooled by its own labels.</em></p>
 <p>Olist has no text that exists at the moment of purchase: the only free text is in reviews, which are written after delivery. So there is no TF-IDF in this week's model. The <a href="../../06-reference/sklearn-cheatsheet/">scikit-learn cheatsheet</a> shows how to use it when your data has text.</p>
 </div>
@@ -2848,8 +2848,8 @@
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p>Without the scaler, logistic regression runs out of steps before it finds its best weights: it stops with a convergence warning, and validation lift drops from 2.34 to 2.28. Scaled, the coefficients tell a clear story:</p>
-<p><img alt="Coefficients of the chosen model" src="../assets/images/02-data-pipeline/w03-coefs-light.png#only-light" />
-<img alt="Coefficients of the chosen model" src="../assets/images/02-data-pipeline/w03-coefs-dark.png#only-dark" /></p>
+<p><img alt="Coefficients of the chosen model" src="../../assets/images/02-data-pipeline/w03-coefs-light.png#only-light" />
+<img alt="Coefficients of the chosen model" src="../../assets/images/02-data-pipeline/w03-coefs-dark.png#only-dark" /></p>
 <p><em>A longer promise pushes hardest towards on time. Distance pushes towards late, and staying within one state towards on time.</em></p>
 <p>Look at <code>window_days</code>. On its own, in section 2, it was the weakest feature. In the model, it has the strongest coefficient. A long promise only means something once the model also knows how far the parcel travels. <strong>Useless alone does not mean useless in a model.</strong></p>
 </div>
@@ -2869,8 +2869,8 @@
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p>Three learned candidates on top of the row-wise model, plus the same features in a tree:</p>
-<p><img alt="Validation lift for each candidate addition" src="../assets/images/02-data-pipeline/w03-ablation-light.png#only-light" />
-<img alt="Validation lift for each candidate addition" src="../assets/images/02-data-pipeline/w03-ablation-dark.png#only-dark" /></p>
+<p><img alt="Validation lift for each candidate addition" src="../../assets/images/02-data-pipeline/w03-ablation-light.png#only-light" />
+<img alt="Validation lift for each candidate addition" src="../../assets/images/02-data-pipeline/w03-ablation-dark.png#only-dark" /></p>
 <p><em>None of the learned features clearly beats the plain row-wise model. The category ties, the route slack and the seller make validation worse, and the tree loses on the same features.</em></p>
 <p>The simplest model wins, so it is the one we keep. Then, and only then, one look at test: a lift of <strong>1.87</strong>, against 1.10 and 1.18 for Week 1's baselines on the same future months. Lower than the 2.34 on validation, as Week 2 led us to expect, since the test months are calmer. But the gain is real, and it held on data nobody looked at while choosing.</p>
 </div>
