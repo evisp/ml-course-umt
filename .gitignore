@@ -22,3 +22,5 @@ Thumbs.db
 *.parquet
 *.xlsx
 !docs/assets/**/*.csv
+
+docs/assets/images/lecture/**/*.png

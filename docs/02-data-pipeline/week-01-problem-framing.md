@@ -17,15 +17,10 @@ So we spend that first hour properly. You will take a vague request and turn it 
 
 ## This week at a glance
 
-```mermaid
-flowchart LR
-    A["<b>A wish</b><br/>use AI to improve things"] --> B["<b>One sentence</b><br/>moment, target, unit, action · §1 to §3"]
-    B --> C["<b>A target you can compute</b><br/>with every decision written down · §4"]
-    C --> D["<b>A look at that target</b><br/>over time, across groups · §5"]
-    D --> E["<b>What exists when</b><br/>the moment of prediction · §6, §8"]
-    E --> F["<b>A baseline ladder</b><br/>the floor every model must clear · §7"]
-    F --> G["<b>PROBLEM.md</b><br/>all of it, written down · §9"]
-```
+![The six moves of Week 1, and the question each one asks](../assets/images/lecture/week-01/lab1-questions-light.svg#only-light)
+![The six moves of Week 1, and the question each one asks](../assets/images/lecture/week-01/lab1-questions-dark.svg#only-dark)
+
+*Six moves, and the question each one asks. There is one branch off the path, and it is the one that looks most tempting.*
 
 Sections 1 to 3 turn the wish into a question. Sections 4 to 6 settle what the answer is and what you are allowed to use to predict it. Sections 7 to 9 set the floor and write everything down.
 
@@ -411,6 +406,11 @@ train_test_split(df, stratify=df["is_late"], ...)      # keep the positive rate 
 ```
 
 ## Summary
+
+![The same six moves, with every number the lab produced](../assets/images/lecture/week-01/lab1-answers-light.svg#only-light)
+![The same six moves, with every number the lab produced](../assets/images/lecture/week-01/lab1-answers-dark.svg#only-dark)
+
+*The same frame, filled in. Every number here came out of the lab you just ran.*
 
 A wish turns into a question once you have fixed the target, the unit and the moment of prediction in a single sentence. The target is itself a pile of decisions, and one small one here mislabelled 1,291 orders. Charting that target over time and across states, before any modelling, overturned what most people would have guessed about Brazil. The baseline ladder set the floor every later model has to clear, and showed why 93% accuracy can mean nothing. And the leak never announced itself; it just made a useless model look brilliant.
 

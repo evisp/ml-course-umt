@@ -21,16 +21,10 @@ The second half of the week is about the split, the line between what a model le
 
 ## This week at a glance
 
-```mermaid
-flowchart LR
-    A["<b>Nine raw tables</b><br/>as Olist exported them"] --> B["<b>Know the grain</b><br/>what one row means · §1"]
-    B --> C["<b>Audit and clean</b><br/>six kinds of problem · §2, §3"]
-    C --> D["<b>One row per order</b><br/>joined at the grain · §1"]
-    D --> E["<b>Split by time</b><br/>before looking · §4 to §6"]
-    E --> F["<b>Test on the future</b><br/>what the split reveals · §7"]
-    E --> G["<b>Explore train only</b><br/>charts that suggest features · §8"]
-    G --> H["Week 3<br/>features"]
-```
+![The six moves of Week 2, and the question each one asks](../assets/images/lecture/week-02/lab2-questions-light.svg#only-light)
+![The six moves of Week 2, and the question each one asks](../assets/images/lecture/week-02/lab2-questions-dark.svg#only-dark)
+
+*Six moves in two halves, and the question each one asks. The seam in the middle is where the week turns.*
 
 Two halves. Sections 1 to 3 turn messy tables into one trustworthy table. Sections 4 to 8 decide what the model may learn from, and what it is judged on.
 
@@ -394,6 +388,11 @@ average_precision_score(y, scores) / y.mean()                  # lift
 ```
 
 ## Summary
+
+![The same six moves, with every number the lab produced](../assets/images/lecture/week-02/lab2-answers-light.svg#only-light)
+![The same six moves, with every number the lab produced](../assets/images/lecture/week-02/lab2-answers-dark.svg#only-dark)
+
+*The same frame, filled in. The scoreboard is one model judged three ways, not three models judged once.*
 
 Nine tables became one clean row per order. On the way, a naive join added over eighteen thousand rows without a word, a quarter of a million duplicate rows and thirty-three misplaced addresses were removed, and one whole table was set aside because it only exists after the event we want to predict. Every fix lives in a function, and none of them learns from the data. Then the split: by time, because the model will face the future, and drawn before any exploration of the target. Judged that way, last week's baselines were barely better than guessing. The charts on the training data point to what might do better.
 
