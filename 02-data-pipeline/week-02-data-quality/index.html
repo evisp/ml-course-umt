@@ -2542,14 +2542,9 @@
 <img alt="Every order as a line from seller to customer" src="../../assets/images/02-data-pipeline/w02-flow-map-dark.png#only-dark" /></p>
 <p><em>Each line joins a seller to a customer. The seller comes from one table, the customer from another, and the order that connects them from a third. Getting from three tables to one line is this week's work.</em></p>
 <h2 id="this-week-at-a-glance">This week at a glance<a class="headerlink" href="#this-week-at-a-glance" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart LR
-    A["&lt;b&gt;Nine raw tables&lt;/b&gt;&lt;br/&gt;as Olist exported them"] --&gt; B["&lt;b&gt;Know the grain&lt;/b&gt;&lt;br/&gt;what one row means · §1"]
-    B --&gt; C["&lt;b&gt;Audit and clean&lt;/b&gt;&lt;br/&gt;six kinds of problem · §2, §3"]
-    C --&gt; D["&lt;b&gt;One row per order&lt;/b&gt;&lt;br/&gt;joined at the grain · §1"]
-    D --&gt; E["&lt;b&gt;Split by time&lt;/b&gt;&lt;br/&gt;before looking · §4 to §6"]
-    E --&gt; F["&lt;b&gt;Test on the future&lt;/b&gt;&lt;br/&gt;what the split reveals · §7"]
-    E --&gt; G["&lt;b&gt;Explore train only&lt;/b&gt;&lt;br/&gt;charts that suggest features · §8"]
-    G --&gt; H["Week 3&lt;br/&gt;features"]</code></pre>
+<p><img alt="The six moves of Week 2, and the question each one asks" src="../../assets/images/lecture/week-02/lab2-questions-light.svg#only-light" />
+<img alt="The six moves of Week 2, and the question each one asks" src="../../assets/images/lecture/week-02/lab2-questions-dark.svg#only-dark" /></p>
+<p><em>Six moves in two halves, and the question each one asks. The seam in the middle is where the week turns.</em></p>
 <p>Two halves. Sections 1 to 3 turn messy tables into one trustworthy table. Sections 4 to 8 decide what the model may learn from, and what it is judged on.</p>
 <h2 id="learning-outcomes">Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permanent link">&para;</a></h2>
 <p>By the end of this week you can:</p>
@@ -3121,6 +3116,9 @@
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">average_precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span> <span class="o">/</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>                  <span class="c1"># lift</span>
 </span></code></pre></div>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p><img alt="The same six moves, with every number the lab produced" src="../../assets/images/lecture/week-02/lab2-answers-light.svg#only-light" />
+<img alt="The same six moves, with every number the lab produced" src="../../assets/images/lecture/week-02/lab2-answers-dark.svg#only-dark" /></p>
+<p><em>The same frame, filled in. The scoreboard is one model judged three ways, not three models judged once.</em></p>
 <p>Nine tables became one clean row per order. On the way, a naive join added over eighteen thousand rows without a word, a quarter of a million duplicate rows and thirty-three misplaced addresses were removed, and one whole table was set aside because it only exists after the event we want to predict. Every fix lives in a function, and none of them learns from the data. Then the split: by time, because the model will face the future, and drawn before any exploration of the target. Judged that way, last week's baselines were barely better than guessing. The charts on the training data point to what might do better.</p>
 <p><strong>Next week</strong> builds those features: distance, same state, the promise against a typical delivery, and the category, inside a pipeline that cannot leak.</p>
 <p><strong>Next:</strong> <a href="../week-03-feature-engineering/">Week 03 · Feature engineering</a></p>
@@ -3155,7 +3153,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 2, 2026 10:04:39 UTC">October 2, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 16, 2026 10:17:22 UTC">October 16, 2026</span>
   </span>
 
     
