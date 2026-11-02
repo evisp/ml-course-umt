@@ -2538,17 +2538,10 @@
 </blockquote>
 <p>Last week ended badly. Judged on the future, Week 1's baselines were barely better than guessing. The model was never the problem: the features were. This week you build better ones, from what exists at the moment of prediction, and you build them inside a structure that makes leaking hard to do by accident.</p>
 <p>Two things make this week different from simply "adding columns". Some features are computed from a single row and are safe anywhere. Others are learned from many rows, and those are where the quietest leaks in machine learning live. Telling the two apart is most of the skill.</p>
-<p><img alt="Test lift, Week 1 baselines against the Week 3 model" src="../../assets/images/02-data-pipeline/w03-progress-light.png#only-light" />
-<img alt="Test lift, Week 1 baselines against the Week 3 model" src="../../assets/images/02-data-pipeline/w03-progress-dark.png#only-dark" /></p>
-<p><em>Where this week ends up: judged once on the future months, the Week 3 model is 1.87 times better than guessing, against 1.10 and 1.18 for Week 1's baselines.</em></p>
 <h2 id="this-week-at-a-glance">This week at a glance<a class="headerlink" href="#this-week-at-a-glance" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart LR
-    A["&lt;b&gt;One clean row per order&lt;/b&gt;&lt;br/&gt;from Week 2"] --&gt; B["&lt;b&gt;Row-wise features&lt;/b&gt;&lt;br/&gt;one row in, one value out · §1, §2"]
-    A --&gt; C["&lt;b&gt;Learned features&lt;/b&gt;&lt;br/&gt;fitted on train only · §3, §4"]
-    B --&gt; D["&lt;b&gt;One pipeline&lt;/b&gt;&lt;br/&gt;encode, scale, model · §5 to §7"]
-    C --&gt; D
-    D --&gt; E["&lt;b&gt;Validation decides&lt;/b&gt;&lt;br/&gt;what earns its place · §8"]
-    E --&gt; F["&lt;b&gt;Test, once&lt;/b&gt;"]</code></pre>
+<p><img alt="The six moves of Week 3, and the question each one asks" src="../../assets/images/lecture/week-03/lab3-questions-light.svg#only-light" />
+<img alt="The six moves of Week 3, and the question each one asks" src="../../assets/images/lecture/week-03/lab3-questions-dark.svg#only-dark" /></p>
+<p><em>Six moves, and the question each one asks. Three of them only make sense inside the same pipeline, which is what the bracket marks.</em></p>
 <p>Sections 1 to 4 are about building features safely. Sections 5 to 7 put them into one pipeline with the model. Section 8 decides which ones stay.</p>
 <h2 id="learning-outcomes">Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permanent link">&para;</a></h2>
 <p>By the end of this week you can:</p>
@@ -2673,6 +2666,8 @@
 <h2 id="3-fit-learned-features-on-training-data-only">3. Fit learned features on training data only<a class="headerlink" href="#3-fit-learned-features-on-training-data-only" title="Permanent link">&para;</a></h2>
 <p>The quietest leak in machine learning is <strong>a statistic computed over the whole dataset</strong>. It looks like good practice: more data, more reliable averages. But if the average for a group includes test rows, then each test row's own answer is already inside the feature it is judged with.</p>
 <p>The rule is short: <strong>anything learned from many rows is learned from the training rows, and only applied to the others.</strong></p>
+<p>That rule reaches further than it first looks, because it is not only about features you set out to build. Filling a missing weight with the median learns a median. A scaler stores a mean and a standard deviation. An encoder remembers which categories it saw. All three are learned from rows, so all three belong after the split, fitted on training rows alone, which is exactly why they end up inside the pipeline in section 5.</p>
+<p>Missing values are the most common of the three. Two Olist products have no weight, and <code>SimpleImputer(strategy="median")</code> fills them from the median of the training rows. That one number is then stored and applied unchanged to validation and to test: the test rows never get a median of their own.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
 <p>Some sellers are late far more often than others, so a seller's late rate sounds like an excellent feature. The only question is which orders it is computed from.</p>
@@ -2778,9 +2773,14 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>A handful</strong></td>
+<td><strong>A handful, unordered</strong></td>
 <td>One-hot: one column per value</td>
 <td>Nothing much. The default.</td>
+</tr>
+<tr>
+<td><strong>A handful, with a real order</strong></td>
+<td>Ordinal: <em>small, medium, large</em> becomes 0, 1, 2</td>
+<td>Only when the order is genuine</td>
 </tr>
 <tr>
 <td><strong>Many</strong></td>
@@ -2799,6 +2799,8 @@
 </tr>
 </tbody>
 </table>
+<p><strong>Ordinal encoding</strong> is the one people reach for first, because it is the least typing: give each category a number and carry on. It is right when the categories really do have an order, <em>poor, fair, good</em> or <em>small, medium, large</em>, because then "a bigger number means more" is true and the model can use it. It is wrong the rest of the time, and quietly so. Number the Brazilian states 0 to 26 and a linear model will happily conclude that state 20 is worth twice state 10. One-hot costs you columns and saves you that.</p>
+<p>Two names worth separating: in scikit-learn, <code>OrdinalEncoder</code> is for feature columns and <code>LabelEncoder</code> is for the target. They do nearly the same thing, which is why <code>LabelEncoder</code> ends up on a feature column often enough to be worth warning about.</p>
 <p><strong>Target encoding</strong> is a learned feature, so it must come from training rows. But there is a second trap. If each <em>training</em> row is encoded with an average that includes its own label, the model sees a feature that is partly the answer, and learns to trust it far too much. The fix is <strong>cross-fitting</strong>:</p>
 <p><img alt="How cross-fitted target encoding works" src="../../assets/images/02-data-pipeline/w03-cross-fit-light.png#only-light" />
 <img alt="How cross-fitted target encoding works" src="../../assets/images/02-data-pipeline/w03-cross-fit-dark.png#only-dark" /></p>
@@ -2810,6 +2812,10 @@
 <img alt="Naive against cross-fitted target encoding" src="../../assets/images/02-data-pipeline/w03-encoding-dark.png#only-dark" /></p>
 <p><em>Naive encoding looks brilliant on training data, 3.97, and falls to 1.74 on validation. Cross-fitting gives a lower training score and a higher validation score: the gap shrinks because the model is no longer fooled by its own labels.</em></p>
 <p>Olist has no text that exists at the moment of purchase: the only free text is in reviews, which are written after delivery. So there is no TF-IDF in this week's model. The <a href="../../06-reference/sklearn-cheatsheet/">scikit-learn cheatsheet</a> shows how to use it when your data has text.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">The category nobody has seen before</p>
+<p>An encoder is fitted on training rows, so it knows only the categories that were in them. A city, a seller or a product type that turns up for the first time in production is not a rare edge case, it is routine, and the time to decide what happens is before it happens. <code>OneHotEncoder(handle_unknown="ignore")</code> turns an unknown value into all zeros instead of raising an error, and <code>TargetEncoder</code> falls back to the overall average. The <a href="../../06-reference/sklearn-cheatsheet/">scikit-learn cheatsheet</a> has the settings.</p>
 </div>
 <p class="elsewhere"><em>Elsewhere:</em> a postcode with 20,000 values, a product ID, a doctor's name. All tempting, all high-cardinality, and all worth asking whether the model can really learn from them.</p>
 <div class="admonition project">
@@ -2844,6 +2850,7 @@
 </tr>
 </tbody>
 </table>
+<p>Standardising, the usual choice, means subtracting the mean and dividing by the standard deviation, so each feature ends up centred near zero with a spread of about one. Both of those numbers are learned from the training rows, which makes the scaler one more step that belongs inside the pipeline. Two alternatives are worth knowing: <code>MinMaxScaler</code> squeezes everything into the range 0 to 1, useful when a bounded range matters, and <code>RobustScaler</code> uses the median and the interquartile range instead, which is the one to reach for when a handful of extreme values would drag the mean around.</p>
 <p>The <a href="../../06-reference/calculus/">calculus page</a> shows what goes wrong for gradient descent when features are badly scaled. There is a second reward: once every feature is on the same scale, the <strong>coefficients of a linear model become comparable</strong>, and the model becomes readable.</p>
 <div class="admonition olist">
 <p class="admonition-title">In our example</p>
@@ -2979,8 +2986,24 @@
 <td>A few values: one-hot. Many: cross-fitted target encoding. IDs: often leave out.</td>
 </tr>
 <tr>
+<td>Ordinal encoding</td>
+<td>Only when the categories have a real order. Otherwise you invent one.</td>
+</tr>
+<tr>
+<td>Unseen category</td>
+<td>Decide before it happens: <code>handle_unknown="ignore"</code>, or a fallback value.</td>
+</tr>
+<tr>
+<td>Missing values</td>
+<td>Filling with a median is learning. Fit on train, inside the pipeline.</td>
+</tr>
+<tr>
 <td>Scaling</td>
 <td>Linear and distance-based models: yes. Trees: no.</td>
+</tr>
+<tr>
+<td>Standardising</td>
+<td>Subtract the mean, divide by the standard deviation. Both learned from training rows.</td>
 </tr>
 <tr>
 <td>Earning a place</td>
@@ -2995,6 +3018,9 @@
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">])</span>
 </span></code></pre></div>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p><img alt="The same six moves, with every number the lab produced" src="../../assets/images/lecture/week-03/lab3-answers-light.svg#only-light" />
+<img alt="The same six moves, with every number the lab produced" src="../../assets/images/lecture/week-03/lab3-answers-dark.svg#only-dark" /></p>
+<p><em>The same frame, filled in. The scoreboard is Block 1's whole arc: the same three models, on validation and on the future.</em></p>
 <p>Features come in two kinds. Row-wise features, built from one row, are safe anywhere. Learned features, built from many rows, must be learned from training rows only, and a statistic computed over the whole dataset is the quietest leak there is. The transformer pattern, <code>fit</code> to learn and <code>transform</code> to apply, and the pipeline that holds every step together, make that rule hard to break by accident. Categories are encoded according to how many values they have, with cross-fitting for target encoding, and linear models are scaled so they train properly and can be read. Then each feature earns its place on validation. Here the simplest features won, and the model they built held up once on the future: a test lift of 1.87, up from 1.10.</p>
 <p><strong>Next week</strong> asks what that number hides: at which threshold we should act, which orders the model gets wrong, and whether it fails some customers far more than others.</p>
 <p><strong>Next:</strong> <a href="../week-04-evaluation/">Week 04 · Evaluation &amp; error analysis</a></p>
@@ -3029,7 +3055,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 2, 2026 10:04:39 UTC">October 2, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 2, 2026 10:33:38 UTC">November 2, 2026</span>
   </span>
 
     
