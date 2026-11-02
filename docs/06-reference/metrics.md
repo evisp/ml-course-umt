@@ -100,6 +100,21 @@ Outside that, it misleads. On data where 2% of cases are positive, a model that 
 
 ## 7. Precision, recall, and F1
 
+Both come from the same four counts. Fix a threshold, and every case lands in one box of the **confusion matrix**:
+
+|  | **Predicted positive** | **Predicted negative** |
+|---|---|---|
+| **Actually positive** | true positive (TP) | false negative (FN) |
+| **Actually negative** | false positive (FP) | true negative (TN) |
+
+\[
+\text{precision} = \frac{TP}{TP + FP}
+\qquad
+\text{recall} = \frac{TP}{TP + FN}
+\]
+
+Precision reads down the predicted-positive column, recall across the actually-positive row. Accuracy is TP plus TN over everything, which is why it can look excellent while TP is zero.
+
 Precision asks *of the cases I flagged, how many were real*. Recall asks *of the real cases, how many did I flag*. The [probability page](probability-statistics.md) explains them as conditional probabilities, which is the clearest way to keep them apart.
 
 They pull against each other, so you choose which to favour based on section 1:

@@ -36,6 +36,7 @@ WEEKS = [
     ("week-01", "lab1", "lab1_path_svg"),
     ("week-02", "lab2", "lab2_path_svg"),
     ("week-03", "lab3", "lab3_path_svg"),
+    ("week-04", "lab4", "lab4_path_svg"),
 ]
 
 

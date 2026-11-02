@@ -14,22 +14,12 @@ A single score, however honest, is a summary, and every summary hides something.
 
 This week you look at everything the score hides. By the end you will have evaluated a model the way it would need to be evaluated before anyone relied on it, and written the document that says so.
 
-![The same decision's cost on validation and on test](../assets/images/02-data-pipeline/w04-decision-light.png#only-light)
-![The same decision's cost on validation and on test](../assets/images/02-data-pipeline/w04-decision-dark.png#only-dark)
-
-*The same model, the same threshold, chosen carefully. In one period it cut the cost of mistakes by 43%. In the next, it cost more than doing nothing. This week explains why.*
-
 ## This week at a glance
 
-```mermaid
-flowchart LR
-    M["<b>The Week 3 model</b><br/>fitted on train"] --> S["<b>Scores</b><br/>on validation"]
-    S --> T["<b>A threshold</b><br/>from the cost of mistakes · §1 to §3"]
-    S --> SL["<b>Slices and mistakes</b><br/>where it fails · §4, §5"]
-    T --> X["<b>One look at test</b><br/>interval and decision · §6, §7"]
-    SL --> X
-    X --> MC["<b>The model card</b><br/>§8"]
-```
+![The six moves of Week 4, and the question each one asks](../assets/images/lecture/week-04/lab4-questions-light.svg#only-light)
+![The six moves of Week 4, and the question each one asks](../assets/images/lecture/week-04/lab4-questions-dark.svg#only-dark)
+
+*Six moves, and the question each one asks. Everything left of the seam happens on validation.*
 
 Sections 1 to 5 all happen on validation. Test waits for sections 6 and 7, and we look at it once. Section 8 writes it all down.
 
@@ -63,6 +53,17 @@ flowchart LR
     Q -->|yes| F["<b>Flag it</b><br/>warn the customer"]
     Q -->|no| N["<b>Leave it</b>"]
 ```
+
+Once a threshold is fixed, every case falls into one of four boxes. Almost every classification metric you will meet is built from the counts in them.
+
+|  | **Flagged** | **Not flagged** |
+|---|---|---|
+| **Really late** | true positive | false negative, a **miss** |
+| **Really on time** | false positive, a **false alarm** | true negative |
+
+Two of those counts answer the two questions people actually ask. **Precision** reads down the flagged column: *of the orders we flagged, how many were really late?* **Recall** reads across the top row: *of the orders that were really late, how many did we flag?* One is about the cost of acting, the other about the cost of missing, which is why section 2 can turn them into money.
+
+Two names you will meet elsewhere. **F1** squeezes precision and recall into a single number, handy for ranking models and unhelpful here, because it assumes the two mistakes cost the same, which is the assumption the next section exists to replace. And **ROC AUC** is the summary most courses teach first, while this one uses PR AUC, because when positives are rare ROC AUC flatters a model badly. The [metrics page](../06-reference/metrics.md) covers both.
 
 Every threshold is a different trade. Lower it, and more cases are flagged: recall rises, since fewer positives slip through, and precision usually falls, since more flags are wrong. Raise it, and the reverse. There is no threshold that is right in general. There is only a threshold that is right for a particular decision, with particular costs.
 
@@ -366,6 +367,11 @@ Copy the template with the button in the corner of the block:
 
 | Idea | In one line |
 |---|---|
+| Confusion matrix | The four counts at one threshold. Every classification metric comes from it. |
+| Precision | Of the cases you flagged, how many were real. Down the flagged column. |
+| Recall | Of the real cases, how many you flagged. Across the positive row. |
+| F1 | Precision and recall in one number. Hides the trade, assumes equal costs. |
+| Lift | The score divided by the positive rate. 1 is guessing, whatever the period. |
 | Threshold | Turns a score into a decision. Chosen on validation, from the costs. |
 | Cost per case | (miss cost × misses + alarm cost × false alarms) / cases |
 | Break-even precision | Alarm cost divided by miss cost. Below it, flags lose money. |
@@ -384,11 +390,16 @@ lift(y[i], model_scores[i]) - lift(y[i], baseline_scores[i])                    
 
 ## Summary
 
+![The same six moves, with every number the lab produced](../assets/images/lecture/week-04/lab4-answers-light.svg#only-light)
+![The same six moves, with every number the lab produced](../assets/images/lecture/week-04/lab4-answers-dark.svg#only-dark)
+
+*The same frame, filled in. The scoreboard is the decision rather than the ranking, so lower is better.*
+
 A score is not a decision: a threshold turns it into one, and the right threshold comes from the cost of each mistake, with break-even precision as the line below which acting loses money. Scores need not be probabilities, so check before reading them as chances. The average hides the failures: slice by slice, the model that catches 68% of late orders overall catches 15% of local ones, and reading its worst mistakes turns that into hypotheses. The test score comes with an interval, and the gain over the baseline turns out to be real. And the decision built on a good ranking can still fail when the world changes, as it did here, which is why a model is evaluated as a decision, monitored, and described honestly in a model card.
 
 **That closes Block 1.** You can now frame a problem, split without leaking, build features that cannot leak, and evaluate a model honestly enough to act on it. Project 1 asks you to do all four, on data you have not seen in class.
 
-**Next:** [Block 1 in review](review.md)
+**Next:** [Project 1 brief](../05-projects/project-1-pipeline.md)
 
 ## Resources
 
