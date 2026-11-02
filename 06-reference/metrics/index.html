@@ -2524,6 +2524,34 @@ R^2 = 1 - \frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \bar{y})^2}
 <p>Accuracy is the fraction of predictions that were right. It is fine in exactly one situation: the classes are roughly balanced <strong>and</strong> both kinds of mistake cost about the same.</p>
 <p>Outside that, it misleads. On data where 2% of cases are positive, a model that always says <em>no</em> scores 98% accuracy and catches nothing. If you report accuracy on imbalanced data, report the majority-class baseline next to it so the reader can see how little it means.</p>
 <h2 id="7-precision-recall-and-f1">7. Precision, recall, and F1<a class="headerlink" href="#7-precision-recall-and-f1" title="Permanent link">&para;</a></h2>
+<p>Both come from the same four counts. Fix a threshold, and every case lands in one box of the <strong>confusion matrix</strong>:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Predicted positive</strong></th>
+<th><strong>Predicted negative</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Actually positive</strong></td>
+<td>true positive (TP)</td>
+<td>false negative (FN)</td>
+</tr>
+<tr>
+<td><strong>Actually negative</strong></td>
+<td>false positive (FP)</td>
+<td>true negative (TN)</td>
+</tr>
+</tbody>
+</table>
+<div class="arithmatex">\[
+\text{precision} = \frac{TP}{TP + FP}
+\qquad
+\text{recall} = \frac{TP}{TP + FN}
+\]</div>
+<p>Precision reads down the predicted-positive column, recall across the actually-positive row. Accuracy is TP plus TN over everything, which is why it can look excellent while TP is zero.</p>
 <p>Precision asks <em>of the cases I flagged, how many were real</em>. Recall asks <em>of the real cases, how many did I flag</em>. The <a href="../probability-statistics/">probability page</a> explains them as conditional probabilities, which is the clearest way to keep them apart.</p>
 <p>They pull against each other, so you choose which to favour based on section 1:</p>
 <ul>
@@ -2737,7 +2765,7 @@ R^2 = 1 - \frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \bar{y})^2}
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2026 07:53:03 UTC">September 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 2, 2026 10:50:30 UTC">November 2, 2026</span>
   </span>
 
     

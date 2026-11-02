@@ -2538,17 +2538,10 @@
 </blockquote>
 <p>A single score, however honest, is a summary, and every summary hides something. It hides the threshold someone will use to act on the model. It hides what a mistake costs. It hides which customers the model fails, how uncertain the number itself is, and whether the decision built on it will still make sense next month.</p>
 <p>This week you look at everything the score hides. By the end you will have evaluated a model the way it would need to be evaluated before anyone relied on it, and written the document that says so.</p>
-<p><img alt="The same decision's cost on validation and on test" src="../../assets/images/02-data-pipeline/w04-decision-light.png#only-light" />
-<img alt="The same decision's cost on validation and on test" src="../../assets/images/02-data-pipeline/w04-decision-dark.png#only-dark" /></p>
-<p><em>The same model, the same threshold, chosen carefully. In one period it cut the cost of mistakes by 43%. In the next, it cost more than doing nothing. This week explains why.</em></p>
 <h2 id="this-week-at-a-glance">This week at a glance<a class="headerlink" href="#this-week-at-a-glance" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart LR
-    M["&lt;b&gt;The Week 3 model&lt;/b&gt;&lt;br/&gt;fitted on train"] --&gt; S["&lt;b&gt;Scores&lt;/b&gt;&lt;br/&gt;on validation"]
-    S --&gt; T["&lt;b&gt;A threshold&lt;/b&gt;&lt;br/&gt;from the cost of mistakes · §1 to §3"]
-    S --&gt; SL["&lt;b&gt;Slices and mistakes&lt;/b&gt;&lt;br/&gt;where it fails · §4, §5"]
-    T --&gt; X["&lt;b&gt;One look at test&lt;/b&gt;&lt;br/&gt;interval and decision · §6, §7"]
-    SL --&gt; X
-    X --&gt; MC["&lt;b&gt;The model card&lt;/b&gt;&lt;br/&gt;§8"]</code></pre>
+<p><img alt="The six moves of Week 4, and the question each one asks" src="../../assets/images/lecture/week-04/lab4-questions-light.svg#only-light" />
+<img alt="The six moves of Week 4, and the question each one asks" src="../../assets/images/lecture/week-04/lab4-questions-dark.svg#only-dark" /></p>
+<p><em>Six moves, and the question each one asks. Everything left of the seam happens on validation.</em></p>
 <p>Sections 1 to 5 all happen on validation. Test waits for sections 6 and 7, and we look at it once. Section 8 writes it all down.</p>
 <h2 id="learning-outcomes">Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permanent link">&para;</a></h2>
 <p>By the end of this week you can:</p>
@@ -2574,6 +2567,30 @@
     S["&lt;b&gt;Score&lt;/b&gt;&lt;br/&gt;0.63"] --&gt; Q{"above the&lt;br/&gt;threshold?"}
     Q --&gt;|yes| F["&lt;b&gt;Flag it&lt;/b&gt;&lt;br/&gt;warn the customer"]
     Q --&gt;|no| N["&lt;b&gt;Leave it&lt;/b&gt;"]</code></pre>
+<p>Once a threshold is fixed, every case falls into one of four boxes. Almost every classification metric you will meet is built from the counts in them.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Flagged</strong></th>
+<th><strong>Not flagged</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Really late</strong></td>
+<td>true positive</td>
+<td>false negative, a <strong>miss</strong></td>
+</tr>
+<tr>
+<td><strong>Really on time</strong></td>
+<td>false positive, a <strong>false alarm</strong></td>
+<td>true negative</td>
+</tr>
+</tbody>
+</table>
+<p>Two of those counts answer the two questions people actually ask. <strong>Precision</strong> reads down the flagged column: <em>of the orders we flagged, how many were really late?</em> <strong>Recall</strong> reads across the top row: <em>of the orders that were really late, how many did we flag?</em> One is about the cost of acting, the other about the cost of missing, which is why section 2 can turn them into money.</p>
+<p>Two names you will meet elsewhere. <strong>F1</strong> squeezes precision and recall into a single number, handy for ranking models and unhelpful here, because it assumes the two mistakes cost the same, which is the assumption the next section exists to replace. And <strong>ROC AUC</strong> is the summary most courses teach first, while this one uses PR AUC, because when positives are rare ROC AUC flatters a model badly. The <a href="../../06-reference/metrics/">metrics page</a> covers both.</p>
 <p>Every threshold is a different trade. Lower it, and more cases are flagged: recall rises, since fewer positives slip through, and precision usually falls, since more flags are wrong. Raise it, and the reverse. There is no threshold that is right in general. There is only a threshold that is right for a particular decision, with particular costs.</p>
 <p>And like every choice, the threshold is made on <strong>validation</strong>, never on test.</p>
 <div class="admonition olist">
@@ -2933,6 +2950,26 @@
 </thead>
 <tbody>
 <tr>
+<td>Confusion matrix</td>
+<td>The four counts at one threshold. Every classification metric comes from it.</td>
+</tr>
+<tr>
+<td>Precision</td>
+<td>Of the cases you flagged, how many were real. Down the flagged column.</td>
+</tr>
+<tr>
+<td>Recall</td>
+<td>Of the real cases, how many you flagged. Across the positive row.</td>
+</tr>
+<tr>
+<td>F1</td>
+<td>Precision and recall in one number. Hides the trade, assumes equal costs.</td>
+</tr>
+<tr>
+<td>Lift</td>
+<td>The score divided by the positive rate. 1 is guessing, whatever the period.</td>
+</tr>
+<tr>
 <td>Threshold</td>
 <td>Turns a score into a decision. Chosen on validation, from the costs.</td>
 </tr>
@@ -2972,9 +3009,12 @@
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">lift</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">model_scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="n">lift</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">baseline_scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>                    <span class="c1"># a fair, paired difference</span>
 </span></code></pre></div>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p><img alt="The same six moves, with every number the lab produced" src="../../assets/images/lecture/week-04/lab4-answers-light.svg#only-light" />
+<img alt="The same six moves, with every number the lab produced" src="../../assets/images/lecture/week-04/lab4-answers-dark.svg#only-dark" /></p>
+<p><em>The same frame, filled in. The scoreboard is the decision rather than the ranking, so lower is better.</em></p>
 <p>A score is not a decision: a threshold turns it into one, and the right threshold comes from the cost of each mistake, with break-even precision as the line below which acting loses money. Scores need not be probabilities, so check before reading them as chances. The average hides the failures: slice by slice, the model that catches 68% of late orders overall catches 15% of local ones, and reading its worst mistakes turns that into hypotheses. The test score comes with an interval, and the gain over the baseline turns out to be real. And the decision built on a good ranking can still fail when the world changes, as it did here, which is why a model is evaluated as a decision, monitored, and described honestly in a model card.</p>
 <p><strong>That closes Block 1.</strong> You can now frame a problem, split without leaking, build features that cannot leak, and evaluate a model honestly enough to act on it. Project 1 asks you to do all four, on data you have not seen in class.</p>
-<p><strong>Next:</strong> <a href="../review/">Block 1 in review</a></p>
+<p><strong>Next:</strong> <a href="../../05-projects/project-1-pipeline/">Project 1 brief</a></p>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://arxiv.org/abs/1810.03993">Mitchell et al., Model Cards for Model Reporting</a>. The paper that introduced model cards, short and readable.</li>
@@ -3006,7 +3046,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 2, 2026 10:04:39 UTC">October 2, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 2, 2026 10:50:30 UTC">November 2, 2026</span>
   </span>
 
     
