@@ -14,22 +14,12 @@ Last week ended badly. Judged on the future, Week 1's baselines were barely bett
 
 Two things make this week different from simply "adding columns". Some features are computed from a single row and are safe anywhere. Others are learned from many rows, and those are where the quietest leaks in machine learning live. Telling the two apart is most of the skill.
 
-![Test lift, Week 1 baselines against the Week 3 model](../assets/images/02-data-pipeline/w03-progress-light.png#only-light)
-![Test lift, Week 1 baselines against the Week 3 model](../assets/images/02-data-pipeline/w03-progress-dark.png#only-dark)
-
-*Where this week ends up: judged once on the future months, the Week 3 model is 1.87 times better than guessing, against 1.10 and 1.18 for Week 1's baselines.*
-
 ## This week at a glance
 
-```mermaid
-flowchart LR
-    A["<b>One clean row per order</b><br/>from Week 2"] --> B["<b>Row-wise features</b><br/>one row in, one value out · §1, §2"]
-    A --> C["<b>Learned features</b><br/>fitted on train only · §3, §4"]
-    B --> D["<b>One pipeline</b><br/>encode, scale, model · §5 to §7"]
-    C --> D
-    D --> E["<b>Validation decides</b><br/>what earns its place · §8"]
-    E --> F["<b>Test, once</b>"]
-```
+![The six moves of Week 3, and the question each one asks](../assets/images/lecture/week-03/lab3-questions-light.svg#only-light)
+![The six moves of Week 3, and the question each one asks](../assets/images/lecture/week-03/lab3-questions-dark.svg#only-dark)
+
+*Six moves, and the question each one asks. Three of them only make sense inside the same pipeline, which is what the bracket marks.*
 
 Sections 1 to 4 are about building features safely. Sections 5 to 7 put them into one pipeline with the model. Section 8 decides which ones stay.
 
@@ -119,6 +109,10 @@ Before any model, test each new feature on its own. Use it alone as a score and 
 The quietest leak in machine learning is **a statistic computed over the whole dataset**. It looks like good practice: more data, more reliable averages. But if the average for a group includes test rows, then each test row's own answer is already inside the feature it is judged with.
 
 The rule is short: **anything learned from many rows is learned from the training rows, and only applied to the others.**
+
+That rule reaches further than it first looks, because it is not only about features you set out to build. Filling a missing weight with the median learns a median. A scaler stores a mean and a standard deviation. An encoder remembers which categories it saw. All three are learned from rows, so all three belong after the split, fitted on training rows alone, which is exactly why they end up inside the pipeline in section 5.
+
+Missing values are the most common of the three. Two Olist products have no weight, and `SimpleImputer(strategy="median")` fills them from the median of the training rows. That one number is then stored and applied unchanged to validation and to test: the test rows never get a median of their own.
 
 !!! olist "In our example"
     Some sellers are late far more often than others, so a seller's late rate sounds like an excellent feature. The only question is which orders it is computed from.
@@ -237,10 +231,15 @@ Models need numbers, so every category has to be encoded. The right encoding dep
 
 | Values | Encoding | Watch out for |
 |---|---|---|
-| **A handful** | One-hot: one column per value | Nothing much. The default. |
+| **A handful, unordered** | One-hot: one column per value | Nothing much. The default. |
+| **A handful, with a real order** | Ordinal: *small, medium, large* becomes 0, 1, 2 | Only when the order is genuine |
 | **Many** | Target encoding: each value becomes the average target for that value | Must be cross-fitted, or the model trusts it far too much |
 | **An ID per entity** | Often better left out | Thousands of values, most seen only a few times |
 | **Free text** | Word counts or TF-IDF, which turn words into weighted counts | Only text that exists at prediction time |
+
+**Ordinal encoding** is the one people reach for first, because it is the least typing: give each category a number and carry on. It is right when the categories really do have an order, *poor, fair, good* or *small, medium, large*, because then "a bigger number means more" is true and the model can use it. It is wrong the rest of the time, and quietly so. Number the Brazilian states 0 to 26 and a linear model will happily conclude that state 20 is worth twice state 10. One-hot costs you columns and saves you that.
+
+Two names worth separating: in scikit-learn, `OrdinalEncoder` is for feature columns and `LabelEncoder` is for the target. They do nearly the same thing, which is why `LabelEncoder` ends up on a feature column often enough to be worth warning about.
 
 **Target encoding** is a learned feature, so it must come from training rows. But there is a second trap. If each *training* row is encoded with an average that includes its own label, the model sees a feature that is partly the answer, and learns to trust it far too much. The fix is **cross-fitting**:
 
@@ -259,6 +258,9 @@ scikit-learn's `TargetEncoder` does this for you inside `fit_transform`, which i
 
     Olist has no text that exists at the moment of purchase: the only free text is in reviews, which are written after delivery. So there is no TF-IDF in this week's model. The [scikit-learn cheatsheet](../06-reference/sklearn-cheatsheet.md) shows how to use it when your data has text.
 
+!!! warning "The category nobody has seen before"
+    An encoder is fitted on training rows, so it knows only the categories that were in them. A city, a seller or a product type that turns up for the first time in production is not a rare edge case, it is routine, and the time to decide what happens is before it happens. `OneHotEncoder(handle_unknown="ignore")` turns an unknown value into all zeros instead of raising an error, and `TargetEncoder` falls back to the overall average. The [scikit-learn cheatsheet](../06-reference/sklearn-cheatsheet.md) has the settings.
+
 *Elsewhere:* a postcode with 20,000 values, a product ID, a doctor's name. All tempting, all high-cardinality, and all worth asking whether the model can really learn from them.
 { .elsewhere }
 
@@ -274,6 +276,8 @@ Some models are sensitive to the scale of their inputs, and some are not:
 | Logistic and linear regression | Yes | Trained by gradient steps, which struggle when features differ wildly in scale |
 | Anything based on distances | Yes | A feature in thousands would drown out one in units |
 | Decision trees and their ensembles | No | They split on thresholds, and a threshold does not care about units |
+
+Standardising, the usual choice, means subtracting the mean and dividing by the standard deviation, so each feature ends up centred near zero with a spread of about one. Both of those numbers are learned from the training rows, which makes the scaler one more step that belongs inside the pipeline. Two alternatives are worth knowing: `MinMaxScaler` squeezes everything into the range 0 to 1, useful when a bounded range matters, and `RobustScaler` uses the median and the interquartile range instead, which is the one to reach for when a handful of extreme values would drag the mean around.
 
 The [calculus page](../06-reference/calculus.md) shows what goes wrong for gradient descent when features are badly scaled. There is a second reward: once every feature is on the same scale, the **coefficients of a linear model become comparable**, and the model becomes readable.
 
@@ -383,7 +387,11 @@ More features are not automatically better. Each one adds a way to overfit, a co
 | Transformer | `fit` learns and stores, `transform` applies. `fit` may see the past, `transform` only the present. |
 | Pipeline | Every learned step, and the model, in one object. `fit` once, on train. |
 | Encoding | A few values: one-hot. Many: cross-fitted target encoding. IDs: often leave out. |
+| Ordinal encoding | Only when the categories have a real order. Otherwise you invent one. |
+| Unseen category | Decide before it happens: `handle_unknown="ignore"`, or a fallback value. |
+| Missing values | Filling with a median is learning. Fit on train, inside the pipeline. |
 | Scaling | Linear and distance-based models: yes. Trees: no. |
+| Standardising | Subtract the mean, divide by the standard deviation. Both learned from training rows. |
 | Earning a place | One addition at a time, judged on validation. Test once. |
 
 ```python
@@ -395,6 +403,11 @@ ColumnTransformer([
 ```
 
 ## Summary
+
+![The same six moves, with every number the lab produced](../assets/images/lecture/week-03/lab3-answers-light.svg#only-light)
+![The same six moves, with every number the lab produced](../assets/images/lecture/week-03/lab3-answers-dark.svg#only-dark)
+
+*The same frame, filled in. The scoreboard is Block 1's whole arc: the same three models, on validation and on the future.*
 
 Features come in two kinds. Row-wise features, built from one row, are safe anywhere. Learned features, built from many rows, must be learned from training rows only, and a statistic computed over the whole dataset is the quietest leak there is. The transformer pattern, `fit` to learn and `transform` to apply, and the pipeline that holds every step together, make that rule hard to break by accident. Categories are encoded according to how many values they have, with cross-fitting for target encoding, and linear models are scaled so they train properly and can be read. Then each feature earns its place on validation. Here the simplest features won, and the model they built held up once on the future: a test lift of 1.87, up from 1.10.
 

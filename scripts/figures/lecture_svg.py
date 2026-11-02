@@ -318,6 +318,7 @@ def band_path(
     bracket_text: dict | None = None,
     bracket_span: tuple[int, int] = (1, 2),
     spur_at: int = 4,
+    spur_box: tuple[float, float, float, float] | None = None,
     halves: list | None = None,
     last_size: int = 28,
 ) -> list[str]:
@@ -339,7 +340,7 @@ def band_path(
                 p.append(line(left, SPINE_Y - 16, left, SPINE_Y + 16, LINE_STRONG, 2,
                               dash="4 5"))
 
-    p += spur(version, spur_text, spur_at)
+    p += spur(version, spur_text, spur_at, spur_box)
 
     for i, (title, question, payload, caption) in enumerate(stops):
         cx = STOP_X[i]
@@ -376,9 +377,14 @@ def band_path(
     return p
 
 
-def spur(version: str, spur_text: dict, at: int = 4) -> list[str]:
-    """The tempting wrong turn: a dashed branch rising off one stop to a dead end."""
-    bx, by, bw, bh = SPUR_BOX
+def spur(version: str, spur_text: dict, at: int = 4,
+         box: tuple[float, float, float, float] | None = None) -> list[str]:
+    """The tempting wrong turn: a dashed branch rising off one stop to a dead end.
+
+    The box must sit above the junction, so a week that branches from a stop on
+    the left passes its own `box` rather than the default on the right.
+    """
+    bx, by, bw, bh = box or SPUR_BOX
     jx = STOP_X[at]
     top, bottom = by + bh, SPINE_Y - DISC_R - 3
     cap, l1, l2, value = spur_text[version]
