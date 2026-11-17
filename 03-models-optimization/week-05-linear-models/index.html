@@ -2723,8 +2723,8 @@
 \]</div>
 <p>Squaring keeps errors from cancelling, and punishes a large miss far more than several small ones. It is a choice, not a law, and section 5 changes it.</p>
 <p>Once both are fixed, <strong>fitting</strong> is a search: of all the lines this shape allows, which has the lowest loss?</p>
-<p><img alt="The loss as a landscape over the two coefficients" src="../assets/images/03-models-optimization/w05-surface-light.png#only-light" />
-<img alt="The loss as a landscape over the two coefficients" src="../assets/images/03-models-optimization/w05-surface-dark.png#only-dark" /></p>
+<p><img alt="The loss as a landscape over the two coefficients" src="../../assets/images/03-models-optimization/w05-surface-light.png#only-light" />
+<img alt="The loss as a landscape over the two coefficients" src="../../assets/images/03-models-optimization/w05-surface-dark.png#only-dark" /></p>
 <p><em>Every point in this plane is a candidate line, and the contours are its loss. The search is for the bottom of the bowl. The published meter sits nearby, but not at the bottom, which section 3 explains.</em></p>
 <div class="admonition note">
 <p class="admonition-title">Key insight</p>
@@ -2747,8 +2747,8 @@
 <p class="admonition-title">In our example</p>
 <p>The meter charges <strong>$0.70 a minute whenever the taxi is below 12 mph</strong>. Our model cannot see minutes, so every dollar earned by sitting in traffic has to be explained by the only columns it has: the starting charge and the distance. Both inflate.</p>
 <p>If that is the explanation, trips that never slowed down should fit the published rate far better. They do.</p>
-<p><img alt="What each fit says the meter charges" src="../assets/images/03-models-optimization/w05-meter-light.png#only-light" />
-<img alt="What each fit says the meter charges" src="../assets/images/03-models-optimization/w05-meter-dark.png#only-dark" /></p>
+<p><img alt="What each fit says the meter charges" src="../../assets/images/03-models-optimization/w05-meter-light.png#only-light" />
+<img alt="What each fit says the meter charges" src="../../assets/images/03-models-optimization/w05-meter-dark.png#only-dark" /></p>
 <table>
 <thead>
 <tr>
@@ -2843,8 +2843,8 @@
 <div class="admonition taxi">
 <p class="admonition-title">In our example</p>
 <p>The same 8,000 trips, fitted twice. Eight of them cost over $100.</p>
-<p><img alt="Two losses, two lines" src="../assets/images/03-models-optimization/w05-losses-light.png#only-light" />
-<img alt="Two losses, two lines" src="../assets/images/03-models-optimization/w05-losses-dark.png#only-dark" /></p>
+<p><img alt="Two losses, two lines" src="../../assets/images/03-models-optimization/w05-losses-light.png#only-light" />
+<img alt="Two losses, two lines" src="../../assets/images/03-models-optimization/w05-losses-dark.png#only-dark" /></p>
 <table>
 <thead>
 <tr>
@@ -2887,8 +2887,8 @@
 <div class="admonition taxi">
 <p class="admonition-title">In our example</p>
 <p>Adding the airport flag, the hour and the weekday takes the model to 33 columns and the validation error from $3.00 to $2.76. The hourly weights draw the city's traffic:</p>
-<p><img alt="What each hour adds to the fare" src="../assets/images/03-models-optimization/w05-hours-light.png#only-light" />
-<img alt="What each hour adds to the fare" src="../assets/images/03-models-optimization/w05-hours-dark.png#only-dark" /></p>
+<p><img alt="What each hour adds to the fare" src="../../assets/images/03-models-optimization/w05-hours-light.png#only-light" />
+<img alt="What each hour adds to the fare" src="../../assets/images/03-models-optimization/w05-hours-dark.png#only-dark" /></p>
 <p><em>For the same trip, midday costs about $2 more than 5am. The model has never been told about rush hour. It inferred the shape from fares.</em></p>
 </div>
 <div class="admonition project">
@@ -2905,8 +2905,8 @@ P(y = 1) = \sigma\left(w_0 + w_1x_1 + \dots\right), \qquad \sigma(z) = \frac{1}{
 <div class="admonition taxi">
 <p class="admonition-title">In our example</p>
 <p>The crawl question, from Project 1: will this trip average under 6 mph? Fitted on distance, the airport flag, the hour and the pickup borough, it reaches a validation ROC AUC of <strong>0.814</strong>.</p>
-<p><img alt="The crawl model's coefficients as odds multipliers" src="../assets/images/03-models-optimization/w05-odds-light.png#only-light" />
-<img alt="The crawl model's coefficients as odds multipliers" src="../assets/images/03-models-optimization/w05-odds-dark.png#only-dark" /></p>
+<p><img alt="The crawl model's coefficients as odds multipliers" src="../../assets/images/03-models-optimization/w05-odds-light.png#only-light" />
+<img alt="The crawl model's coefficients as odds multipliers" src="../../assets/images/03-models-optimization/w05-odds-dark.png#only-dark" /></p>
 <p><em>Picked up at 2pm, the odds of crawling are about three times the average hour's. At 4am they are a sixth. Each extra standard deviation of distance cuts them to a sixteenth, because long trips spend most of their miles moving.</em></p>
 </div>
 <p class="elsewhere"><em>Elsewhere:</em> a credit model's coefficient of 0.41 on a risk flag means that flag multiplies the odds of default by about 1.5. Regulators often ask for exactly this reading, which is why logistic regression survives in lending long after better-scoring models exist.</p>
@@ -2919,8 +2919,8 @@ P(y = 1) = \sigma\left(w_0 + w_1x_1 + \dots\right), \qquad \sigma(z) = \frac{1}{
 <div class="admonition taxi">
 <p class="admonition-title">In our example</p>
 <p>In the crawl model, a Manhattan pickup <strong>lowers</strong> the predicted odds of crawling, by a factor of 0.45. In the borough where traffic is worst.</p>
-<p><img alt="Manhattan, raw and conditioned on distance" src="../assets/images/03-models-optimization/w05-conditional-light.png#only-light" />
-<img alt="Manhattan, raw and conditioned on distance" src="../assets/images/03-models-optimization/w05-conditional-dark.png#only-dark" /></p>
+<p><img alt="Manhattan, raw and conditioned on distance" src="../../assets/images/03-models-optimization/w05-conditional-light.png#only-light" />
+<img alt="Manhattan, raw and conditioned on distance" src="../../assets/images/03-models-optimization/w05-conditional-dark.png#only-dark" /></p>
 <p><em>On its own, 21.9% of Manhattan trips crawl, the highest of any borough with enough trips to judge. Inside the model, its coefficient is below one.</em></p>
 <p>Both are true. Manhattan trips are short, and short trips crawl far more often, so distance has already accounted for the risk. What is left for the borough to explain is slightly <em>less</em> crawling than its distances alone would suggest.</p>
 </div>
