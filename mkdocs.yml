@@ -143,11 +143,15 @@ nav:
 
   - Projects:
     - Overview: 05-projects/index.md
-    - "Project 1 — Validated baseline": 05-projects/project-1-pipeline.md
-    - "Project 2 — Model comparison": 05-projects/project-2-comparison.md
-    - "Project 3 — Capstone": 05-projects/project-3-capstone.md
+    - "Project 1: Validated baseline": 05-projects/project-1-pipeline.md
+    - "Project 2: Model comparison": 05-projects/project-2-comparison.md
+    - "Project 3: Capstone": 05-projects/project-3-capstone.md
     - Rubrics: 05-projects/rubrics.md
     - Submission guide: 05-projects/submission-guide.md
+
+  - Exam:
+    - 07-exam/index.md
+    - "Block 1 practice": 07-exam/block-1.md
 
   - Reference:
     - 06-reference/index.md
