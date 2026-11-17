@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#week-05-linear-models-the-loss-landscape" class="md-skip">
+        <a href="#week-05-linear-models" class="md-skip">
           Skip to content
         </a>
       
@@ -370,6 +370,28 @@
     
   
   Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07-exam/index.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Exam
 
         </a>
       </li>
@@ -1219,6 +1241,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#this-week-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        This week at a glance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#learning-outcomes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1230,10 +1263,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#before-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core concepts
+        Before class
       
     </span>
   </a>
@@ -1241,10 +1274,87 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#worked-example" class="md-nav__link">
+  <a href="#1-a-model-is-a-shape-and-a-loss" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Worked example
+        1. A model is a shape and a loss
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fitting-is-a-search-sometimes-a-shortcut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Fitting is a search, sometimes a shortcut
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-coefficients-are-readable-and-worth-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Coefficients are readable, and worth reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-explaining-is-not-predicting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Explaining is not predicting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-loss-is-a-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. The loss is a decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-more-features-same-arithmetic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. More features, same arithmetic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-the-same-idea-for-a-yes-or-no-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. The same idea, for a yes or no question
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-no-coefficient-should-be-read-alone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. No coefficient should be read alone
       
     </span>
   </a>
@@ -1263,10 +1373,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#project-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-mistakes" class="md-nav__link">
     <span class="md-ellipsis">
       
         Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check yourself
       
     </span>
   </a>
@@ -1285,10 +1417,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#summary-next-steps" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Summary &amp; next steps
+        Summary
       
     </span>
   </a>
@@ -1749,7 +1881,7 @@
   <span class="md-ellipsis">
     
   
-    Project 1 — Validated baseline
+    Project 1: Validated baseline
   
 
     
@@ -1777,7 +1909,7 @@
   <span class="md-ellipsis">
     
   
-    Project 2 — Model comparison
+    Project 2: Model comparison
   
 
     
@@ -1805,7 +1937,7 @@
   <span class="md-ellipsis">
     
   
-    Project 3 — Capstone
+    Project 3: Capstone
   
 
     
@@ -1892,6 +2024,127 @@
     
       
         
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exam
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exam
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-exam/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-exam/block-1.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block 1 practice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
           
         
       
@@ -1918,7 +2171,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1940,14 +2193,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2144,6 +2397,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#this-week-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        This week at a glance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#learning-outcomes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2155,10 +2419,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#before-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core concepts
+        Before class
       
     </span>
   </a>
@@ -2166,10 +2430,87 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#worked-example" class="md-nav__link">
+  <a href="#1-a-model-is-a-shape-and-a-loss" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Worked example
+        1. A model is a shape and a loss
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fitting-is-a-search-sometimes-a-shortcut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Fitting is a search, sometimes a shortcut
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-coefficients-are-readable-and-worth-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Coefficients are readable, and worth reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-explaining-is-not-predicting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Explaining is not predicting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-loss-is-a-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. The loss is a decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-more-features-same-arithmetic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. More features, same arithmetic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-the-same-idea-for-a-yes-or-no-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. The same idea, for a yes or no question
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-no-coefficient-should-be-read-alone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. No coefficient should be read alone
       
     </span>
   </a>
@@ -2188,10 +2529,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#project-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-mistakes" class="md-nav__link">
     <span class="md-ellipsis">
       
         Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check yourself
       
     </span>
   </a>
@@ -2210,10 +2573,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#summary-next-steps" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Summary &amp; next steps
+        Summary
       
     </span>
   </a>
@@ -2304,59 +2667,394 @@
   
 
 
-<h1 id="week-05-linear-models-the-loss-landscape">Week 05 — Linear Models &amp; the Loss Landscape<a class="headerlink" href="#week-05-linear-models-the-loss-landscape" title="Permanent link">&para;</a></h1>
+<h1 id="week-05-linear-models">Week 05 · Linear models<a class="headerlink" href="#week-05-linear-models" title="Permanent link">&para;</a></h1>
 <div class="admonition abstract">
 <p class="admonition-title">At a glance</p>
-<p><strong>Block:</strong> $B2
-<strong>Estimated reading time:</strong> <em>TBD</em>
-<strong>Feeds into:</strong> $P2
-<strong>Prerequisites:</strong> <em>TBD</em></p>
+<p><strong>Block:</strong> 2 · Models &amp; Optimization
+<strong>Running example:</strong> New York taxi trips. <em>What will this trip cost?</em> and <em>will it crawl?</em> New to the data? Start with the <a href="../">Block 2 overview</a>.
+<strong>Lab:</strong> <a href="https://github.com/evisp/ml-course-labs/blob/main/week-05/lab.ipynb"><code>week-05/lab.ipynb</code></a> in the labs repository
+<strong>Before class:</strong> read sections 1, 3 and 5, about fifteen minutes</p>
 </div>
 <h2 id="why-this-matters">Why this matters<a class="headerlink" href="#why-this-matters" title="Permanent link">&para;</a></h2>
-<p><em>TBD</em></p>
+<blockquote>
+<p>A model is a shape and a rule for being wrong. Everything else is search.</p>
+</blockquote>
+<p>For four weeks the model was a detail. Logistic regression appeared because something had to produce a score; a tree appeared because something had to be compared with it. Both were treated as boxes that turn columns into numbers.</p>
+<p>This week opens the box, and it turns out to contain very little: a shape with a few unknown numbers in it, and a rule that says how badly a given set of numbers fits the data. Fitting is the search for the numbers that make that rule happiest.</p>
+<p>What makes this worth doing on taxi fares is that New York publishes the answer. The meter's rate is a public document, so for once you can fit a model and then check it against the rule that generated the data.</p>
+<h2 id="this-week-at-a-glance">This week at a glance<a class="headerlink" href="#this-week-at-a-glance" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart LR
+    A["&lt;b&gt;A shape&lt;/b&gt;&lt;br/&gt;fare = w₀ + w₁ × miles"] --&gt; C["&lt;b&gt;A loss&lt;/b&gt;&lt;br/&gt;how wrong is this guess? · §1"]
+    B["&lt;b&gt;The data&lt;/b&gt;&lt;br/&gt;133,505 metered trips"] --&gt; C
+    C --&gt; D["&lt;b&gt;A search&lt;/b&gt;&lt;br/&gt;the numbers with the lowest loss · §2"]
+    D --&gt; E["&lt;b&gt;Coefficients&lt;/b&gt;&lt;br/&gt;dollars, and dollars per mile · §3, §4"]
+    D --&gt; F["&lt;b&gt;The same idea, for yes or no&lt;/b&gt;&lt;br/&gt;odds instead of dollars · §7"]
+    E --&gt; G["&lt;b&gt;Read with care&lt;/b&gt;&lt;br/&gt;a coefficient is conditional · §8"]
+    F --&gt; G</code></pre>
+<p>Sections 1 and 2 define what a model is. Sections 3 to 6 read one. Sections 7 and 8 do the same for a classifier, and find a coefficient that misleads.</p>
 <h2 id="learning-outcomes">Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permanent link">&para;</a></h2>
 <p>By the end of this week you can:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <em>TBD</em></li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <em>TBD</em></li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <em>TBD</em></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Say what a model is, in terms of a shape and a loss</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Write a loss function, and explain what fitting searches for</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Read a linear model's coefficients in the units of the problem</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Explain why a coefficient changes when other features are added</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Choose between squared and absolute error, and defend the choice</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tell an explanatory model from a predictive one</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Fit logistic regression and read its coefficients as odds</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Explain why no coefficient should be read on its own</li>
 </ul>
-<h2 id="core-concepts">Core concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
-<p><em>TBD</em></p>
-<h2 id="worked-example">Worked example<a class="headerlink" href="#worked-example" title="Permanent link">&para;</a></h2>
-<p><em>TBD</em></p>
-<h2 id="lab">Lab<a class="headerlink" href="#lab" title="Permanent link">&para;</a></h2>
-<div class="admonition example">
-<p class="admonition-title">Lab task</p>
-<p>Applies directly to <strong>$P2</strong>.</p>
-<p><em>TBD</em></p>
+<h2 id="before-class">Before class<a class="headerlink" href="#before-class" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Bring an answer</p>
+<p>A taxi meter charges a fixed amount when you get in, then by the mile. If you fit a straight line to real fares, would you expect the fitted starting charge to be higher or lower than the real one? Why?</p>
 </div>
-<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Watch out</p>
-<p><em>TBD</em></p>
+<hr />
+<h2 id="1-a-model-is-a-shape-and-a-loss">1. A model is a shape and a loss<a class="headerlink" href="#1-a-model-is-a-shape-and-a-loss" title="Permanent link">&para;</a></h2>
+<p>Two decisions define a model.</p>
+<p><strong>The shape</strong> says what form the answer may take. For a straight line through fares:</p>
+<div class="arithmatex">\[
+\hat{y} = w_0 + w_1 x
+\]</div>
+<p>The model is those two numbers. Everything the data will ever tell us has to be squeezed into them.</p>
+<p><strong>The loss</strong> says what counts as a mistake. The most common choice is the mean squared error:</p>
+<div class="arithmatex">\[
+\text{MSE} = \frac{1}{n}\sum_{i=1}^{n}\left(y_i - \hat{y}_i\right)^2
+\]</div>
+<p>Squaring keeps errors from cancelling, and punishes a large miss far more than several small ones. It is a choice, not a law, and section 5 changes it.</p>
+<p>Once both are fixed, <strong>fitting</strong> is a search: of all the lines this shape allows, which has the lowest loss?</p>
+<p><img alt="The loss as a landscape over the two coefficients" src="../assets/images/03-models-optimization/w05-surface-light.png#only-light" />
+<img alt="The loss as a landscape over the two coefficients" src="../assets/images/03-models-optimization/w05-surface-dark.png#only-dark" /></p>
+<p><em>Every point in this plane is a candidate line, and the contours are its loss. The search is for the bottom of the bowl. The published meter sits nearby, but not at the bottom, which section 3 explains.</em></p>
+<div class="admonition note">
+<p class="admonition-title">Key insight</p>
+<p><strong>Fitting is not magic, it is minimisation.</strong> Change the shape and you change what the model can express. Change the loss and you change which mistakes it refuses to make.</p>
 </div>
-<h2 id="quick-reference">Quick reference<a class="headerlink" href="#quick-reference" title="Permanent link">&para;</a></h2>
+<p class="elsewhere"><em>Elsewhere:</em> the same two decisions describe almost every model in this course. A decision tree's shape is a set of rules, a neural network's is a stack of layers, and each comes with a loss that defines what it is trying to avoid.</p>
+<h2 id="2-fitting-is-a-search-sometimes-a-shortcut">2. Fitting is a search, sometimes a shortcut<a class="headerlink" href="#2-fitting-is-a-search-sometimes-a-shortcut" title="Permanent link">&para;</a></h2>
+<p>For least squares with a linear shape, the search has a closed-form answer: a formula gives the best coefficients directly, no iteration, in a few milliseconds. <code>LinearRegression</code> uses it.</p>
+<p>That is a special case, and a lucky one. The moment you change the loss, add a penalty, or move to logistic regression, no such formula exists, and the only way to find the minimum is to walk downhill from a starting guess. That walk is Week 6.</p>
+<div class="admonition taxi">
+<p class="admonition-title">In our example</p>
+<p>Fitted on May's 133,505 standard metered trips, the best straight line through the fares is</p>
+<p><strong>fare ≈ $6.73 + $3.97 per mile</strong></p>
+<p>Compare that with the published rate: a <strong><span class="arithmatex">\(3.00** initial charge and **\)</span>3.50</strong> a mile. Our line charges more than double at the door, and 13% more per mile, yet it is provably the best line of its shape. The next section explains why.</p>
+</div>
+<h2 id="3-coefficients-are-readable-and-worth-reading">3. Coefficients are readable, and worth reading<a class="headerlink" href="#3-coefficients-are-readable-and-worth-reading" title="Permanent link">&para;</a></h2>
+<p>A coefficient is the model's answer to a specific question: <em>how much does the prediction change when this feature increases by one, with everything else in the model held fixed?</em> In a fare model, <span class="arithmatex">\(w_1\)</span> is dollars per mile. That is what makes linear models worth teaching long after fancier ones exist: you can read what they believe, and argue with it.</p>
+<p>Reading them correctly means remembering the second half of that sentence. <strong>With everything else held fixed</strong> is doing a lot of work, and when the model cannot see something that matters, its coefficients quietly absorb it.</p>
+<div class="admonition taxi">
+<p class="admonition-title">In our example</p>
+<p>The meter charges <strong>$0.70 a minute whenever the taxi is below 12 mph</strong>. Our model cannot see minutes, so every dollar earned by sitting in traffic has to be explained by the only columns it has: the starting charge and the distance. Both inflate.</p>
+<p>If that is the explanation, trips that never slowed down should fit the published rate far better. They do.</p>
+<p><img alt="What each fit says the meter charges" src="../assets/images/03-models-optimization/w05-meter-light.png#only-light" />
+<img alt="What each fit says the meter charges" src="../assets/images/03-models-optimization/w05-meter-dark.png#only-dark" /></p>
 <table>
 <thead>
 <tr>
-<th>Concept</th>
-<th>When to use</th>
-<th>Watch out for</th>
+<th>Fitted on</th>
+<th style="text-align: right;">Starting charge</th>
+<th style="text-align: right;">Per mile</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
+<td>The published meter</td>
+<td style="text-align: right;">$3.00</td>
+<td style="text-align: right;">$3.50</td>
+</tr>
+<tr>
+<td>All trips</td>
+<td style="text-align: right;">$6.73</td>
+<td style="text-align: right;">$3.97</td>
+</tr>
+<tr>
+<td>Free-flowing trips, over 12 mph (27,863)</td>
+<td style="text-align: right;"><strong>$3.93</strong></td>
+<td style="text-align: right;"><strong>$3.95</strong></td>
+</tr>
+<tr>
+<td>Slow trips, 12 mph or less (105,642)</td>
+<td style="text-align: right;">$4.92</td>
+<td style="text-align: right;">$5.42</td>
 </tr>
 </tbody>
 </table>
-<h2 id="summary-next-steps">Summary &amp; next steps<a class="headerlink" href="#summary-next-steps" title="Permanent link">&para;</a></h2>
-<p><em>TBD</em></p>
+<p>The free-flowing fit lands near the real tariff. Even those trips wait at some lights, which is why it is not exact. The slow trips charge $5.42 a mile because on those journeys much of the fare was bought with minutes, and the model has to call it distance.</p>
+</div>
+<p class="elsewhere"><em>Elsewhere:</em> in a salary model without a seniority column, the coefficient on years of education absorbs part of the effect of seniority, because the two travel together. The number is not wrong; it is answering a question that includes everything the model cannot see.</p>
+<div class="admonition project">
+<p class="admonition-title">In your project</p>
+<p>Fit the simplest version of your model, with two or three features, and write out what each coefficient claims in the units of your problem. If a number looks wrong, ask what the model cannot see.</p>
+</div>
+<h2 id="4-explaining-is-not-predicting">4. Explaining is not predicting<a class="headerlink" href="#4-explaining-is-not-predicting" title="Permanent link">&para;</a></h2>
+<p>If the missing time charge distorts the coefficients, why not add the duration as a feature?</p>
+<p>Because the answer depends on what the model is <em>for</em>.</p>
+<ul>
+<li>An <strong>explanatory</strong> model answers <em>what drives this outcome?</em> It may use anything that was measured, whenever it was measured.</li>
+<li>A <strong>predictive</strong> model answers <em>what will happen?</em> It may only use what is known at the moment it is asked.</li>
+</ul>
+<p>Both are legitimate science. Confusing them is how a beautiful notebook becomes a model that cannot be deployed.</p>
+<div class="admonition taxi">
+<p class="admonition-title">In our example</p>
+<p>Add the duration and the meter appears almost exactly:</p>
+<p><strong>fare ≈ $2.36 + $2.50 per mile + $0.52 per minute</strong>, against the published <strong>$3.00 + $3.50 + $0.70</strong>.</p>
+<p>Training error falls by more than 90%. The model has recovered the rule that generated its data from nothing but receipts, which is a genuinely satisfying result.</p>
+<p>And it is useless for the booking app, because at the moment of booking the duration does not exist. Week 1's test rules it out, and the fare model goes back to what a passenger can be told before they travel.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Key insight</p>
+<p><strong>A model that explains the past perfectly can be unusable for predicting the future.</strong> The question is never only "does it fit?" but "will its inputs exist when I need an answer?"</p>
+</div>
+<p class="elsewhere"><em>Elsewhere:</em> a hospital model that explains length of stay using the discharge diagnosis is excellent science and worthless for planning beds, because the diagnosis is confirmed at discharge.</p>
+<div class="admonition project">
+<p class="admonition-title">In your project</p>
+<p>Write one sentence saying whether your model is explanatory or predictive. Then check every feature against that sentence.</p>
+</div>
+<h2 id="5-the-loss-is-a-decision">5. The loss is a decision<a class="headerlink" href="#5-the-loss-is-a-decision" title="Permanent link">&para;</a></h2>
+<p>Squared error is a default, not a law, and it has a personality: because it squares, a $40 miss contributes four hundred times as much as a $2 miss, so a handful of unusual cases can pull the whole model towards them.</p>
+<p><strong>Absolute error</strong> treats a $40 miss as twenty times a $2 miss:</p>
+<div class="arithmatex">\[
+\text{MAE} = \frac{1}{n}\sum_{i=1}^{n}\left|y_i - \hat{y}_i\right|
+\]</div>
+<p>Each loss produces the model that is best <em>by its own standard</em>. That is not a trick: it is what fitting means.</p>
+<table>
+<thead>
+<tr>
+<th>Choose squared error when</th>
+<th>Choose absolute error when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Large misses are disproportionately costly</td>
+<td>Every unit of error costs the same</td>
+</tr>
+<tr>
+<td>You want the model to attend to extremes</td>
+<td>A few unusual cases should not steer the line</td>
+</tr>
+<tr>
+<td>You need the closed-form solution's speed</td>
+<td>You can afford an iterative fit</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition taxi">
+<p class="admonition-title">In our example</p>
+<p>The same 8,000 trips, fitted twice. Eight of them cost over $100.</p>
+<p><img alt="Two losses, two lines" src="../assets/images/03-models-optimization/w05-losses-light.png#only-light" />
+<img alt="Two losses, two lines" src="../assets/images/03-models-optimization/w05-losses-dark.png#only-dark" /></p>
+<table>
+<thead>
+<tr>
+<th>Loss</th>
+<th>Fitted line</th>
+<th style="text-align: right;">Validation MAE</th>
+<th style="text-align: right;">Validation RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Squared error</td>
+<td>$6.63 + $4.00 per mile</td>
+<td style="text-align: right;">2.98</td>
+<td style="text-align: right;"><strong>4.20</strong></td>
+</tr>
+<tr>
+<td>Absolute error</td>
+<td>$5.36 + $4.10 per mile</td>
+<td style="text-align: right;"><strong>2.84</strong></td>
+<td style="text-align: right;">4.33</td>
+</tr>
+</tbody>
+</table>
+<p>Each wins on its own metric, and the lines differ most at the left edge, where the starting charge is $1.27 apart. On a short trip, that dollar is a large share of the fare, so the choice of loss is a choice about which passengers get the better quote.</p>
+</div>
+<p class="elsewhere"><em>Elsewhere:</em> in demand forecasting, under-stocking and over-stocking rarely cost the same. A loss that treats them symmetrically is already the wrong model, however well it fits.</p>
+<div class="admonition project">
+<p class="admonition-title">In your project</p>
+<p>State which loss your model minimises, and why that matches the cost of being wrong in your problem. If it does not, say so.</p>
+</div>
+<h2 id="6-more-features-same-arithmetic">6. More features, same arithmetic<a class="headerlink" href="#6-more-features-same-arithmetic" title="Permanent link">&para;</a></h2>
+<p>A line in one variable becomes a plane, then a shape nobody can picture. The formula is unchanged: every feature gets a weight, and the prediction is their sum.</p>
+<div class="arithmatex">\[
+\hat{y} = w_0 + w_1x_1 + w_2x_2 + \dots + w_px_p
+\]</div>
+<p>Two practical points follow.</p>
+<p><strong>Categories need columns.</strong> One-hot encoding gives each value its own weight, which is what lets the model say "2pm adds two dollars" rather than pretending that hour 14 is twice hour 7.</p>
+<p><strong>Scaling changes the units of a coefficient, not the model.</strong> After standardising, a coefficient reads as "dollars per standard deviation", which makes features comparable with each other but no longer in their original units. Decide which you want before reading the numbers.</p>
+<div class="admonition taxi">
+<p class="admonition-title">In our example</p>
+<p>Adding the airport flag, the hour and the weekday takes the model to 33 columns and the validation error from $3.00 to $2.76. The hourly weights draw the city's traffic:</p>
+<p><img alt="What each hour adds to the fare" src="../assets/images/03-models-optimization/w05-hours-light.png#only-light" />
+<img alt="What each hour adds to the fare" src="../assets/images/03-models-optimization/w05-hours-dark.png#only-dark" /></p>
+<p><em>For the same trip, midday costs about $2 more than 5am. The model has never been told about rush hour. It inferred the shape from fares.</em></p>
+</div>
+<div class="admonition project">
+<p class="admonition-title">In your project</p>
+<p>Encode your categorical features and plot the weights of one of them. If the pattern contradicts what you know about the domain, find out why before trusting the model.</p>
+</div>
+<h2 id="7-the-same-idea-for-a-yes-or-no-question">7. The same idea, for a yes or no question<a class="headerlink" href="#7-the-same-idea-for-a-yes-or-no-question" title="Permanent link">&para;</a></h2>
+<p>A straight line is the wrong shape for a probability: it runs off to infinity in both directions, and a probability must stay between 0 and 1. <strong>Logistic regression</strong> keeps the linear part and squashes the result:</p>
+<div class="arithmatex">\[
+P(y = 1) = \sigma\left(w_0 + w_1x_1 + \dots\right), \qquad \sigma(z) = \frac{1}{1 + e^{-z}}
+\]</div>
+<p>The loss changes too. Squared error is a poor match for a yes-or-no outcome, so logistic regression minimises <strong>log loss</strong>, which punishes confident mistakes hardest. Log loss has no closed-form minimum, which is the first practical reason to care about the search itself, and the subject of Week 6.</p>
+<p>Its coefficients are no longer dollars. They add to the <strong>log-odds</strong>, so exponentiating one turns it into a multiplier on the odds: <span class="arithmatex">\(e^{w} = 2\)</span> means "doubles the odds".</p>
+<div class="admonition taxi">
+<p class="admonition-title">In our example</p>
+<p>The crawl question, from Project 1: will this trip average under 6 mph? Fitted on distance, the airport flag, the hour and the pickup borough, it reaches a validation ROC AUC of <strong>0.814</strong>.</p>
+<p><img alt="The crawl model's coefficients as odds multipliers" src="../assets/images/03-models-optimization/w05-odds-light.png#only-light" />
+<img alt="The crawl model's coefficients as odds multipliers" src="../assets/images/03-models-optimization/w05-odds-dark.png#only-dark" /></p>
+<p><em>Picked up at 2pm, the odds of crawling are about three times the average hour's. At 4am they are a sixth. Each extra standard deviation of distance cuts them to a sixteenth, because long trips spend most of their miles moving.</em></p>
+</div>
+<p class="elsewhere"><em>Elsewhere:</em> a credit model's coefficient of 0.41 on a risk flag means that flag multiplies the odds of default by about 1.5. Regulators often ask for exactly this reading, which is why logistic regression survives in lending long after better-scoring models exist.</p>
+<div class="admonition project">
+<p class="admonition-title">In your project</p>
+<p>If your question is a classification, report your model's coefficients as odds multipliers, with one sentence each in plain language.</p>
+</div>
+<h2 id="8-no-coefficient-should-be-read-alone">8. No coefficient should be read alone<a class="headerlink" href="#8-no-coefficient-should-be-read-alone" title="Permanent link">&para;</a></h2>
+<p>A coefficient answers a conditional question, and the condition is <em>everything else in the model</em>. Add a feature that overlaps with an existing one and the existing weight will move, sometimes a lot, sometimes through zero.</p>
+<div class="admonition taxi">
+<p class="admonition-title">In our example</p>
+<p>In the crawl model, a Manhattan pickup <strong>lowers</strong> the predicted odds of crawling, by a factor of 0.45. In the borough where traffic is worst.</p>
+<p><img alt="Manhattan, raw and conditioned on distance" src="../assets/images/03-models-optimization/w05-conditional-light.png#only-light" />
+<img alt="Manhattan, raw and conditioned on distance" src="../assets/images/03-models-optimization/w05-conditional-dark.png#only-dark" /></p>
+<p><em>On its own, 21.9% of Manhattan trips crawl, the highest of any borough with enough trips to judge. Inside the model, its coefficient is below one.</em></p>
+<p>Both are true. Manhattan trips are short, and short trips crawl far more often, so distance has already accounted for the risk. What is left for the borough to explain is slightly <em>less</em> crawling than its distances alone would suggest.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">The sentence to remember</p>
+<p>A coefficient means <strong>"the effect of this feature, given everything else in the model"</strong>. It is not the effect of the feature in the world. If you want that, measure it on its own, as the left panel does.</p>
+</div>
+<p class="elsewhere"><em>Elsewhere:</em> this is the mechanism behind many published findings that reverse when a control variable is added. The data did not change, the question did.</p>
+<div class="admonition project">
+<p class="admonition-title">In your project</p>
+<p>Pick your most interesting coefficient and check it against the raw relationship in the data. If they disagree, explain why in your report. That explanation is worth more than the model.</p>
+</div>
+<hr />
+<h2 id="lab">Lab<a class="headerlink" href="#lab" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Lab · <code>week-05/lab.ipynb</code></p>
+<p>In the <a href="https://github.com/evisp/ml-course-labs">labs repository</a>. The lab samples 50,000 trips per split so everything runs in seconds; the numbers on this page come from the full months and land within a few cents.</p>
+<ol>
+<li><code>git pull</code>, open <code>week-05/lab.ipynb</code>, save your own copy as <code>my-lab.ipynb</code></li>
+<li>Write the loss function, and score three candidate lines with it</li>
+<li>Fit the fare, and compare your two numbers with the published meter</li>
+<li>Prove why they differ, using the free-flowing trips</li>
+<li>Recover the meter by adding the duration, then throw that model away</li>
+<li>Refit with absolute error, and see which model each metric prefers</li>
+<li>Fit logistic regression on the crawl, and read its coefficients as odds</li>
+<li>Explain the Manhattan coefficient to a colleague who misread it</li>
+</ol>
+</div>
+<h2 id="project-step">Project step<a class="headerlink" href="#project-step" title="Permanent link">&para;</a></h2>
+<div class="admonition project">
+<p class="admonition-title">For your Project 2 dataset</p>
+<ul>
+<li>Fit the simplest linear or logistic model you can, and write out what each coefficient claims in your problem's units</li>
+<li>Say whether your model explains or predicts, and check every feature against that</li>
+<li>State the loss you are minimising, and why it matches the cost of being wrong</li>
+<li>Check one coefficient against the raw relationship, and explain any disagreement</li>
+</ul>
+</div>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">What goes wrong in week five</p>
+<ul>
+<li><strong>Reading a coefficient as an effect in the world.</strong> It is an effect inside a model, given everything else in it.</li>
+<li><strong>Comparing coefficients across differently scaled features.</strong> Scale first, or compare in original units knowingly.</li>
+<li><strong>Using a feature that explains beautifully and does not exist at prediction time.</strong> The duration, the fare, the outcome's cousins.</li>
+<li><strong>Accepting squared error without thinking.</strong> It is a statement about which mistakes hurt most.</li>
+<li><strong>Judging a model by its training loss.</strong> That number only says the search worked, not that the model is any good.</li>
+<li><strong>Dropping a feature because its coefficient is near zero.</strong> With correlated features, the weight may simply have moved next door.</li>
+</ul>
+</div>
+<h2 id="check-yourself">Check yourself<a class="headerlink" href="#check-yourself" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>Our fitted line charges $6.73 at the door, the real meter $3.00. Is the model wrong?</summary>
+<p>No. It is the best line of its shape, and the shape has no column for time. The meter also charges $0.70 a minute in slow traffic, and in a distance-only model those dollars must be explained by the starting charge and the per-mile rate, inflating both. Fitted only on free-flowing trips, where little time is charged, the model returns $3.93 and $3.95 a mile.</p>
+</details>
+<details class="question">
+<summary>You add a feature and another coefficient halves. What happened, and is it a problem?</summary>
+<p>The two features share information, so the explanation that was carried by one is now split between them. It is not a bug, and it is not necessarily a problem, but it means neither coefficient can be read as that feature's effect on its own. Report what the model is, and do not over-claim.</p>
+</details>
+<details class="question">
+<summary>When would you prefer absolute error to squared error for a price model?</summary>
+<p>When every dollar of error costs the same, and a few unusual trips should not steer the quote for ordinary ones. Squared error is the better choice when a large miss is disproportionately costly, for example when an underestimate loses the customer entirely.</p>
+</details>
+<details class="question">
+<summary>A logistic coefficient is 0.69. What does that mean in plain language?</summary>
+<p>Its odds multiplier is about 2, so a one-unit increase in that feature roughly doubles the odds of a positive outcome, with everything else in the model held fixed. Doubling the odds is not doubling the probability: from 10% it moves to about 18%, not 20%.</p>
+</details>
+<details class="question">
+<summary>Why does logistic regression need the search that linear regression can skip?</summary>
+<p>Least squares with a linear shape has a closed-form solution: a formula gives the best coefficients directly. Log loss does not. The only way to its minimum is to start somewhere and walk downhill, which is what Week 6 builds.</p>
+</details>
+<h2 id="quick-reference">Quick reference<a class="headerlink" href="#quick-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Idea</th>
+<th>In one line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A model</td>
+<td>A shape, plus a loss that says what counts as a mistake</td>
+</tr>
+<tr>
+<td>Fitting</td>
+<td>The search for the parameters with the lowest loss</td>
+</tr>
+<tr>
+<td>Coefficient</td>
+<td>The change in the prediction per unit of the feature, with everything else held fixed</td>
+</tr>
+<tr>
+<td>Squared error</td>
+<td>Punishes large misses hardest. Closed-form solution.</td>
+</tr>
+<tr>
+<td>Absolute error</td>
+<td>Treats every unit of error alike. Needs an iterative fit.</td>
+</tr>
+<tr>
+<td>Explanatory vs predictive</td>
+<td>What drives this? versus what will happen? Different rules about features.</td>
+</tr>
+<tr>
+<td>Logistic regression</td>
+<td>Linear part, squashed into a probability, fitted with log loss</td>
+</tr>
+<tr>
+<td>Odds multiplier</td>
+<td><span class="arithmatex">\(e^{w}\)</span>. Two means "doubles the odds".</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>                       <span class="c1"># closed form, squared error</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">QuantileRegressor</span><span class="p">(</span><span class="n">quantile</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># iterative, absolute error</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>        <span class="c1"># iterative, log loss</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>                                 <span class="c1"># log-odds to odds multipliers</span>
+</span></code></pre></div>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>A model is a shape and a loss, and fitting is the search for the parameters that make the loss smallest. Linear models earn their place because that search has a closed-form answer and because the result can be read: our fare model says $6.73 at the door and $3.97 a mile, against a published $3.00 and $3.50, and the difference is the time charge it cannot see. Add the duration and the real tariff appears, in a model that can explain fares but never quote one. Change the loss and the line moves, because each loss defines its own idea of a good answer. Logistic regression applies the same idea to a yes-or-no question, with coefficients that read as odds, and ends with a warning: Manhattan looks safe inside a model that already knows the distance, and is the most crawl-prone borough outside it.</p>
+<p><strong>Next week</strong> takes the search itself seriously. Log loss has no formula, so the parameters must be found by walking downhill, and that walk can diverge, stall, or arrive, depending on one number.</p>
+<p><strong>Next:</strong> <a href="../week-06-optimization/">Week 06 · Optimization</a></p>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
-<p><em>TBD</em></p>
+<ul>
+<li><a href="https://www.nyc.gov/site/tlc/passengers/taxi-fare.page">NYC TLC taxi fare rates</a>. The published meter, worth reading once against your own coefficients.</li>
+<li><a href="https://scikit-learn.org/stable/modules/linear_model.html">scikit-learn, Linear models</a>. The family, from ordinary least squares to the regularized versions in Week 7.</li>
+<li><a href="../../06-reference/calculus/">Calculus for ML</a> on this site, for what a gradient is before Week 6 needs it.</li>
+<li><a href="../../06-reference/linear-algebra/">Linear algebra</a> on this site, for the closed-form solution's matrix form.</li>
+</ul>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>Read the coefficients, and remember what they were conditioned on.</p>
+</div>
 
 
 
@@ -2377,7 +3075,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2026 13:54:23 UTC">September 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 17, 2026 07:34:20 UTC">November 17, 2026</span>
   </span>
 
     
@@ -2477,7 +3175,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       
