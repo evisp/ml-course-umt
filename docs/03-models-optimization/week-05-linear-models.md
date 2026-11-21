@@ -1,10 +1,10 @@
-# Week 05 · Linear models
+# Week 05 · Fit
 
 !!! abstract "At a glance"
     **Block:** 2 · Models & Optimization
-    **Running example:** New York taxi trips. *What will this trip cost?* and *will it crawl?* New to the data? Start with the [Block 2 overview](index.md).
+    **Running example:** hotel bookings. *What will this booking pay per night?* and *will it be cancelled?* New to the data? Start with [the dataset](dataset.md).
     **Lab:** [`week-05/lab.ipynb`](https://github.com/evisp/ml-course-labs/blob/main/week-05/lab.ipynb) in the labs repository
-    **Before class:** read sections 1, 3 and 5, about fifteen minutes
+    **Before class:** sections 1, 3 and 5, about fifteen minutes
 
 ## Why this matters
 
@@ -14,343 +14,226 @@ For four weeks the model was a detail. Logistic regression appeared because some
 
 This week opens the box, and it turns out to contain very little: a shape with a few unknown numbers in it, and a rule that says how badly a given set of numbers fits the data. Fitting is the search for the numbers that make that rule happiest.
 
-What makes this worth doing on taxi fares is that New York publishes the answer. The meter's rate is a public document, so for once you can fit a model and then check it against the rule that generated the data.
+That is worth doing slowly, because a linear model is the only model in this course whose insides you can read in plain language. By section 3 you will be able to say *this booking costs nine euros more because there is an extra adult in it* and point at the number that says so. Nothing in Weeks 6 to 9 lets you do that as cleanly, which is exactly why this week comes first.
 
 ## This week at a glance
 
 ```mermaid
 flowchart LR
-    A["<b>A shape</b><br/>fare = w₀ + w₁ × miles"] --> C["<b>A loss</b><br/>how wrong is this guess? · §1"]
-    B["<b>The data</b><br/>133,505 metered trips"] --> C
+    A["<b>A shape</b><br/>rate = w₀ + w₁ × guests"] --> C["<b>A loss</b><br/>how wrong is this guess? · §1"]
+    B["<b>The data</b><br/>76,593 bookings"] --> C
     C --> D["<b>A search</b><br/>the numbers with the lowest loss · §2"]
-    D --> E["<b>Coefficients</b><br/>dollars, and dollars per mile · §3, §4"]
-    D --> F["<b>The same idea, for yes or no</b><br/>odds instead of dollars · §7"]
-    E --> G["<b>Read with care</b><br/>a coefficient is conditional · §8"]
+    D --> E["<b>Coefficients</b><br/>euros, per thing · §3, §4"]
+    D --> F["<b>The same idea, for yes or no</b><br/>odds instead of euros · §5"]
+    E --> G["<b>Read with care</b><br/>a coefficient is conditional · §6"]
     F --> G
 ```
 
-Sections 1 and 2 define what a model is. Sections 3 to 6 read one. Sections 7 and 8 do the same for a classifier, and find a coefficient that misleads.
+Sections 1 and 2 work on **the bench**: two numbers, one picture, nothing hidden. Sections 3 to 6 move to **the field**, where the same machinery runs on 76,593 real bookings and starts telling you things you did not know.
 
 ## Learning outcomes
 
 By the end of this week you can:
 
-- [ ] Say what a model is, in terms of a shape and a loss
-- [ ] Write a loss function, and explain what fitting searches for
-- [ ] Read a linear model's coefficients in the units of the problem
-- [ ] Explain why a coefficient changes when other features are added
-- [ ] Choose between squared and absolute error, and defend the choice
-- [ ] Tell an explanatory model from a predictive one
-- [ ] Fit logistic regression and read its coefficients as odds
-- [ ] Explain why no coefficient should be read on its own
+- write a model as a shape plus a loss, and say what each part does
+- explain fitting as a search over a surface, and point at where the answer sits
+- read a linear coefficient in the units of the thing you are predicting
+- say what changes when the loss is absolute error instead of squared error
+- read a logistic coefficient as an effect on odds
+- explain why a coefficient means nothing on its own
 
-## Before class
+## 1. A shape, and a rule for being wrong { .section-label }
 
-!!! question "Bring an answer"
-    A taxi meter charges a fixed amount when you get in, then by the mile. If you fit a straight line to real fares, would you expect the fitted starting charge to be higher or lower than the real one? Why?
-
----
-
-## 1. A model is a shape and a loss
-
-Two decisions define a model.
-
-**The shape** says what form the answer may take. For a straight line through fares:
+Pick the simplest shape that could possibly work:
 
 \[
-\hat{y} = w_0 + w_1 x
+\text{rate} = w_0 + w_1 \times \text{guests}
 \]
 
-The model is those two numbers. Everything the data will ever tell us has to be squeezed into them.
+Two unknown numbers. \(w_0\) is what every booking starts at, \(w_1\) is what each guest adds. Choose any two numbers and you have a model — a bad one, probably, but a complete one: give it a booking, it gives you a price.
 
-**The loss** says what counts as a mistake. The most common choice is the mean squared error:
+So you need a way to say how bad. That is the **loss**: one number that scores a whole set of guesses. The usual one squares each mistake and takes the average.
 
 \[
-\text{MSE} = \frac{1}{n}\sum_{i=1}^{n}\left(y_i - \hat{y}_i\right)^2
+\text{loss}(w_0, w_1) = \frac{1}{n}\sum \big(\text{what it said} - \text{what it was}\big)^2
 \]
 
-Squaring keeps errors from cancelling, and punishes a large miss far more than several small ones. It is a choice, not a law, and section 5 changes it.
+Squaring does two things. It makes a miss of −10 count the same as a miss of +10, and it makes a miss of 20 count four times as much as a miss of 10, not twice. Section 4 is about whether you want that second one.
 
-Once both are fixed, **fitting** is a search: of all the lines this shape allows, which has the lowest loss?
+!!! hotel "The simplest model of a hotel rate"
+    Fitted on the 76,593 training bookings:
 
-![The loss as a landscape over the two coefficients](../assets/images/03-models-optimization/w05-surface-light.png#only-light)
-![The loss as a landscape over the two coefficients](../assets/images/03-models-optimization/w05-surface-dark.png#only-dark)
+    **€42.92 + €27.72 per guest**
 
-*Every point in this plane is a candidate line, and the contours are its loss. The search is for the bottom of the bowl. The published meter sits nearby, but not at the bottom, which section 3 explains.*
+    On validation that is R² 0.198 and an average error of **€26.51**. The floor — predicting €97.37 for everyone — was €29.92. So one column, one line of arithmetic, buys you about three euros and fifty cents of accuracy per booking.
 
-!!! note "Key insight"
-    **Fitting is not magic, it is minimisation.** Change the shape and you change what the model can express. Change the loss and you change which mistakes it refuses to make.
+    ![The simplest shape, fitted](../assets/images/03-models-optimization/w05-guests-light.png#only-light)
+    ![The simplest shape, fitted](../assets/images/03-models-optimization/w05-guests-dark.png#only-dark)
 
-*Elsewhere:* the same two decisions describe almost every model in this course. A decision tree's shape is a set of rules, a neural network's is a stack of layers, and each comes with a loss that defines what it is trying to avoid.
-{ .elsewhere }
+    *Guests are whole numbers, so the points are spread sideways a little to make them visible. The line is doing something real and not very much.*
 
-## 2. Fitting is a search, sometimes a shortcut
+**Elsewhere:** a shape and a loss is every supervised model there is. What changes between them is how flexible the shape is, and how it searches.
 
-For least squares with a linear shape, the search has a closed-form answer: a formula gives the best coefficients directly, no iteration, in a few milliseconds. `LinearRegression` uses it.
+## 2. Fitting is a search { .section-label }
 
-That is a special case, and a lucky one. The moment you change the loss, add a penalty, or move to logistic regression, no such formula exists, and the only way to find the minimum is to walk downhill from a starting guess. That walk is Week 6.
+With two unknowns you can see the whole problem. Every pair \((w_0, w_1)\) gives one loss, so the loss is a landscape over all possible models, and fitting means finding its lowest point.
 
-!!! taxi "In our example"
-    Fitted on May's 133,505 standard metered trips, the best straight line through the fares is
+![The loss as a landscape over the two numbers](../assets/images/03-models-optimization/w05-surface-light.png#only-light)
+![The loss as a landscape over the two numbers](../assets/images/03-models-optimization/w05-surface-dark.png#only-dark)
 
-    **fare ≈ $6.73 + $3.97 per mile**
+*Darker is lower. The marked point is the fit: there is exactly one lowest point, and it is a bowl, so you cannot get stuck anywhere else.*
 
-    Compare that with the published rate: a **$3.00** initial charge and **$3.50** a mile. Our line charges more than double at the door, and 13% more per mile, yet it is provably the best line of its shape. The next section explains why.
+For this shape and this loss, the lowest point can be computed directly — there is a formula, and `LinearRegression` uses it. That is a luxury. It stops being true as soon as the shape gets more interesting, and from Week 6 onwards the search has to walk downhill instead of jumping straight to the bottom.
 
-## 3. Coefficients are readable, and worth reading
+!!! note "Why the bowl matters"
+    A bowl has one bottom. Whatever you start from, you end in the same place, and two people fitting the same model on the same data get the same answer.
 
-A coefficient is the model's answer to a specific question: *how much does the prediction change when this feature increases by one, with everything else in the model held fixed?* In a fare model, $w_1$ is dollars per mile. That is what makes linear models worth teaching long after fancier ones exist: you can read what they believe, and argue with it.
+    Keep that picture. In Week 6 you will see the walk downhill, in Week 7 what happens when the bowl is too easy to reach, and in Week 8 models whose landscape is not a bowl at all.
 
-Reading them correctly means remembering the second half of that sentence. **With everything else held fixed** is doing a lot of work, and when the model cannot see something that matters, its coefficients quietly absorb it.
+## 3. What a coefficient says { .section-label }
 
-!!! taxi "In our example"
-    The meter charges **$0.70 a minute whenever the taxi is below 12 mph**. Our model cannot see minutes, so every dollar earned by sitting in traffic has to be explained by the only columns it has: the starting charge and the distance. Both inflate.
+Add more columns and the shape stays the same idea: one number per thing, added up.
 
-    If that is the explanation, trips that never slowed down should fit the published rate far better. They do.
+!!! hotel "A model you can read out loud"
+    Five numeric columns and four categorical ones, one-hot encoded. On validation: **R² 0.421, average error €21.31**. Against the €29.92 floor, that is nearly a third of the error gone.
 
-    ![What each fit says the meter charges](../assets/images/03-models-optimization/w05-meter-light.png#only-light)
-    ![What each fit says the meter charges](../assets/images/03-models-optimization/w05-meter-dark.png#only-dark)
+    ![What the model says each thing is worth](../assets/images/03-models-optimization/w05-coefficients-light.png#only-light)
+    ![What the model says each thing is worth](../assets/images/03-models-optimization/w05-coefficients-dark.png#only-dark)
 
-    | Fitted on | Starting charge | Per mile |
-    |---|--:|--:|
-    | The published meter | $3.00 | $3.50 |
-    | All trips | $6.73 | $3.97 |
-    | Free-flowing trips, over 12 mph (27,863) | **$3.93** | **$3.95** |
-    | Slow trips, 12 mph or less (105,642) | $4.92 | $5.42 |
+    *Euros a night, holding everything else still.*
 
-    The free-flowing fit lands near the real tariff. Even those trips wait at some lights, which is why it is not exact. The slow trips charge $5.42 a mile because on those journeys much of the fare was bought with minutes, and the model has to call it distance.
+    It starts every booking at **€46.60**, then:
 
-*Elsewhere:* in a salary model without a seniority column, the coefficient on years of education absorbs part of the effect of seniority, because the two travel together. The number is not wrong; it is answering a question that includes everything the model cannot see.
-{ .elsewhere }
+    - an extra adult adds **€9.26**, an extra child adds **€14.01**
+    - arriving in August adds **€53.67** over January
+    - room type H adds **€69.85** over type A
+    - a complimentary booking takes off **€47.54**
+    - every extra night takes off **€0.32**, and every extra day booked ahead takes off **€0.04**
 
-!!! project "In your project"
-    Fit the simplest version of your model, with two or three features, and write out what each coefficient claims in the units of your problem. If a number looks wrong, ask what the model cannot see.
+Three of those are worth stopping on.
 
-## 4. Explaining is not predicting
+**A child costs more than an adult.** €14.01 against €9.26. Not because children are charged more, but because bookings with children are family bookings in family rooms in August. The coefficient has absorbed everything it is standing in for.
 
-If the missing time charge distorts the coefficients, why not add the duration as a feature?
+**More nights makes it cheaper.** Only thirty-two cents a night, but the sign is the interesting part: longer stays get better rates, which is what you would expect and which a model with no knowledge of hotels has just told you.
 
-Because the answer depends on what the model is *for*.
+**Booking earlier makes it cheaper, barely.** Four cents a day. Over six months that is about €7.
 
-- An **explanatory** model answers *what drives this outcome?* It may use anything that was measured, whenever it was measured.
-- A **predictive** model answers *what will happen?* It may only use what is known at the moment it is asked.
+!!! question "Before you read on"
+    Write down what you expect the coefficient for *the resort, not the city* to be, and why. Then look at it on the chart. Section 6 explains why your answer and the model's can both be right.
 
-Both are legitimate science. Confusing them is how a beautiful notebook becomes a model that cannot be deployed.
+**Elsewhere:** a coefficient is always *per one unit, with everything else held still*. The second half of that sentence is where people get into trouble.
 
-!!! taxi "In our example"
-    Add the duration and the meter appears almost exactly:
+## 4. Squared, or absolute { .section-label }
 
-    **fare ≈ \$2.36 + \$2.50 per mile + \$0.52 per minute**, against the published **\$3.00 + \$3.50 + \$0.70**.
+The loss is a choice, and it is the one choice people forget they made.
 
-    Training error falls by more than 90%. The model has recovered the rule that generated its data from nothing but receipts, which is a genuinely satisfying result.
+Squared error punishes a big miss out of all proportion: twice as far wrong is four times as bad. Absolute error does not — twice as far wrong is twice as bad, and nothing more. Which means a single strange booking can drag a squared-error fit towards itself, and leave an absolute-error fit alone.
 
-    And it is useless for the booking app, because at the moment of booking the duration does not exist. Week 1's test rules it out, and the fare model goes back to what a passenger can be told before they travel.
+!!! hotel "One booking at €5,400"
+    The file contains exactly one. `daily_rate()` leaves it out. Here it is put back, alone, among four thousand ordinary bookings.
 
-!!! note "Key insight"
-    **A model that explains the past perfectly can be unusable for predicting the future.** The question is never only "does it fit?" but "will its inputs exist when I need an answer?"
+    ![What one outlier does to each loss](../assets/images/03-models-optimization/w05-losses-light.png#only-light)
+    ![What one outlier does to each loss](../assets/images/03-models-optimization/w05-losses-dark.png#only-dark)
 
-*Elsewhere:* a hospital model that explains length of stay using the discharge diagnosis is excellent science and worthless for planning beds, because the diagnosis is confirmed at discharge.
-{ .elsewhere }
+    One row in four thousand moved the squared-error line by **€1.06** at the intercept and fourteen cents a guest. The absolute-error line did not move **at all** — not approximately, exactly.
 
-!!! project "In your project"
-    Write one sentence saying whether your model is explanatory or predictive. Then check every feature against that sentence.
+That is the trade in one picture. Squared error is smooth, has a formula, and trusts every row. Absolute error is robust, has no formula, and fits a median rather than a mean.
 
-## 5. The loss is a decision
+| | Squared error | Absolute error |
+|---|---|---|
+| **Fits** | the mean | the median |
+| **One extreme row** | moves it | does not |
+| **Solving** | a formula | an optimiser |
+| **Reach for it when** | the big misses are the ones that hurt | a few strange rows are not your problem |
 
-Squared error is a default, not a law, and it has a personality: because it squares, a $40 miss contributes four hundred times as much as a $2 miss, so a handful of unusual cases can pull the whole model towards them.
+Neither is correct. They answer different questions, and section 2 of Week 4 is where you decide which question you are being asked.
 
-**Absolute error** treats a $40 miss as twenty times a $2 miss:
+## 5. The same idea, for yes or no { .section-label }
 
-\[
-\text{MAE} = \frac{1}{n}\sum_{i=1}^{n}\left|y_i - \hat{y}_i\right|
-\]
+Cancellation is not a number of euros, it is a yes or a no. The shape cannot stay the same, because \(w_0 + w_1 x\) runs from minus infinity to plus infinity and a probability does not.
 
-Each loss produces the model that is best *by its own standard*. That is not a trick: it is what fitting means.
+So squash it. Compute the straight-line part exactly as before, then push it through a function that turns any number into something between 0 and 1. That is **logistic regression**, and the loss changes to match: instead of squaring the error in euros, it scores how confident the model was about the answer it got.
 
-| Choose squared error when | Choose absolute error when |
-|---|---|
-| Large misses are disproportionately costly | Every unit of error costs the same |
-| You want the model to attend to extremes | A few unusual cases should not steer the line |
-| You need the closed-form solution's speed | You can afford an iterative fit |
+What comes out the other side is readable too, just in different units. The straight-line part is in **log-odds**, so exponentiating a coefficient gives you a multiplier on the odds.
 
-!!! taxi "In our example"
-    The same 8,000 trips, fitted twice. Eight of them cost over $100.
+!!! hotel "What makes a booking cancel"
+    Five numeric and four categorical columns. On validation: PR AUC **0.795**, lift **1.99** — twice as good as guessing.
 
-    ![Two losses, two lines](../assets/images/03-models-optimization/w05-losses-light.png#only-light)
-    ![Two losses, two lines](../assets/images/03-models-optimization/w05-losses-dark.png#only-dark)
+    ![The coefficients as odds multipliers](../assets/images/03-models-optimization/w05-odds-light.png#only-light)
+    ![The coefficients as odds multipliers](../assets/images/03-models-optimization/w05-odds-dark.png#only-dark)
 
-    | Loss | Fitted line | Validation MAE | Validation RMSE |
-    |---|---|--:|--:|
-    | Squared error | $6.63 + $4.00 per mile | 2.98 | **4.20** |
-    | Absolute error | $5.36 + $4.10 per mile | **2.84** | 4.33 |
+    *Numeric columns are scaled, so each one is "per one standard deviation".*
 
-    Each wins on its own metric, and the lines differ most at the left edge, where the starting charge is $1.27 apart. On a short trip, that dollar is a large share of the fare, so the choice of loss is a choice about which passengers get the better quote.
+    - **non-refundable: ×190** — a booking with a non-refundable deposit has 190 times the odds of cancelling
+    - **one more past cancellation: ×10.5**
+    - **119 more days ahead: ×1.56**
+    - **booked by a company: ×0.39** — corporate bookings are far stickier
+    - **one more special request: ×0.54** — asking for something is a sign of intent to turn up
 
-*Elsewhere:* in demand forecasting, under-stocking and over-stocking rarely cost the same. A loss that treats them symmetrically is already the wrong model, however well it fits.
-{ .elsewhere }
+Read these as odds, not probabilities. A multiplier of 2 on odds of 1-in-100 takes you to about 1-in-50. The same multiplier on odds of 1-in-2 takes you to 2-in-3. The effect on the probability depends entirely on where you started.
 
-!!! project "In your project"
-    State which loss your model minimises, and why that matches the cost of being wrong in your problem. If it does not, say so.
+**Elsewhere:** odds ratios are how medicine and epidemiology report everything. Being able to read one is worth more than being able to derive it.
 
-## 6. More features, same arithmetic
+## 6. A coefficient is conditional { .section-label }
 
-A line in one variable becomes a plane, then a shape nobody can picture. The formula is unchanged: every feature gets a weight, and the prediction is their sum.
+Everything above came with the same five words attached: *holding everything else still*. That clause is doing enormous work, and this section is about what happens when you forget it.
 
-\[
-\hat{y} = w_0 + w_1x_1 + w_2x_2 + \dots + w_px_p
-\]
+!!! hotel "Non-refundable, twice"
+    Alone in a model with nothing else, `deposit_type = Non Refund` multiplies the odds of cancelling by **315.6**.
 
-Two practical points follow.
+    In the model from section 5, with lead time and market segment alongside it, the same column multiplies them by **190.3**.
 
-**Categories need columns.** One-hot encoding gives each value its own weight, which is what lets the model say "2pm adds two dollars" rather than pretending that hour 14 is twice hour 7.
+    Same data, same column, same fit. The number moved because the other columns took some of the credit — non-refundable bookings are made on average **242 days ahead** against 100 for the rest, and 61.5% of them come through group channels.
 
-**Scaling changes the units of a coefficient, not the model.** After standardising, a coefficient reads as "dollars per standard deviation", which makes features comparable with each other but no longer in their original units. Decide which you want before reading the numbers.
+A coefficient is not a property of a column. It is a property of a column *in a particular model*, and it changes when its neighbours change.
 
-!!! taxi "In our example"
-    Adding the airport flag, the hour and the weekday takes the model to 33 columns and the validation error from $3.00 to $2.76. The hourly weights draw the city's traffic:
+The sharper version of the same problem is when one coefficient is asked to describe two different worlds.
 
-    ![What each hour adds to the fare](../assets/images/03-models-optimization/w05-hours-light.png#only-light)
-    ![What each hour adds to the fare](../assets/images/03-models-optimization/w05-hours-dark.png#only-dark)
+![Why one month coefficient is wrong for both hotels](../assets/images/03-models-optimization/w05-season-light.png#only-light)
+![Why one month coefficient is wrong for both hotels](../assets/images/03-models-optimization/w05-season-dark.png#only-dark)
 
-    *For the same trip, midday costs about $2 more than 5am. The model has never been told about rush hour. It inferred the shape from fares.*
+*The resort charges €177 a night in August and €47 in November — nearly four times as much. The city barely moves: €104 against €85. The model has one August coefficient and has to use it for both, so it lands between them and is wrong about each.*
 
-!!! project "In your project"
-    Encode your categorical features and plot the weights of one of them. If the pattern contradicts what you know about the domain, find out why before trusting the model.
+The model is not broken. It is answering the question it was asked, which was *what does August add, on average, across both hotels*. If you want it to know that August means something different by the sea, you have to say so — by giving it an interaction, or by fitting the two hotels separately. Week 8's trees find that kind of thing without being told, which is most of why they exist.
 
-## 7. The same idea, for a yes or no question
+!!! warning "Three ways to misread a coefficient"
+    **As a cause.** Children do not cost €14.01. Bookings with children cost €14.01 more than otherwise-identical bookings without them, in this data.
 
-A straight line is the wrong shape for a probability: it runs off to infinity in both directions, and a probability must stay between 0 and 1. **Logistic regression** keeps the linear part and squashes the result:
+    **As stable.** Add a column, every other coefficient moves.
 
-\[
-P(y = 1) = \sigma\left(w_0 + w_1x_1 + \dots\right), \qquad \sigma(z) = \frac{1}{1 + e^{-z}}
-\]
+    **As comparable.** A coefficient is per unit, and the units differ. One night, one child and one euro of lead time are not the same size of step. Scaling the inputs is how you make them comparable, which is section 3 of Week 6.
 
-The loss changes too. Squared error is a poor match for a yes-or-no outcome, so logistic regression minimises **log loss**, which punishes confident mistakes hardest. Log loss has no closed-form minimum, which is the first practical reason to care about the search itself, and the subject of Week 6.
+## 7. What this buys, and what it does not { .section-label }
 
-Its coefficients are no longer dollars. They add to the **log-odds**, so exponentiating one turns it into a multiplier on the odds: $e^{w} = 2$ means "doubles the odds".
+| | Rate (track A) | Cancellation (track B) |
+|---|---|---|
+| **Floor** | €29.92 average error | lift 1.00 |
+| **One column** | €26.51 | — |
+| **This week's model** | **€21.31**, R² 0.421 | **lift 1.99**, PR AUC 0.795 |
 
-!!! taxi "In our example"
-    The crawl question, from Project 1: will this trip average under 6 mph? Fitted on distance, the airport flag, the hour and the pickup borough, it reaches a validation ROC AUC of **0.814**.
+Both models clear the floor comfortably, and both are readable from end to end — which is the whole point of starting here. You can take either one to a hotel manager and defend every number in it.
 
-    ![The crawl model's coefficients as odds multipliers](../assets/images/03-models-optimization/w05-odds-light.png#only-light)
-    ![The crawl model's coefficients as odds multipliers](../assets/images/03-models-optimization/w05-odds-dark.png#only-dark)
+What they cannot do is bend. A linear model says each thing is worth the same amount everywhere: August adds €53.67 whether you are by the sea or in the city, and a day of lead time removes four cents whether it is the first or the three-hundredth. Every limitation in the rest of this block is a variation on that sentence, and every model in Weeks 7 and 8 is an attempt to escape it.
 
-    *Picked up at 2pm, the odds of crawling are about three times the average hour's. At 4am they are a sixth. Each extra standard deviation of distance cuts them to a sixteenth, because long trips spend most of their miles moving.*
-
-*Elsewhere:* a credit model's coefficient of 0.41 on a risk flag means that flag multiplies the odds of default by about 1.5. Regulators often ask for exactly this reading, which is why logistic regression survives in lending long after better-scoring models exist.
-{ .elsewhere }
-
-!!! project "In your project"
-    If your question is a classification, report your model's coefficients as odds multipliers, with one sentence each in plain language.
-
-## 8. No coefficient should be read alone
-
-A coefficient answers a conditional question, and the condition is *everything else in the model*. Add a feature that overlaps with an existing one and the existing weight will move, sometimes a lot, sometimes through zero.
-
-!!! taxi "In our example"
-    In the crawl model, a Manhattan pickup **lowers** the predicted odds of crawling, by a factor of 0.45. In the borough where traffic is worst.
-
-    ![Manhattan, raw and conditioned on distance](../assets/images/03-models-optimization/w05-conditional-light.png#only-light)
-    ![Manhattan, raw and conditioned on distance](../assets/images/03-models-optimization/w05-conditional-dark.png#only-dark)
-
-    *On its own, 21.9% of Manhattan trips crawl, the highest of any borough with enough trips to judge. Inside the model, its coefficient is below one.*
-
-    Both are true. Manhattan trips are short, and short trips crawl far more often, so distance has already accounted for the risk. What is left for the borough to explain is slightly *less* crawling than its distances alone would suggest.
-
-!!! danger "The sentence to remember"
-    A coefficient means **"the effect of this feature, given everything else in the model"**. It is not the effect of the feature in the world. If you want that, measure it on its own, as the left panel does.
-
-*Elsewhere:* this is the mechanism behind many published findings that reverse when a control variable is added. The data did not change, the question did.
-{ .elsewhere }
-
-!!! project "In your project"
-    Pick your most interesting coefficient and check it against the raw relationship in the data. If they disagree, explain why in your report. That explanation is worth more than the model.
-
----
-
-## Lab
-
-!!! example "Lab · `week-05/lab.ipynb`"
-    In the [labs repository](https://github.com/evisp/ml-course-labs). The lab samples 50,000 trips per split so everything runs in seconds; the numbers on this page come from the full months and land within a few cents.
-
-    1. `git pull`, open `week-05/lab.ipynb`, save your own copy as `my-lab.ipynb`
-    2. Write the loss function, and score three candidate lines with it
-    3. Fit the fare, and compare your two numbers with the published meter
-    4. Prove why they differ, using the free-flowing trips
-    5. Recover the meter by adding the duration, then throw that model away
-    6. Refit with absolute error, and see which model each metric prefers
-    7. Fit logistic regression on the crawl, and read its coefficients as odds
-    8. Explain the Manhattan coefficient to a colleague who misread it
-
-## Project step
-
-!!! project "For your Project 2 dataset"
-    - Fit the simplest linear or logistic model you can, and write out what each coefficient claims in your problem's units
-    - Say whether your model explains or predicts, and check every feature against that
-    - State the loss you are minimising, and why it matches the cost of being wrong
-    - Check one coefficient against the raw relationship, and explain any disagreement
-
-## Common mistakes
-
-!!! warning "What goes wrong in week five"
-    - **Reading a coefficient as an effect in the world.** It is an effect inside a model, given everything else in it.
-    - **Comparing coefficients across differently scaled features.** Scale first, or compare in original units knowingly.
-    - **Using a feature that explains beautifully and does not exist at prediction time.** The duration, the fare, the outcome's cousins.
-    - **Accepting squared error without thinking.** It is a statement about which mistakes hurt most.
-    - **Judging a model by its training loss.** That number only says the search worked, not that the model is any good.
-    - **Dropping a feature because its coefficient is near zero.** With correlated features, the weight may simply have moved next door.
-
-## Check yourself
-
-??? question "Our fitted line charges $6.73 at the door, the real meter $3.00. Is the model wrong?"
-    No. It is the best line of its shape, and the shape has no column for time. The meter also charges $0.70 a minute in slow traffic, and in a distance-only model those dollars must be explained by the starting charge and the per-mile rate, inflating both. Fitted only on free-flowing trips, where little time is charged, the model returns $3.93 and $3.95 a mile.
-
-??? question "You add a feature and another coefficient halves. What happened, and is it a problem?"
-    The two features share information, so the explanation that was carried by one is now split between them. It is not a bug, and it is not necessarily a problem, but it means neither coefficient can be read as that feature's effect on its own. Report what the model is, and do not over-claim.
-
-??? question "When would you prefer absolute error to squared error for a price model?"
-    When every dollar of error costs the same, and a few unusual trips should not steer the quote for ordinary ones. Squared error is the better choice when a large miss is disproportionately costly, for example when an underestimate loses the customer entirely.
-
-??? question "A logistic coefficient is 0.69. What does that mean in plain language?"
-    Its odds multiplier is about 2, so a one-unit increase in that feature roughly doubles the odds of a positive outcome, with everything else in the model held fixed. Doubling the odds is not doubling the probability: from 10% it moves to about 18%, not 20%.
-
-??? question "Why does logistic regression need the search that linear regression can skip?"
-    Least squares with a linear shape has a closed-form solution: a formula gives the best coefficients directly. Log loss does not. The only way to its minimum is to start somewhere and walk downhill, which is what Week 6 builds.
-
-## Quick reference
-
-| Idea | In one line |
-|---|---|
-| A model | A shape, plus a loss that says what counts as a mistake |
-| Fitting | The search for the parameters with the lowest loss |
-| Coefficient | The change in the prediction per unit of the feature, with everything else held fixed |
-| Squared error | Punishes large misses hardest. Closed-form solution. |
-| Absolute error | Treats every unit of error alike. Needs an iterative fit. |
-| Explanatory vs predictive | What drives this? versus what will happen? Different rules about features. |
-| Logistic regression | Linear part, squashed into a probability, fitted with log loss |
-| Odds multiplier | $e^{w}$. Two means "doubles the odds". |
-
-```python
-LinearRegression().fit(X, y)                       # closed form, squared error
-QuantileRegressor(quantile=0.5, alpha=0).fit(X, y) # iterative, absolute error
-LogisticRegression(max_iter=2000).fit(X, y)        # iterative, log loss
-np.exp(model.coef_)                                 # log-odds to odds multipliers
-```
+!!! project "In the lab"
+    1. Fit the two-number model yourself and find the same €42.92 and €27.72 — once with `LinearRegression`, once by writing the loss and searching a grid, so the formula stops being magic.
+    2. Build the readable model and read five coefficients out loud in euros.
+    3. Put the €5,400 booking back and measure what each loss does about it.
+    4. Fit the cancellation model and convert its coefficients into odds multipliers.
+    5. Fit the resort and the city separately, and show what the pooled August coefficient was hiding.
+    6. Write the five sentences your model would let you say to a manager, and one it would not.
 
 ## Summary
 
-A model is a shape and a loss, and fitting is the search for the parameters that make the loss smallest. Linear models earn their place because that search has a closed-form answer and because the result can be read: our fare model says $6.73 at the door and $3.97 a mile, against a published $3.00 and $3.50, and the difference is the time charge it cannot see. Add the duration and the real tariff appears, in a model that can explain fares but never quote one. Change the loss and the line moves, because each loss defines its own idea of a good answer. Logistic regression applies the same idea to a yes-or-no question, with coefficients that read as odds, and ends with a warning: Manhattan looks safe inside a model that already knows the distance, and is the most crawl-prone borough outside it.
+A model is a shape and a loss. Fitting searches the loss landscape for its lowest point, and for a linear model with squared error that landscape is a bowl with a formula for the bottom.
 
-**Next week** takes the search itself seriously. Log loss has no formula, so the parameters must be found by walking downhill, and that walk can diverge, stall, or arrive, depending on one number.
+A linear coefficient is readable in the units of the answer — euros a night, or a multiplier on odds — which makes this the one week where you can see all the way through a model. But every coefficient carries *holding everything else still* with it, and when one coefficient has to describe two different worlds, it lands between them and is wrong about both.
 
-**Next:** [Week 06 · Optimization](week-06-optimization.md)
+**Next week:** the formula goes away. When you cannot jump to the bottom of the bowl, you have to walk, and walking can fail in three visible ways.
 
 ## Resources
 
-- [NYC TLC taxi fare rates](https://www.nyc.gov/site/tlc/passengers/taxi-fare.page). The published meter, worth reading once against your own coefficients.
-- [scikit-learn, Linear models](https://scikit-learn.org/stable/modules/linear_model.html). The family, from ordinary least squares to the regularized versions in Week 7.
-- [Calculus for ML](../06-reference/calculus.md) on this site, for what a gradient is before Week 6 needs it.
-- [Linear algebra](../06-reference/linear-algebra.md) on this site, for the closed-form solution's matrix form.
-
-!!! quote
-    Read the coefficients, and remember what they were conditioned on.
+- [scikit-learn: linear models](https://scikit-learn.org/stable/modules/linear_model.html) — `LinearRegression`, `LogisticRegression`, `QuantileRegressor`
+- [Calculus for ML](../06-reference/calculus.md) — what a derivative of a loss means, and why a bowl is convenient
+- [Choosing a metric](../06-reference/metrics.md) — R², MAE and when each one lies
+- [The dataset](dataset.md) — the splits, the floors and what the columns mean

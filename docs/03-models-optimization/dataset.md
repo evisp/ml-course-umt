@@ -69,7 +69,28 @@ Five columns in the file describe that future, and one of them is the target in 
 
     The notebook does exactly this, on purpose, before throwing the column away. It is worth seeing a perfect score once so you learn to distrust one.
 
-`hotels.py` removes five columns from both questions:
+There is a second one, quieter, and it is the better lesson.
+
+!!! danger "`required_car_parking_spaces` cannot be what it says it is"
+    It reads like a request made at booking, and the column name encourages
+    you to believe that. But of the **7,416 bookings that record a parking
+    space, exactly zero were cancelled** — and the same holds in every split
+    after cleaning: 4,696 in training, 857 in validation, 1,840 in test, zero
+    cancellations in all three.
+
+    No honest booking-time feature behaves like that. A space is assigned when
+    the guest arrives, and a cancelled booking never arrives. The column
+    records an outcome, not a request.
+
+    It costs about 0.01 PR AUC to remove, so nothing in this block depends on
+    it. What it costs to *keep* is a model that cannot work in production,
+    because at the moment you need a prediction the column is always zero.
+
+The giveaway was a count, not a score: a feature that is right 7,416 times out
+of 7,416 is not a feature. When a column looks too good, group by it and count
+before you celebrate.
+
+`hotels.py` removes six columns from both questions:
 
 | Column | Why it is not available |
 |---|---|
@@ -78,6 +99,7 @@ Five columns in the file describe that future, and one of them is the target in 
 | `assigned_room_type` | decided at check-in, not at booking |
 | `booking_changes` | accumulates after the booking is made |
 | `days_in_waiting_list` | known only once the wait is over |
+| `required_car_parking_spaces` | assigned on arrival — see above |
 
 `adr` is a borderline case worth arguing about. The nightly rate is agreed when the booking is made, so track B is allowed to use it. Track A is predicting it, so it goes.
 
@@ -174,7 +196,7 @@ Every model in this block gets compared to these. They come from the training ro
     |---|---|
     | **Baseline** | the base rate, 38.6% of training bookings cancelled |
     | **On validation** | PR AUC 0.386, **lift 1.00** |
-    | **Logistic regression** | PR AUC 0.855, **lift 2.14** |
+    | **Logistic regression** | PR AUC 0.845, **lift 2.12** |
 
 Report lift next to PR AUC for track B, because the base rate moves between the periods — 38.6% in training, 31.8% in test — and a raw PR AUC from one period cannot be compared with one from another.
 

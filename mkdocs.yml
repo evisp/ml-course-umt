@@ -128,7 +128,7 @@ nav:
   - "Models & Optimization":
     - Overview: 03-models-optimization/index.md
     - "The dataset": 03-models-optimization/dataset.md
-    - "Linear models": 03-models-optimization/week-05-linear-models.md
+    - "Fit": 03-models-optimization/week-05-linear-models.md
 
   - "Representation & Systems":
     - Overview: 04-representation-systems/index.md
