@@ -1367,7 +1367,7 @@
   <span class="md-ellipsis">
     
   
-    Linear models
+    Fit
   
 
     
@@ -2473,7 +2473,25 @@
 <p>Leave it in and a boosted model scores <strong>PR AUC 1.000, ROC AUC 1.000, accuracy 1.000</strong>. Three perfect scores, no warning, no error.</p>
 <p>The notebook does exactly this, on purpose, before throwing the column away. It is worth seeing a perfect score once so you learn to distrust one.</p>
 </div>
-<p><code>hotels.py</code> removes five columns from both questions:</p>
+<p>There is a second one, quieter, and it is the better lesson.</p>
+<div class="admonition danger">
+<p class="admonition-title"><code>required_car_parking_spaces</code> cannot be what it says it is</p>
+<p>It reads like a request made at booking, and the column name encourages
+you to believe that. But of the <strong>7,416 bookings that record a parking
+space, exactly zero were cancelled</strong> — and the same holds in every split
+after cleaning: 4,696 in training, 857 in validation, 1,840 in test, zero
+cancellations in all three.</p>
+<p>No honest booking-time feature behaves like that. A space is assigned when
+the guest arrives, and a cancelled booking never arrives. The column
+records an outcome, not a request.</p>
+<p>It costs about 0.01 PR AUC to remove, so nothing in this block depends on
+it. What it costs to <em>keep</em> is a model that cannot work in production,
+because at the moment you need a prediction the column is always zero.</p>
+</div>
+<p>The giveaway was a count, not a score: a feature that is right 7,416 times out
+of 7,416 is not a feature. When a column looks too good, group by it and count
+before you celebrate.</p>
+<p><code>hotels.py</code> removes six columns from both questions:</p>
 <table>
 <thead>
 <tr>
@@ -2501,6 +2519,10 @@
 <tr>
 <td><code>days_in_waiting_list</code></td>
 <td>known only once the wait is over</td>
+</tr>
+<tr>
+<td><code>required_car_parking_spaces</code></td>
+<td>assigned on arrival — see above</td>
 </tr>
 </tbody>
 </table>
@@ -2619,7 +2641,7 @@
 </tr>
 <tr>
 <td><strong>Logistic regression</strong></td>
-<td>PR AUC 0.855, <strong>lift 2.14</strong></td>
+<td>PR AUC 0.845, <strong>lift 2.12</strong></td>
 </tr>
 </tbody>
 </table>
@@ -2707,7 +2729,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 21, 2026 12:24:16 UTC">November 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 21, 2026 13:03:10 UTC">November 21, 2026</span>
   </span>
 
     
@@ -2762,13 +2784,13 @@
         
         
           
-          <a href="../week-05-linear-models/" class="md-footer__link md-footer__link--next" aria-label="Next: Linear models">
+          <a href="../week-05-linear-models/" class="md-footer__link md-footer__link--next" aria-label="Next: Fit">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Linear models
+                Fit
               </div>
             </div>
             <div class="md-footer__button md-icon">

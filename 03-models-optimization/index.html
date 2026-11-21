@@ -1199,7 +1199,7 @@
   <span class="md-ellipsis">
     
   
-    Linear models
+    Fit
   
 
     
@@ -2051,10 +2051,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-same-city-the-same-questions" class="md-nav__link">
+  <a href="#a-bench-and-a-field" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The same city, the same questions
+        A bench and a field
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-tracks-one-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two tracks, one table
       
     </span>
   </a>
@@ -2179,12 +2190,12 @@
 
 
 <h1 id="block-2-models-optimization">Block 2 · Models &amp; Optimization<a class="headerlink" href="#block-2-models-optimization" title="Permanent link">&para;</a></h1>
-<p class="block-sub">Weeks 5 to 9 · New York taxi trips</p>
+<p class="block-sub">Weeks 5 to 9 · Hotel bookings</p>
 
-<p>Block 1 built something you can trust: a question with a precise target, data split the way the model will be used, features that cannot leak, and an evaluation that reports where the model fails. What it did not do is take the model seriously. Logistic regression and a single tree were tools borrowed to make a point about method.</p>
+<p>Block 1 built something you can trust: a question with a precise target, data split the way the model will be used, features that cannot leak, and an evaluation that reports where the model fails. Project 1 proved you can do all of it yourself, on data nobody had prepared for you. What neither did is take the model seriously. Logistic regression and a single tree were tools borrowed to make a point about method.</p>
 <p>This block opens them up. What is a model actually doing when it fits? How does it find its answer, and when does that search fail? What makes a model memorise instead of learn, and how do you stop it? And when a model tells you it is 80% sure, what is that worth?</p>
 <div class="roadmap-track">
-  <div class="track-seg seg-1"><span class="track-weeks">Week 05</span><b>Fit</b><br>Loss, coefficients, two models from one idea</div>
+  <div class="track-seg seg-1"><span class="track-weeks">Week 05</span><b>Fit</b><br>A shape, a loss, and coefficients you can read</div>
   <div class="track-seg seg-2"><span class="track-weeks">Week 06</span><b>Optimize</b><br>Gradient descent, learning rates, scaling</div>
   <div class="track-seg seg-3"><span class="track-weeks">Week 07</span><b>Generalize</b><br>Bias, variance, regularization</div>
   <div class="track-seg seg-4"><span class="track-weeks">Week 08</span><b>Ensemble</b><br>Trees, forests, boosting</div>
@@ -2222,80 +2233,81 @@
 </li>
 </ul>
 </div>
-<h2 class="section-label" id="the-same-city-the-same-questions">The same city, the same questions<a class="headerlink" href="#the-same-city-the-same-questions" title="Permanent link">&para;</a></h2>
-<p>Block 1 taught on Olist and set Project 1 on New York taxi trips. From here, the taxi data is the running example too: you have already cleaned it, split it, and argued about it for four weeks, which means no time is spent explaining what a column means.</p>
-<p>Three of Project 1's four questions come with us, and the fourth stays as a reminder.</p>
+<h2 class="section-label" id="a-bench-and-a-field">A bench and a field<a class="headerlink" href="#a-bench-and-a-field" title="Permanent link">&para;</a></h2>
+<p>Block 1 taught on Olist and set Project 1 on New York taxis. Neither comes with us. A model block needs data chosen for what it shows about <strong>models</strong>, and taxi fares are nearly a formula — perfect for reading a coefficient, useless for watching a model overfit.</p>
+<p>From here the running example is <strong>hotel bookings</strong>: 119,390 reservations at two Portuguese hotels, arrivals from July 2015 to August 2017. The data half is already done, in the open, on <a href="dataset/">the dataset page</a> and the notebook beside it. Every lab from Week 5 starts with the same two lines and the same table.</p>
+<p>Each week then works at two levels, and the labs say which one they are on.</p>
+<div class="outcomes">
+  <div class="outcome"><b>The bench.</b> Small, clean, often made up on purpose. You turn one knob and watch one thing move. Nothing is hidden, and nothing is realistic.</div>
+  <div class="outcome"><b>The field.</b> The hotel data, with the split by booking date, a baseline beside every score, and the mess left in. Everything Block 1 taught still applies here, unchanged.</div>
+</div>
+
+<p>The bench is where a mechanism becomes visible. The field is where you find out how much of it survives contact with real columns. Most weeks you will be surprised by how much smaller the effect is in the second place than the first — that gap is the lesson, not a disappointment.</p>
+<h2 class="section-label" id="two-tracks-one-table">Two tracks, one table<a class="headerlink" href="#two-tracks-one-table" title="Permanent link">&para;</a></h2>
+<p>The class splits in two. Both halves work the same rows, the same split and the same pipeline, and predict a different column.</p>
 <table>
 <thead>
 <tr>
 <th></th>
 <th>The question</th>
-<th>Why it is here</th>
+<th>Target</th>
+<th>What a model must beat</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>A</strong></td>
-<td>What will this trip cost?</td>
-<td>Nearly a straight line, with coefficients you can check against the published meter rate</td>
+<td>What will this booking pay per night?</td>
+<td><code>adr</code>, in euros</td>
+<td>predicting the mean: <strong>€29.92</strong> average error</td>
 </tr>
 <tr>
 <td><strong>B</strong></td>
-<td>How long will this trip take?</td>
-<td>Not a straight line at all. This is where trees and boosting earn their keep</td>
-</tr>
-<tr>
-<td><strong>C</strong></td>
-<td>Will this trip crawl?</td>
-<td>Classification, with enough signal to compare models honestly</td>
-</tr>
-<tr>
-<td><strong>D</strong></td>
-<td>Will this passenger tip well?</td>
-<td>The counterexample. No amount of modelling fixes a question the data cannot answer</td>
+<td>Will this booking be cancelled?</td>
+<td><code>is_canceled</code>, 0 or 1</td>
+<td>guessing: <strong>lift 1.00</strong>, at a 38.6% base rate</td>
 </tr>
 </tbody>
 </table>
-<p>Everything starts from <code>taxi.py</code>, with the cleaning decisions made in Project 1. Labs work on a sample so they stay fast on a laptop; the numbers on these pages come from the full months.</p>
+<p>They are not two halves of one lesson. They disagree, and the disagreement is the point:</p>
+<ul>
+<li><strong>Cancellation</strong> has the dramatic failures. Two leaked columns, one of which gives three perfect scores, and a base rate that moves between periods so a raw score cannot be compared across them.</li>
+<li><strong>The nightly rate</strong> has the clearest model gap. A straight line reaches R² 0.42; boosting reaches 0.74 without being told anything new.</li>
+</ul>
+<p>Neither group sees the whole picture alone, so Week 8 puts you back together and you compare findings.</p>
+<div class="admonition note">
+<p class="admonition-title">Why not everybody does both</p>
+<p>Because doing one properly is worth more than doing two approximately, and because having someone in the room who got a different answer is the cheapest way to learn that the answer depends on the question.</p>
+</div>
 <h2 class="section-label" id="the-bar-to-beat">The bar to beat<a class="headerlink" href="#the-bar-to-beat" title="Permanent link">&para;</a></h2>
-<p>Project 1 answered all four questions with simple tools: linear and logistic regression, and a single decision tree. Those results are the baseline for everything in this block.</p>
-<p><img alt="Project 1's results on the July trips" src="../assets/images/03-models-optimization/b2-bar-light.png#only-light" />
-<img alt="Project 1's results on the July trips" src="../assets/images/03-models-optimization/b2-bar-dark.png#only-dark" /></p>
-<p><em>Measured once on July, with Project 1's tools. Every claim in Block 2 is made against these numbers, on the same trips.</em></p>
+<p>Both tracks start from a model you can read end to end, fitted in Week 5. Everything after that is measured against it, on the same validation period.</p>
 <table>
 <thead>
 <tr>
-<th>Question</th>
-<th>Project 1's answer</th>
-<th>July result</th>
+<th></th>
+<th>Floor</th>
+<th>Week 5</th>
+<th>What later weeks have to clear</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>A · fare</strong></td>
-<td>Tree, depth 12</td>
-<td>MAE <strong>$2.40</strong>, against $7.83 for predicting the median</td>
+<td><strong>A · the nightly rate</strong></td>
+<td>€29.92 average error</td>
+<td><strong>€21.31</strong>, R² 0.421</td>
+<td>a lower error, with an interval that clears this one</td>
 </tr>
 <tr>
-<td><strong>B · duration</strong></td>
-<td>Tree, depth 16</td>
-<td>MAE <strong>4.58 min</strong>, against 8.48</td>
-</tr>
-<tr>
-<td><strong>C · crawl</strong></td>
-<td>Logistic regression with zones</td>
-<td>Lift <strong>3.68</strong>, against 1.0 for guessing</td>
-</tr>
-<tr>
-<td><strong>D · tip</strong></td>
-<td>Logistic regression with zones</td>
-<td>Lift <strong>1.27</strong>. The ceiling, not a win</td>
+<td><strong>B · cancellation</strong></td>
+<td>lift 1.00</td>
+<td><strong>lift 1.99</strong>, PR AUC 0.795</td>
+<td>a higher lift, on the same period</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">What counts as progress</p>
-<p>Not a better number on its own. A better number <strong>on the same test months</strong>, with an interval that clears the old one, from a model whose extra complexity you can justify. Week 9 makes that standard precise.</p>
+<p>Not a better number on its own. A better number <strong>on the same validation period</strong>, with an interval that clears the old one, from a model whose extra complexity you can justify. Week 9 makes that standard precise.</p>
 </div>
 <h2 class="section-label" id="week-by-week">Week by week<a class="headerlink" href="#week-by-week" title="Permanent link">&para;</a></h2>
 <div class="block-card">
@@ -2307,7 +2319,7 @@
 <p class="block-sub">From "it fits" to "I can defend why this model and not that one".</p>
 <div class="week-row">
 <div class="week-num">05</div>
-<div class="week-body"><b>Linear models.</b> A loss turns a guess into a number you can improve. Linear regression on the fare, read as a starting charge and a price per mile. Logistic regression on the crawl, read as odds. Two models, one idea.</div>
+<div class="week-body"><b>Fit.</b> A model is a shape and a rule for being wrong. The nightly rate read as a starting price and a price per guest; cancellation read as odds. Two models, one idea, and the only week where you can see all the way through.</div>
 </div>
 <div class="week-row">
 <div class="week-num">06</div>
@@ -2315,15 +2327,15 @@
 </div>
 <div class="week-row">
 <div class="week-num">07</div>
-<div class="week-body"><b>Bias, variance and regularization.</b> Why a deeper tree stops helping. Learning curves that say whether more data would help. Ridge and lasso across hundreds of one-hot zone columns, and what each one does to the coefficients.</div>
+<div class="week-body"><b>Generalize.</b> Why a deeper tree stops helping. Learning curves that say whether more data would help. Ridge and lasso across hundreds of one-hot columns — and the discovery that a penalty buys you almost nothing once you already have the data.</div>
 </div>
 <div class="week-row">
 <div class="week-num">08</div>
-<div class="week-body"><b>Trees and boosting.</b> One tree, many trees, and trees that correct each other. Where boosting wins, by how much, and the questions where it changes nothing.</div>
+<div class="week-body"><b>Ensemble.</b> One tree, many trees, and trees that correct each other. Where boosting wins, by how much, and the week the two tracks compare notes.</div>
 </div>
 <div class="week-row">
 <div class="week-num">09</div>
-<div class="week-body"><b>Model selection and calibration.</b> Cross-validation done properly on data with time in it. An equal tuning budget for every candidate. Turning scores into probabilities you can quote, and handling a rare class without lying about it.</div>
+<div class="week-body"><b>Choose.</b> Cross-validation done properly on data with time in it. An equal tuning budget for every candidate. Turning scores into probabilities you can quote, and handling a rare class without lying about it.</div>
 </div>
 <div class="block-project">
 <p><strong>Project 2 · A defensible model comparison.</strong> Opens in Week 5, due at the end of Week 9. Several model families, an equal tuning budget, and an explicit claim about which differences are real.</p>
@@ -2332,8 +2344,8 @@
 <h2 class="section-label" id="what-you-build">What you build<a class="headerlink" href="#what-you-build" title="Permanent link">&para;</a></h2>
 <div class="outcomes">
   <div class="outcome"><b>A gradient descent you wrote yourself</b>, once, so the library's version is never mysterious again.</div>
-  <div class="outcome"><b>A regularized model across hundreds of columns</b>, with the coefficients it keeps and the ones it zeroes.</div>
-  <div class="outcome"><b>A boosted model, and an honest account</b> of what it bought you compared with Project 1's single tree.</div>
+  <div class="outcome"><b>A regularized model across hundreds of columns</b>, with the coefficients it keeps, the ones it zeroes, and an honest account of whether it helped.</div>
+  <div class="outcome"><b>A boosted model, and an honest account</b> of what it bought you compared with the readable model from Week 5.</div>
   <div class="outcome"><b>A tuning protocol</b> that spends the same budget on every candidate, so the comparison means something.</div>
   <div class="outcome"><b>A calibrated classifier</b> whose probabilities can be quoted to someone who will act on them.</div>
 </div>
@@ -2343,8 +2355,8 @@
 <p><strong>Everything in Block 1 still applies.</strong></p>
 <p>The split is still by time, learned steps still live inside a pipeline, and test is still looked at once. A better model does not buy you a looser method: it makes a loose method more dangerous, because the score is now impressive enough to believe.</p>
 </div>
-<p>Worth rereading: <a href="../02-data-pipeline/review/">Block 1 in review</a>, and your own Project 1 repository, which is where the data decisions you are about to rely on were made.</p>
-<p><strong>Next:</strong> <a href="week-05-linear-models/">Week 05 · Linear models</a></p>
+<p>Worth rereading: <a href="../02-data-pipeline/review/">Block 1 in review</a>, and your own Project 1 repository — not for its data, which we are leaving behind, but for the decisions you made in it and the reasons you wrote down.</p>
+<p><strong>Next:</strong> <a href="dataset/">The dataset</a>, then <a href="week-05-linear-models/">Week 05 · Fit</a></p>
 
 
 
@@ -2365,7 +2377,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 17, 2026 07:34:20 UTC">November 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 21, 2026 13:03:10 UTC">November 21, 2026</span>
   </span>
 
     
