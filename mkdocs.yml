@@ -127,11 +127,8 @@ nav:
 
   - "Models & Optimization":
     - Overview: 03-models-optimization/index.md
+    - "The dataset": 03-models-optimization/dataset.md
     - "Linear models": 03-models-optimization/week-05-linear-models.md
-    - "Optimization": 03-models-optimization/week-06-optimization.md
-    - "Bias, variance & regularization": 03-models-optimization/week-07-regularization.md
-    - "Tree-based models": 03-models-optimization/week-08-tree-models.md
-    - "Model selection & calibration": 03-models-optimization/week-09-model-selection.md
 
   - "Representation & Systems":
     - Overview: 04-representation-systems/index.md
